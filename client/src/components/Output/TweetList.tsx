@@ -9,7 +9,7 @@ export const TweetList = (tweetList: Tweet[]) => {
                 <ul>
                     {tweetList.map((tweet) => (
                         <li key={tweet.id}>
-                            <TweetItem tweet={tweet} key={tweet.id}/>
+                            <p>{tweet.text}</p>
                         </li>
                     ))}
                 </ul>
