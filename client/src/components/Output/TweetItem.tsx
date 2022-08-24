@@ -1,7 +1,10 @@
 import { Tweet } from "../../types/Tweet";
 
-export const TweetItem = (tweet: Tweet) => {
+type props = {
+    tweet: Tweet
+}
+export const TweetItem = (props: props) => {
     return(
-        <p>{tweet.text}</p>
+        <p>{props.tweet.text}</p>
     )
 }

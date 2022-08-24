@@ -1,15 +1,18 @@
 import { TweetItem } from "./TweetItem";
 import { Tweet } from "../../types/Tweet";
 
-export const TweetList = (tweetList: Tweet[]) => {
+type Props = {
+    tweetList: Tweet[]
+}
+export const TweetList = (props: Props) => {
     return(
         <>
-        {tweetList.length !== 0 && (
+        {props.tweetList.length !== 0 && (
             <>
                 <ul>
-                    {tweetList.map((tweet) => (
+                    {props.tweetList.map((tweet) => (
                         <li key={tweet.id}>
-                            <p>{tweet.text}</p>
+                            <TweetItem tweet={tweet}/>
                         </li>
                     ))}
                 </ul>
