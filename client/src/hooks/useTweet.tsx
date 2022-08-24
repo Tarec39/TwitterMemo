@@ -11,12 +11,12 @@ export const useTweet = () => {
         tweetData.getAllTweets().then((tweet) => {
             console.log(...tweet)
             setTweetList([...tweet])
+            console.log(tweetList)
         })
     },[])
 
     const test = () => {
         console.log(tweetList)
-        return string
     }
     return {tweetList, test}
 }
