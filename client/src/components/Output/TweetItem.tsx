@@ -5,6 +5,8 @@ type props = {
 }
 export const TweetItem = (props: props) => {
     return(
+        <>
         <p>{props.tweet.text}</p>
+        </>
     )
 }

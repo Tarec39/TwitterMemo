@@ -15,8 +15,5 @@ export const useTweet = () => {
         })
     },[])
 
-    const test = () => {
-        console.log(tweetList)
-    }
-    return {tweetList, test}
+    return {tweetList}
 }
