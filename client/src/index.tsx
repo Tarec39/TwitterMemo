@@ -1,12 +1,26 @@
 import { createRoot } from 'react-dom/client'
+import { useRef } from 'react'
 
-import { TweetList } from './components/Output/TweetList'
 import { useTweet } from './hooks/useTweet'
 
+import { TweetList } from './components/Output/TweetList'
+import { MakeTweet } from './components/MakeTweet/MakeTweet'
+
+
 const App = () => {
-  const {tweetList} = useTweet()
+  const {tweetList, addTweet} = useTweet()
+
+  const inputEl = useRef<HTMLTextAreaElement>(null)
+
+  const handleAddTweet = () => {
+    if(inputEl.current?.value === ""){return}
+    addTweet(inputEl.current!.value)
+    inputEl.current!.value = ""
+  }
+  
   return(
     <>
+      <MakeTweet inputEl={inputEl} onClick={handleAddTweet}></MakeTweet>
       <TweetList tweetList={tweetList}/>
     </>
   )
