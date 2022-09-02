@@ -15,5 +15,16 @@ export const useTweet = () => {
         })
     },[])
 
-    return {tweetList}
+    const addTweet = (text: string) => {
+        const newTweet = {
+            id: ulid(),
+            text: text
+        }
+
+        tweetData.addTweet(newTweet).then((addTweet) => {
+            console.log(addTweet)
+            setTweetList([addTweet, ...tweetList])
+        })
+    }
+    return {tweetList, addTweet}
 }
