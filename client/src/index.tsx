@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useTweet } from './hooks/useTweet'
 
@@ -12,6 +12,8 @@ const App = () => {
   /**
    * ツイート画面関連の機能
    */
+
+  //入力された文字
   const inputEl = useRef<HTMLTextAreaElement>(null)
 
   /**ツイートを追加 */
@@ -29,10 +31,20 @@ const App = () => {
   }
   /**文字数を制限 */
   //140文字超えたらボタンが押せなくなる。
-  
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
+
+  const handleisDisabled = () => {
+    if(WordNum > 140) return setIsDisabled(true);
+    else{return setIsDisabled(false)}
+  }
+
+  useEffect(()=>{
+    handleisDisabled()
+  },[WordNum])
+
   return(
     <>
-      <MakeTweet inputEl={inputEl} onClick={handleAddTweet} onChange={countWords}></MakeTweet>
+      <MakeTweet inputEl={inputEl} onClick={handleAddTweet} onChange={countWords} isDisabled={isDisabled}></MakeTweet>
       <WordCount WordNum={WordNum}></WordCount>
       <TweetList tweetList={tweetList}/>
     </>

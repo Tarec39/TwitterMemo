@@ -4,6 +4,7 @@ type Props = {
     inputEl: RefObject<HTMLTextAreaElement>
     onClick: () => any
     onChange: () => any
+    isDisabled: boolean
 }
 
 export const MakeTweet = (props: Props) => {
@@ -11,7 +12,7 @@ export const MakeTweet = (props: Props) => {
         <>
         <h2>ツイートの作成</h2>
         <textarea onChange={props.onChange} ref={props.inputEl} style={{resize:'none', width:'300px', height:'200px'}}></textarea>
-        <button onClick={props.onClick}>ツイート</button>
+        <button onClick={props.onClick} disabled={props.isDisabled}>ツイート</button>
         </>
     )
 }
