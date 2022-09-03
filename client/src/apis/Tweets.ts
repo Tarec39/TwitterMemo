@@ -23,5 +23,6 @@ export const updateTweet = async (id: string, tweet: Tweet) => {
 
 //Tweetの削除
 export const deleteTweet = async (id: string) => {
-    const res = await axios.delete(`${tweetDataUrl}/${id}`)
+    await axios.delete(`${tweetDataUrl}/${id}`)
+    return id
 }
