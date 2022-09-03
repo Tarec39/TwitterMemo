@@ -43,14 +43,11 @@ const App = () => {
     handleisDisabled()
   },[WordNum])
 
-<<<<<<< HEAD
   /**スレッド機能 */
   const addThread = () =>{
     console.log("スレッドを追加します。")
   }
 
-=======
->>>>>>> b87b684460d1bf8c8980b66eb684480b6df0a6e5
   return(
     <>
       <MakeTweet inputEl={inputEl} onClick={handleAddTweet} onChange={countWords} isDisabled={isDisabled}></MakeTweet>
