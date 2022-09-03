@@ -1,14 +1,6 @@
 {
   "Tweets": [
     {
-      "id": "01GBP88V9PQQBBNNGGAVZSGNCX",
-      "text": "改行あり\n改行あり\n改行あり\n改行あり"
-    },
-    {
-      "id": "01GBP89VXVAXWETRTQ3592B79P",
-      "text": "改行あり\n改行あり\n改行あり"
-    },
-    {
       "id": "01GBP8BGRPCPSDDQN0F5CYTFMB",
       "text": "改行がこんな簡単に実装できるなんて思ってなかった。\n実装したというか標準機能だった。これで一つ知識が増えたね。\nやったね。"
     },
