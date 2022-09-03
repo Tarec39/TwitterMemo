@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createRoot } from 'react-dom/client'
 import { useEffect, useRef, useState } from 'react'
 
 import { useTweet } from './hooks/useTweet'
 
 import { TweetList } from './components/Output/TweetList'
-import { MakeTweet } from './components/MakeTweet/MakeTweet'
-import { WordCount } from './components/Indicator/WordCount'
+import { MakeTweet } from './components/MakeTweet'
+import { WordCount } from './components/WordCount'
 
 const App = () => {
-  const {tweetList, addTweet} = useTweet()
+  const {tweetList, addTweet, deleteTweet} = useTweet()
   /**
    * ツイート画面関連の機能
    */
@@ -42,11 +43,16 @@ const App = () => {
     handleisDisabled()
   },[WordNum])
 
+
+  /**
+   * ツイートの削除
+   */
+  
   return(
     <>
       <MakeTweet inputEl={inputEl} onClick={handleAddTweet} onChange={countWords} isDisabled={isDisabled}></MakeTweet>
       <WordCount WordNum={WordNum}></WordCount>
-      <TweetList tweetList={tweetList}/>
+      <TweetList tweetList={tweetList} deleteTweet={deleteTweet}/>
     </>
   )
 }
