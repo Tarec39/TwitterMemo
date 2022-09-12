@@ -1,7 +1,7 @@
 type Props = {
     onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     onClick: () => void
-    message: string
+    value: string
 }
 
 export const MakeTweet = (props: Props) => {
@@ -10,8 +10,7 @@ export const MakeTweet = (props: Props) => {
         <h2>ツイートの作成</h2>
 
         <textarea
-            name="message"
-            value={props.message}
+            value={props.value}
             onChange={props.onChange}
             style={{resize:'none', width:'300px', height:'200px'}
         }/>
