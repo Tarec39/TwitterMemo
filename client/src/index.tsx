@@ -7,14 +7,14 @@ import { useAddTweetBox } from './hooks/useAddTweetBox'
 /**コンポーネント */
 import { TweetList } from './components/Output/TweetList'
 import { MakeTweet } from './components/MakeTweet'
-
+import { WordCount } from './components/WordCount'
 
 const App = () => {
   /**
    * フック関数の定義
    */
   const {tweetList, addTweet,deleteTweet} = useTweet()
-  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl} = useAddTweetBox()
+  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum} = useAddTweetBox()
 
   
   /**
@@ -32,6 +32,10 @@ const App = () => {
         value={textAreaEl!}
         onChange={onChangeTextAreaEl}
         onClick={handleAddTweet}
+      />
+
+      <WordCount
+        WordNum={WordNum}
       />
 
       <TweetList
