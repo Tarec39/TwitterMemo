@@ -1,19 +1,23 @@
 import { RefObject } from "react"
 
 type Props = {
-    inputEl: RefObject<HTMLTextAreaElement>
-    onClick: () => any
-    // onChange: () => any
-    // isDisabled: boolean
+    message: any
+    onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
+    onClick: () => void
 }
 
 export const MakeTweet = (props: Props) => {
     return(
         <>
         <h2>ツイートの作成</h2>
-        {/* onChange={props.onChange} */}
-        <textarea  ref={props.inputEl} style={{resize:'none', width:'300px', height:'200px'}}></textarea>
-        {/* disabled={props.isDisabled} */}
+
+        <textarea
+            name="message"
+            value={props.message}
+            onChange={e => props.onChange}
+            style={{resize:'none', width:'300px', height:'200px'}
+        }/>
+
         <button onClick={props.onClick}>ツイート</button>
         </>
     )

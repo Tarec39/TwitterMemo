@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createRoot } from 'react-dom/client'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { useTweet } from './hooks/useTweet'
 
@@ -15,12 +15,17 @@ const App = () => {
    * ツイート画面関連の機能
    */
 
-   const inputEl = useRef<HTMLTextAreaElement>(null)
+  const [message, setMessage] = useState<string>()
 
-   const handleAddTweet = () => {
-    if(inputEl.current?.value === ""){return}
-    addTweet(inputEl.current!.value)
-    inputEl.current!.value = ""
+  const onChangeMessage = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value)
+    console.log(event.target.value)
+  }
+
+  const handleAddTweet = () => {
+    if(message === ""){return}
+    addTweet(message!)
+    setMessage('')
   }
 
   /**スレッド機能 */
@@ -30,9 +35,8 @@ const App = () => {
 
   return(
     <>
-      <MakeTweet inputEl={inputEl} onClick={handleAddTweet}></MakeTweet>
-      {/* <WordCount WordNum={WordNum}></WordCount> */}
-      {/* <AddTweet onClick={addThread}></AddTweet> */}
+      <MakeTweet message={message} onChange={onChangeMessage} onClick={handleAddTweet}></MakeTweet>
+
       <TweetList tweetList={tweetList} deleteTweet={deleteTweet} onClick={addThread}/>
     </>
   )
