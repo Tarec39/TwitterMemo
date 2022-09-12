@@ -1,41 +1,29 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState } from 'react'
 
+/**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
-
+/**コンポーネント */
 import { TweetList } from './components/Output/TweetList'
 import { MakeTweet } from './components/MakeTweet'
-import { WordCount } from './components/WordCount'
-import { AddTweet } from './components/AddTweet'
+
 
 const App = () => {
-
-
   /**
-   * 何かの値
+   * フック関数の定義
    */
   const {tweetList, addTweet,deleteTweet} = useTweet()
-
-
-
-  /**
-   * ツイート画面関連の機能
-   */
   const {textAreaEl, setTextAreaEl, onChangeTextAreaEl} = useAddTweetBox()
 
   
+  /**
+   * ツイートの追加する処理
+   */
   const handleAddTweet = () => {
     if(textAreaEl === ""){return}
     addTweet(textAreaEl!)
     setTextAreaEl("")
-  }
-
-  /**スレッド機能 */
-  const addThread = () =>{
-    console.log("追加します。")
   }
 
   return(
@@ -49,10 +37,7 @@ const App = () => {
       <TweetList
         tweetList={tweetList}
         deleteTweet={deleteTweet}
-        // onClick={addThread}
       />
-
-
     </>
   )
 }
