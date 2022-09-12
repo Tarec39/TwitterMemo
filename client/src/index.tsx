@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useTweet } from './hooks/useTweet'
 
@@ -15,17 +15,18 @@ const App = () => {
    * ツイート画面関連の機能
    */
 
+
   const [message, setMessage] = useState<string>()
 
   const onChangeMessage = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
+    // console.log(event.target.value)
     setMessage(event.target.value)
-    console.log(event.target.value)
   }
 
   const handleAddTweet = () => {
     if(message === ""){return}
     addTweet(message!)
-    setMessage('')
+    setMessage("")
   }
 
   /**スレッド機能 */
@@ -35,7 +36,11 @@ const App = () => {
 
   return(
     <>
-      <MakeTweet message={message} onChange={onChangeMessage} onClick={handleAddTweet}></MakeTweet>
+      <MakeTweet 
+        message={message!}
+        onChange={onChangeMessage}
+        onClick={handleAddTweet}
+      />
 
       <TweetList tweetList={tweetList} deleteTweet={deleteTweet} onClick={addThread}/>
     </>

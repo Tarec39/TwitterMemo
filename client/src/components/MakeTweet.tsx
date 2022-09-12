@@ -1,9 +1,7 @@
-import { RefObject } from "react"
-
 type Props = {
-    message: any
     onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     onClick: () => void
+    message: string
 }
 
 export const MakeTweet = (props: Props) => {
@@ -14,7 +12,7 @@ export const MakeTweet = (props: Props) => {
         <textarea
             name="message"
             value={props.message}
-            onChange={e => props.onChange}
+            onChange={props.onChange}
             style={{resize:'none', width:'300px', height:'200px'}
         }/>
 
