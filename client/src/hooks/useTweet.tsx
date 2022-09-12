@@ -7,26 +7,24 @@ import { Tweet } from "../types/Tweet"
 
 export const useTweet = () => {
     const [tweetList, setTweetList] = useState<Tweet[]>([])
-    const [force, setForce] = useState<boolean>(false)
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
             setTweetList([...tweet])
         })
-        setForce(false)
-    },[force])
-
+    },[tweetList])
+    
     const addTweet = (text: string) => {
         const newTweet = {
             id: ulid(),
             text: text
         }
-
+        
         tweetData.addTweet(newTweet).then((addTweet) => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
-        setForce(true)
+
     }
 
     const deleteTweet = (id: string) => {
