@@ -18,7 +18,7 @@ const App = () => {
   /**
    * 何かの値
    */
-  const {tweetList, deleteTweet, showTweetList} = useTweet()
+  const {tweetList, addTweet,deleteTweet, showTweetList} = useTweet()
 
     /**
    * 検証用
@@ -30,11 +30,14 @@ const App = () => {
   /**
    * ツイート画面関連の機能
    */
-  const {textAreaEl, onChangeTextAreaEl, handleAddTweet} = useAddTweetBox()
+  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl} = useAddTweetBox()
 
-
-
-
+  
+  const handleAddTweet = () => {
+    if(textAreaEl === ""){return}
+    addTweet(textAreaEl!)
+    setTextAreaEl("")
+  }
 
   /**スレッド機能 */
   const addThread = () =>{

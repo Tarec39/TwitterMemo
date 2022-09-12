@@ -12,7 +12,8 @@ export const useTweet = () => {
         tweetData.getAllTweets().then((tweet) => {
             setTweetList([...tweet])
         })
-    },[tweetList])
+        console.log("aa")
+    },[])
     
     const addTweet = (text: string) => {
         const newTweet = {
