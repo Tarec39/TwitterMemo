@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react"
-import { isMetaProperty } from "typescript"
+import { useState, useEffect } from "react"
 import { ulid } from "ulid"
 
 import * as tweetData from "../apis/Tweets"
@@ -8,12 +7,14 @@ import { Tweet } from "../types/Tweet"
 
 export const useTweet = () => {
     const [tweetList, setTweetList] = useState<Tweet[]>([])
+    const [force, setForce] = useState<boolean>(false)
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
             setTweetList([...tweet])
         })
-    },[])
+        setForce(false)
+    },[force])
 
     const addTweet = (text: string) => {
         const newTweet = {
@@ -25,6 +26,7 @@ export const useTweet = () => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
+        setForce(true)
     }
 
     const deleteTweet = (id: string) => {
