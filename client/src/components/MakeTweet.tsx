@@ -7,7 +7,7 @@ type Props = {
 export const MakeTweet = (props: Props) => {
     return(
         <>
-        <h2>ツイートの作成</h2>
+        <h2>テキストの追加</h2>
 
         <textarea
             value={props.value}

@@ -54,7 +54,11 @@ const App = () => {
         onClick2={showTweetList2}
       />
 
-      <TweetList tweetList={tweetList} deleteTweet={deleteTweet} onClick={addThread}/>
+      <TweetList
+        tweetList={tweetList}
+        deleteTweet={deleteTweet}
+        // onClick={addThread}
+      />
 
 
     </>
