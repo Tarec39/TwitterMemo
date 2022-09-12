@@ -11,9 +11,7 @@ export const useTweet = () => {
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
-            console.log(...tweet)
             setTweetList([...tweet])
-            console.log(tweetList)
         })
     },[])
 
@@ -35,5 +33,9 @@ export const useTweet = () => {
             setTweetList(newTweetList)
         })
     }
-    return {tweetList, addTweet, deleteTweet}
+
+    const showTweetList = () => {
+        console.log(tweetList)
+    }
+    return {tweetList, addTweet, deleteTweet, showTweetList}
 }

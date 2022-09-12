@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
+import { CheckTweetList } from './components/scrach/CheckTweetList'
+
 import { TweetList } from './components/Output/TweetList'
 import { MakeTweet } from './components/MakeTweet'
 import { WordCount } from './components/WordCount'
@@ -12,11 +14,26 @@ import { AddTweet } from './components/AddTweet'
 
 const App = () => {
 
-  const {tweetList, deleteTweet} = useTweet()
+
+  /**
+   * 何かの値
+   */
+  const {tweetList, deleteTweet, showTweetList} = useTweet()
+
+    /**
+   * 検証用
+   */
+  const showTweetList2 = () => {
+    console.log(tweetList)
+  }
+
   /**
    * ツイート画面関連の機能
    */
   const {textAreaEl, onChangeTextAreaEl, handleAddTweet} = useAddTweetBox()
+
+
+
 
 
   /**スレッド機能 */
@@ -32,7 +49,14 @@ const App = () => {
         onClick={handleAddTweet}
       />
 
+      <CheckTweetList
+        onClick1={showTweetList}
+        onClick2={showTweetList2}
+      />
+
       <TweetList tweetList={tweetList} deleteTweet={deleteTweet} onClick={addThread}/>
+
+
     </>
   )
 }
