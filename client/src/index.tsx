@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
-import { CheckTweetList } from './components/scrach/CheckTweetList'
 
 import { TweetList } from './components/Output/TweetList'
 import { MakeTweet } from './components/MakeTweet'
@@ -18,14 +17,9 @@ const App = () => {
   /**
    * 何かの値
    */
-  const {tweetList, addTweet,deleteTweet, showTweetList} = useTweet()
+  const {tweetList, addTweet,deleteTweet} = useTweet()
 
-    /**
-   * 検証用
-   */
-  const showTweetList2 = () => {
-    console.log(tweetList)
-  }
+
 
   /**
    * ツイート画面関連の機能
@@ -50,11 +44,6 @@ const App = () => {
         value={textAreaEl!}
         onChange={onChangeTextAreaEl}
         onClick={handleAddTweet}
-      />
-
-      <CheckTweetList
-        onClick1={showTweetList}
-        onClick2={showTweetList2}
       />
 
       <TweetList

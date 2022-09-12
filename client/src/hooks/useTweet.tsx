@@ -35,8 +35,5 @@ export const useTweet = () => {
         })
     }
 
-    const showTweetList = () => {
-        console.log(tweetList)
-    }
-    return {tweetList, addTweet, deleteTweet, showTweetList}
+    return {tweetList, addTweet, deleteTweet}
 }
