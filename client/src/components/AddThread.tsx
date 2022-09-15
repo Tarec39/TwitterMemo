@@ -1,5 +1,9 @@
-export const AddThread = () => {
+type props = {
+    onClick: () => any
+}
+
+export const AddThread = (props: props) => {
     return(
-        <button onClick={() => console.log("CLicked")}>+</button>
+        <button onClick={props.onClick}>+</button>
     )
 }

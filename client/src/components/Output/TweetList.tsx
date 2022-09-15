@@ -6,7 +6,7 @@ import { DeleteTweet } from "../DeleteTweet"
 type Props = {
     tweetList: Tweet[]
     deleteTweet: (id:string) => void
-    // onClick: () => any
+    onClick: () => any
 }
 export const TweetList = (props: Props) => {
     return(
@@ -19,7 +19,7 @@ export const TweetList = (props: Props) => {
                         <li key={tweet.id}>
                             <TweetItem tweet={tweet}/>
                             {/* <AddTweet onClick={props.onClick}></AddTweet> */}
-                            <AddThread key={tweet.id}/>
+                            <AddThread onClick={props.onClick}/>
                             <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet>
                         </li>
                     ))}

@@ -26,6 +26,13 @@ const App = () => {
     setTextAreaEl("")
   }
 
+  /**
+   * スレッドを追加する処理
+   */
+  const handleAddThread = () => {
+    console.log("仮置き")
+  }
+
   return(
     <>
       <MakeTweet 
@@ -42,6 +49,7 @@ const App = () => {
       <TweetList
         tweetList={tweetList}
         deleteTweet={deleteTweet}
+        onClick={handleAddThread}
       />
     </>
   )
