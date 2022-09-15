@@ -14,7 +14,7 @@ const App = () => {
    * フック関数の定義
    */
   const {tweetList, addTweet,deleteTweet} = useTweet()
-  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum} = useAddTweetBox()
+  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum, isDisabled} = useAddTweetBox()
 
   
   /**
@@ -30,6 +30,7 @@ const App = () => {
     <>
       <MakeTweet 
         value={textAreaEl!}
+        isDisabled={isDisabled}
         onChange={onChangeTextAreaEl}
         onClick={handleAddTweet}
       />

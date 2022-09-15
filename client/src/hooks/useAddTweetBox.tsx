@@ -31,9 +31,9 @@ export const useAddTweetBox = () => {
     else{return setIsDisabled(false)}
   }
   /**これはなに？ */
-  // useEffect(()=>{
-  //   handleisDisabled()
-  // },[WordNum])
+  useEffect(()=>{
+    handleisDisabled()
+  },[WordNum])
 
-    return {textAreaEl, WordNum, setTextAreaEl, onChangeTextAreaEl}
+    return {textAreaEl, WordNum, isDisabled,setTextAreaEl, onChangeTextAreaEl}
 }

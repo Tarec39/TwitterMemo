@@ -2,6 +2,7 @@ type Props = {
     onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     onClick: () => void
     value: string
+    isDisabled: boolean
 }
 
 export const MakeTweet = (props: Props) => {
@@ -15,7 +16,12 @@ export const MakeTweet = (props: Props) => {
             style={{resize:'none', width:'300px', height:'200px'}
         }/>
 
-        <button onClick={props.onClick}>ツイート</button>
+        <button
+            onClick={props.onClick}
+            disabled={props.isDisabled}
+        >
+        ツイート
+        </button>
         </>
     )
 }
