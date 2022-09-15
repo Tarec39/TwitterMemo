@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { useState } from 'react'
 
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
@@ -29,8 +30,14 @@ const App = () => {
   /**
    * スレッドを追加する処理
    */
+
+  //処理に使うuseStateの配列
+  const [components, setComponents] = useState<string[]>([])
+
+  //処理する関数
   const handleAddThread = () => {
-    console.log("仮置き")
+    setComponents([...components, "Test texts"])
+    console.log(components)
   }
 
   return(
@@ -50,6 +57,7 @@ const App = () => {
         tweetList={tweetList}
         deleteTweet={deleteTweet}
         onClick={handleAddThread}
+        components={components}
       />
     </>
   )
