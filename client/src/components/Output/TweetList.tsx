@@ -2,11 +2,13 @@ import { TweetItem } from "./TweetItem";
 import { Tweet } from "../../types/Tweet";
 import { AddThread } from "../AddThread";
 import { DeleteTweet } from "../DeleteTweet"
+import {FakeMakeTweet} from "../scrach/FakeMakeTweet"
 
 type Props = {
     tweetList: Tweet[]
     deleteTweet: (id:string) => void
     onClick: () => any
+    components: string[]
 }
 export const TweetList = (props: Props) => {
     return(
@@ -18,7 +20,10 @@ export const TweetList = (props: Props) => {
                     {props.tweetList.map((tweet) => (
                         <li key={tweet.id}>
                             <TweetItem tweet={tweet}/>
-                            {/* <AddTweet onClick={props.onClick}></AddTweet> */}
+                            {/* このへんにコンポーネントをぶち込む処理。 */}
+                            {props.components.map((item, i) => (
+                                <FakeMakeTweet key={i}/>
+                            ))}
                             <AddThread onClick={props.onClick}/>
                             <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet>
                         </li>
