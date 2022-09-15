@@ -20,7 +20,6 @@ export const TweetList = (props: Props) => {
                     {props.tweetList.map((tweet) => (
                         <li key={tweet.id}>
                             <TweetItem tweet={tweet}/>
-                            {/* このへんにコンポーネントをぶち込む処理。 */}
                             {props.components.map((item, i) => (
                                 <FakeMakeTweet key={i}/>
                             ))}
