@@ -6,8 +6,8 @@ import { useAddTweetBox } from './hooks/useAddTweetBox'
 
 /**コンポーネント */
 import { TweetList } from './components/Output/TweetList'
-import { MakeTweet } from './components/MakeTweet'
-import { WordCount } from './components/WordCount'
+import { MakeTweet } from './components/TweetBox/MakeTweet'
+import { WordCount } from './components/TweetBox/WordCount'
 
 const App = () => {
   /**
