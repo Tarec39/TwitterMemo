@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react"
-import { isMetaProperty } from "typescript"
+import { useState, useEffect } from "react"
 import { ulid } from "ulid"
 
 import * as tweetData from "../apis/Tweets"
@@ -11,22 +10,22 @@ export const useTweet = () => {
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
-            console.log(...tweet)
             setTweetList([...tweet])
-            console.log(tweetList)
         })
+        console.log("aa")
     },[])
-
+    
     const addTweet = (text: string) => {
         const newTweet = {
             id: ulid(),
             text: text
         }
-
+        
         tweetData.addTweet(newTweet).then((addTweet) => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
+
     }
 
     const deleteTweet = (id: string) => {
@@ -35,5 +34,6 @@ export const useTweet = () => {
             setTweetList(newTweetList)
         })
     }
+
     return {tweetList, addTweet, deleteTweet}
 }

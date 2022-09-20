@@ -1,48 +1,64 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 
+/**Hook関数 */
 import { useTweet } from './hooks/useTweet'
+import { useAddTweetBox } from './hooks/useAddTweetBox'
 
+/**コンポーネント */
 import { TweetList } from './components/Output/TweetList'
-import { MakeTweet } from './components/MakeTweet'
-import { WordCount } from './components/WordCount'
-import { AddTweet } from './components/AddTweet'
+import { MakeTweet } from './components/TweetBox/MakeTweet'
+import { WordCount } from './components/TweetBox/WordCount'
 
 const App = () => {
-  const {tweetList, addTweet, deleteTweet} = useTweet()
   /**
-   * ツイート画面関連の機能
+   * フック関数の定義
+   */
+  const {tweetList, addTweet,deleteTweet} = useTweet()
+  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum, isDisabled} = useAddTweetBox()
+
+  
+  /**
+   * ツイートの追加する処理
+   */
+  const handleAddTweet = () => {
+    if(textAreaEl === ""){return}
+    addTweet(textAreaEl!)
+    setTextAreaEl("")
+  }
+
+  /**
+   * スレッドを追加する処理
    */
 
+  //処理に使うuseStateの配列
+  const [components, setComponents] = useState<string[]>([])
 
-  const [message, setMessage] = useState<string>()
-
-  const onChangeMessage = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
-    // console.log(event.target.value)
-    setMessage(event.target.value)
-  }
-
-  const handleAddTweet = () => {
-    if(message === ""){return}
-    addTweet(message!)
-    setMessage("")
-  }
-
-  /**スレッド機能 */
-  const addThread = () =>{
-    console.log("追加します。")
+  //処理する関数
+  const handleAddThread = () => {
+    setComponents([...components, "Test texts"])
+    console.log(components)
   }
 
   return(
     <>
       <MakeTweet 
-        message={message!}
-        onChange={onChangeMessage}
+        value={textAreaEl!}
+        isDisabled={isDisabled}
+        onChange={onChangeTextAreaEl}
         onClick={handleAddTweet}
       />
 
-      <TweetList tweetList={tweetList} deleteTweet={deleteTweet} onClick={addThread}/>
+      <WordCount
+        WordNum={WordNum}
+      />
+
+      <TweetList
+        tweetList={tweetList}
+        deleteTweet={deleteTweet}
+        onClick={handleAddThread}
+        components={components}
+      />
     </>
   )
 }
