@@ -18,24 +18,28 @@ export const useAddTweetBox = () => {
     setTextAreaEl(event.target.value)
   }
   useEffect(()=> {
-    countWords()
+    count()
   },[textAreaEl])
 
   /** 文字数の表示*/
-  const countWords = () => {
-    if (textAreaEl! === "") setWordNum(0);
-    setWordNum(textAreaEl!.length)
+  const count = () => {
+    let len = 0;
+    for (let i = 0; i < textAreaEl.length; i++) {
+    (textAreaEl[i].match(/[ -~]/)) ? len += 1 : len += 2;
+    }
+    setWordNum(len)
   }
   /** 文字数の制限 */
   //140文字超えたらボタンが押せなくなる。
   const handleisDisabled = () => {
-    if(WordNum > 140) return setIsDisabled(true);
+    if(WordNum > 280) return setIsDisabled(true);
     else{return setIsDisabled(false)}
   }
   /**これはなに？ */
   useEffect(()=>{
     handleisDisabled()
   },[WordNum])
+
 
     return {textAreaEl, WordNum, isDisabled,setTextAreaEl, onChangeTextAreaEl}
 }
