@@ -5,7 +5,7 @@ export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-  const [textAreaEl, setTextAreaEl] = useState<string>()
+  const [textAreaEl, setTextAreaEl] = useState<string>('')
   const [WordNum, setWordNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
@@ -16,13 +16,15 @@ export const useAddTweetBox = () => {
   /** テキスト入力 */
   const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaEl(event.target.value)
-    countWords()
   }
+  useEffect(()=> {
+    countWords()
+  },[textAreaEl])
 
   /** 文字数の表示*/
   const countWords = () => {
     if (textAreaEl! === "") setWordNum(0);
-    setWordNum(textAreaEl!.length+1)
+    setWordNum(textAreaEl!.length)
   }
   /** 文字数の制限 */
   //140文字超えたらボタンが押せなくなる。
