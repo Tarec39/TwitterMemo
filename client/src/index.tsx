@@ -27,19 +27,6 @@ const App = () => {
     setTextAreaEl("")
   }
 
-  /**
-   * スレッドを追加する処理
-   */
-
-  //処理に使うuseStateの配列
-  const [components, setComponents] = useState<string[]>([])
-
-  //処理する関数
-  const handleAddThread = () => {
-    setComponents([...components, "Test texts"])
-    console.log(components)
-  }
-
   return(
     <>
       <MakeTweet 
@@ -56,8 +43,6 @@ const App = () => {
       <TweetList
         tweetList={tweetList}
         deleteTweet={deleteTweet}
-        onClick={handleAddThread}
-        components={components}
       />
     </>
   )
