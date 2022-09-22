@@ -10,6 +10,8 @@ import { TweetList } from './components/Output/TweetList'
 import { MakeTweet } from './components/TweetBox/MakeTweet'
 import { WordCount } from './components/TweetBox/WordCount'
 
+import { Component } from './components/scratch/Component'
+
 const App = () => {
   /**
    * フック関数の定義
@@ -29,6 +31,8 @@ const App = () => {
 
   return(
     <>
+      <Component />
+      
       <MakeTweet 
         value={textAreaEl!}
         isDisabled={isDisabled}
