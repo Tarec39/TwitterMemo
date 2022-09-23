@@ -26,7 +26,6 @@ export const TweetItem = (props: props) => {
 
 const Post = styled.div`
 display: flex;
-border-bottom: 1px solid #e6ecf0;
 padding-bottom: 10px;
 border-right: 1px solid #e6ecf0;
 
