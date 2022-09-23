@@ -1,16 +1,14 @@
 import { createRoot } from 'react-dom/client'
 import { useState } from 'react'
-
+import styled from 'styled-components'
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
 /**コンポーネント */
 import { TweetList } from './components/Output/TweetList'
-import { MakeTweet } from './components/TweetBox/MakeTweet'
+import { PostTweet } from './components/TweetBox/PostTweet'
 import { WordCount } from './components/TweetBox/WordCount'
-
-import { Component } from './components/scratch/Component'
 
 const App = () => {
   /**
@@ -31,18 +29,22 @@ const App = () => {
 
   return(
     <>
-      <Component />
-      
-      <MakeTweet 
-        value={textAreaEl!}
-        isDisabled={isDisabled}
-        onChange={onChangeTextAreaEl}
-        onClick={handleAddTweet}
-      />
-
-      <WordCount
-        WordNum={WordNum}
-      />
+      <Container>
+        <span></span>
+        <div className="frame">
+          <PostTweet 
+            value={textAreaEl!}
+            isDisabled={isDisabled}
+            onChange={onChangeTextAreaEl}
+            onClick={handleAddTweet}
+            />
+  
+          <WordCount
+            WordNum={WordNum}
+            />
+        </div>
+        <span></span>
+      </Container>
 
       <TweetList
         tweetList={tweetList}
@@ -51,6 +53,35 @@ const App = () => {
     </>
   )
 }
+
+const Container = styled.div`
+display: flex;
+max-width: 1300px;
+margin-left: auto;
+margin-right: auto;
+padding: 0 10px;
+  > .frame {
+    flex: 0.5;
+    border-right: 1px solid #e6ecf0;
+    min-width: fit-content;
+    border-bottom: 8px solid #e6ecf0;
+  }
+
+  > span:first-child {
+    flex: 0.2;
+    border-right: 1px solid #e6ecf0;
+    min-width: 250px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  > span:last-child {
+    flex: 0.3;
+  }
+`;
+
+
 
 const container = document.getElementById('app')!;
 const root = createRoot(container);
