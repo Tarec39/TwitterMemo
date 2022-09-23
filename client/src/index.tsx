@@ -10,8 +10,6 @@ import { TweetList } from './components/Output/TweetList'
 import { PostTweet } from './components/TweetBox/PostTweet'
 import { WordCount } from './components/TweetBox/WordCount'
 
-import { Posts } from './components/scratch/ツイート済み'
-
 const App = () => {
   /**
    * フック関数の定義
@@ -47,8 +45,6 @@ const App = () => {
         </div>
         <span></span>
       </Container>
-
-      <Posts></Posts>
       <TweetList
         tweetList={tweetList}
         deleteTweet={deleteTweet}
