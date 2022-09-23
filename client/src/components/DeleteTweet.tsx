@@ -21,5 +21,7 @@ export const DeleteTweet = (props: props) =>{
 const Button = styled.div`
 display: flex;
 border-bottom: 1px solid #e6ecf0;
+border-left: 1px solid #e6ecf0;
+
 justify-content: flex-end;
 `;

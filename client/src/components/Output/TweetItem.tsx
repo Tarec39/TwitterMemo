@@ -28,6 +28,8 @@ const Post = styled.div`
 display: flex;
 padding-bottom: 10px;
 border-right: 1px solid #e6ecf0;
+border-left: 1px solid #e6ecf0;
+
 
      .avatar {
         padding: 20px;

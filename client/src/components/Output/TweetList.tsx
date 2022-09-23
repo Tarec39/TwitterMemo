@@ -12,7 +12,7 @@ export const TweetList = (props: Props) => {
     return(
         <>
         <Container>
-            <span></span>
+            {/* <span></span> */}
 
             {props.tweetList.length !== 0 && (
                 <>
@@ -24,9 +24,17 @@ export const TweetList = (props: Props) => {
                             </div>
                         ))}
                     </Posts>
+                    <Posts>
+                        {props.tweetList.map((tweet) => (
+                            <div key={tweet.id}>
+                                <TweetItem tweet={tweet}/>
+                                <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet>
+                            </div>
+                        ))}
+                    </Posts>
                 </>
             )}
-            <span></span>
+            {/* <span></span> */}
 
         </Container>
         </>
@@ -39,7 +47,6 @@ max-width: 1300px;
 margin-left: auto;
 margin-right: auto;
 padding: 0 10px;
-
     > span:first-child {
         flex: 0.2;
         border-right: 1px solid #e6ecf0;
@@ -56,4 +63,7 @@ padding: 0 10px;
 
 const Posts = styled.div`
 flex: 0.5;
+> div:first-child{
+    border-top: 1px solid #e6ecf0;
+}
 `;
