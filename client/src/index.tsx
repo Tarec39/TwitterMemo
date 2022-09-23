@@ -63,7 +63,7 @@ max-width: 1300px;
 margin-left: auto;
 margin-right: auto;
 padding: 0 10px;
-  > .frame {
+  .frame {
     flex: 0.5;
     border-right: 1px solid #e6ecf0;
     min-width: fit-content;
