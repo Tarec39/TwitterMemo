@@ -1,9 +1,12 @@
+import React from 'react'
 import styled from 'styled-components'
 
 type Props = {
-    onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
+    onInputElChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onTextAreaChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     onClick: () => void
-    value: string
+    inputEl: string
+    textAreaEl: string
     isDisabled: boolean
 }
 
@@ -12,10 +15,14 @@ export const PostTweet = (props: Props) => {
         <>
         <Form>
             <div>
-                <input placeholder='タイトル'/>
+                <input 
+                    value={props.inputEl}
+                    onChange={props.onInputElChange} 
+                    placeholder='タイトル'/>
+                
                 <textarea
-                    value={props.value}
-                    onChange={props.onChange}
+                    value={props.textAreaEl}
+                    onChange={props.onTextAreaChange}
                     placeholder="いまどうしてる?"
                 />
             </div>

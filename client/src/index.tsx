@@ -15,7 +15,16 @@ const App = () => {
    * フック関数の定義
    */
   const {tweetList, addTweet,deleteTweet} = useTweet()
-  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum, isDisabled} = useAddTweetBox()
+  const {
+    inputEl,
+    textAreaEl,
+    setInputEl,
+    setTextAreaEl,
+    onChangeInputEl,
+    onChangeTextAreaEl,
+    WordNum,
+    isDisabled
+  } = useAddTweetBox()
 
   
   /**
@@ -25,6 +34,7 @@ const App = () => {
     if(textAreaEl === ""){return}
     addTweet(textAreaEl!)
     setTextAreaEl("")
+    setInputEl("")
   }
 
   return(
@@ -38,9 +48,11 @@ const App = () => {
           </FeedHeader>
           <TweetBox>
             <PostTweet 
-              value={textAreaEl!}
+              inputEl={inputEl!}
+              textAreaEl={textAreaEl!}
               isDisabled={isDisabled}
-              onChange={onChangeTextAreaEl}
+              onInputElChange={onChangeInputEl}
+              onTextAreaChange={onChangeTextAreaEl}
               onClick={handleAddTweet}
             />
             {/* <WordCount
