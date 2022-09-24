@@ -12,10 +12,11 @@ export const PostTweet = (props: Props) => {
         <>
         <Form>
             <div>
+                <input placeholder='タイトル'/>
                 <textarea
                     value={props.value}
                     onChange={props.onChange}
-                    placeholder="What's happening?"
+                    placeholder="いまどうしてる?"
                 />
             </div>
             <Button
@@ -34,6 +35,18 @@ flex-direction: column;
 >div{
     display: flex;
     padding: 20px;
+    flex-direction: column;
+}
+input{
+    resize:'none'
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-bottom: 5px;
 }
 textarea {
     resize:'none'
