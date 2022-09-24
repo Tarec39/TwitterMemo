@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Post } from "./TweetItem";
+import { Post } from "./Post";
 import { Tweet } from "../../types/Tweet";
 
 type Props = {

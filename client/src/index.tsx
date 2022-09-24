@@ -6,7 +6,7 @@ import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
 /**コンポーネント */
-import { Posts } from './components/Output/TweetList'
+import { Posts } from './components/Output/Posts'
 import { PostTweet } from './components/TweetBox/PostTweet'
 import { WordCount } from './components/TweetBox/WordCount'
 
