@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 import { Tweet } from '../types/Tweet'
 
 type props = {
@@ -10,6 +12,16 @@ export const DeleteTweet = (props: props) =>{
         props.deleteTweet(props.tweet.id)
     }
     return(
-        <button onClick={handleDeleteTweet}>-</button>
+        <Button>
+            <button onClick={handleDeleteTweet}>-</button>
+        </Button>
     )
 }
+
+const Button = styled.div`
+display: flex;
+border-bottom: 1px solid #e6ecf0;
+border-left: 1px solid #e6ecf0;
+
+justify-content: flex-end;
+`;
