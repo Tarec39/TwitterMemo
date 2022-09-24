@@ -32,7 +32,7 @@ const App = () => {
    */
   const handleAddTweet = () => {
     if(textAreaEl === ""){return}
-    addTweet(textAreaEl!)
+    addTweet(inputEl, textAreaEl!)
     setTextAreaEl("")
     setInputEl("")
   }

@@ -13,17 +13,17 @@ export const useTweet = () => {
         })
     },[])
     
-    const addTweet = (text: string) => {
+    const addTweet = (title:string, text: string) => {
         const newTweet = {
-            id: ulid(),
-            text: text
+            title: title,
+            text: text,
+            id: ulid()
         }
         
         tweetData.addTweet(newTweet).then((addTweet) => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
-
     }
 
     const deleteTweet = (id: string) => {
