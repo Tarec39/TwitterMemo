@@ -30,7 +30,7 @@ const App = () => {
   return(
     <>
       <Container>
-        <span></span>
+        {/* <span></span> */}
         <div className="frame">
           <PostTweet 
             value={textAreaEl!}
@@ -43,7 +43,7 @@ const App = () => {
             WordNum={WordNum}
             />
         </div>
-        <span></span>
+        {/* <span></span> */}
       </Container>
       <TweetList
         tweetList={tweetList}
