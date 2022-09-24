@@ -41,9 +41,9 @@ const App = () => {
               onChange={onChangeTextAreaEl}
               onClick={handleAddTweet}
             />
-            <WordCount
+            {/* <WordCount
               WordNum={WordNum}
-            />
+            /> */}
           </TweetBox>
 
           <Posts
@@ -60,10 +60,12 @@ const App = () => {
 const TweetBox = styled.div`
   padding-bottom: 10px;
   padding-right: 10px;
+  border-bottom: 8px solid #e6ecf0;
+
 `;
 const Container = styled.div`
 display: flex;
-height: 100vh;
+// height: 100vh;
 max-width: 1300px;
 margin-left: auto;
 margin-right: auto;
@@ -71,22 +73,19 @@ padding: 0 10px;
 
 .sidebar {
   flex: 0.2;
-  // border-right: 1px solid #e6ecf0;
+  border-right: 1px solid #e6ecf0;
   min-width: 250px;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  border: 1px dotted #000;
 }
 
 .feed {
   flex: 0.5;
   min-width: fit-content!;
-  border: 1px dotted #000;
-  overflow-y: scroll;
-
-  // border-right: 1px solid #e6ecf0;
-  // border-bottom: 8px solid #e6ecf0;
+  overflow-y:scroll
+  -ms-overflow-style: none;
+  border-right: 1px solid #e6ecf0;
 }
 > span:last-child {
   flex: 0.3;

@@ -24,25 +24,20 @@ export const Post = (props: props) => {
                         </div>
                     </div>            
             </div>
-            <Button>
-            <button onClick={handleDeleteTweet}>-</button>
-            </Button>
+            
+            <Button onClick={handleDeleteTweet}>-</Button>
         </Container>
     )
 }
-const Button = styled.div`
-display: flex;
-border-bottom: 1px solid #e6ecf0;
-border-left: 1px solid #e6ecf0;
-
-justify-content: flex-end;
+const Button = styled.button`
+    margin-top: auto;
 `;
 
 const Container = styled.div`
 display: flex;
 align-items: flex-start;
 padding-bottom: 10px;
-
+border-bottom: 1px solid #e6ecf0;
 .avatar {
     padding: 20px;
     width: 40px;
@@ -59,7 +54,8 @@ margin-bottom: 5px;
     margin-bottom: 10px;
     font-size: 15px;
     white-space: break-spaces;
-    p{white-space: pre-wrap;
+    p{
+        white-space: pre-wrap;
     }
 }
  .body img {

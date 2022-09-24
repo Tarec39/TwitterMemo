@@ -21,7 +21,7 @@ export const PostTweet = (props: Props) => {
             <Button
                 onClick={props.onClick}
                 disabled={props.isDisabled}>
-                ツイートする
+                ツイート
             </Button>
         </Form>
         </>
@@ -31,7 +31,6 @@ export const PostTweet = (props: Props) => {
 const Form = styled.div`
 display: flex;
 flex-direction: column;
-
 >div{
     display: flex;
     padding: 20px;
