@@ -5,9 +5,9 @@ type props = {
     tweet: Tweet
 }
 
-export const TweetItem = (props: props) => {
+export const Post = (props: props) => {
     return(
-        <Post>
+        <Container>
             <div className="avatar"></div>
                     <div className="body">
         
@@ -19,47 +19,39 @@ export const TweetItem = (props: props) => {
                             <p>{props.tweet.text}</p>
                         </div>
                     </div>            
-        </div>
-        </Post>
+            </div>
+        </Container>
     )
 }
 
-const Post = styled.div`
+const Container = styled.div`
 display: flex;
+align-items: flex-start;
 padding-bottom: 10px;
-border-right: 1px solid #e6ecf0;
-border-left: 1px solid #e6ecf0;
 
-
-     .avatar {
-        padding: 20px;
-        width: 40px;
-    }
-
-     .body {
-        flex: 1;
-        padding: 10px;
-    }
-
-     .headerText h3 {
+.avatar {
+    padding: 20px;
+    width: 40px;
+}
+ .body {
+    flex: 1;
+    padding: 10px;
+}
+ .headerText h3 {
+font-size: 15px;
+margin-bottom: 5px;
+}
+ .content {
+    margin-bottom: 10px;
     font-size: 15px;
-    margin-bottom: 5px;
+    white-space: break-spaces;
+    p{white-space: pre-wrap;
     }
-
-
-     .content {
-        margin-bottom: 10px;
-        font-size: 15px;
-        white-space: break-spaces;
-        p{white-space: pre-wrap;
-        }
-
-    }
-
-     .body img {
-        width: 450px;
-        object-fit: contain;
-        border-radius: 20px;  
-    }
+}
+ .body img {
+    width: 450px;
+    object-fit: contain;
+    border-radius: 20px;  
+}
 
 `;
