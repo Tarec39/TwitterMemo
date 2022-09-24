@@ -33,7 +33,9 @@ const App = () => {
         <span className="sidebar"></span>
 
         <div className="feed">
-          
+          <FeedHeader>
+            <h2>Home</h2>
+          </FeedHeader>
           <TweetBox>
             <PostTweet 
               value={textAreaEl!}
@@ -92,8 +94,14 @@ padding: 0 10px;
 }
 `;
 
-
-
+const FeedHeader = styled.div`
+position: sticky;
+top: 0;
+background-color: white;
+z-index: 100;
+border: 1px solid #e6ecf0;
+padding: 15px 20px;
+`;
 const container = document.getElementById('app')!;
 const root = createRoot(container);
 root.render(<App />);
