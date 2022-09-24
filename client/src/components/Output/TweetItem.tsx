@@ -3,9 +3,13 @@ import styled from 'styled-components'
 import { Tweet } from "../../types/Tweet";
 type props = {
     tweet: Tweet
+    deleteTweet: any
 }
 
 export const Post = (props: props) => {
+    const handleDeleteTweet = () => {
+        props.deleteTweet(props.tweet.id)
+    }
     return(
         <Container>
             <div className="avatar"></div>
@@ -20,9 +24,19 @@ export const Post = (props: props) => {
                         </div>
                     </div>            
             </div>
+            <Button>
+            <button onClick={handleDeleteTweet}>-</button>
+            </Button>
         </Container>
     )
 }
+const Button = styled.div`
+display: flex;
+border-bottom: 1px solid #e6ecf0;
+border-left: 1px solid #e6ecf0;
+
+justify-content: flex-end;
+`;
 
 const Container = styled.div`
 display: flex;

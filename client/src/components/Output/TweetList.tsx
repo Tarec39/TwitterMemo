@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { Post } from "./TweetItem";
 import { Tweet } from "../../types/Tweet";
-import { DeleteTweet } from "../DeleteTweet"
 
 type Props = {
     tweetList: Tweet[]
@@ -16,8 +15,8 @@ export const Posts = (props: Props) => {
                 <Container>
                     {props.tweetList.map((tweet) => (
                         <div key={tweet.id}>
-                            <Post tweet={tweet}/>
-                            <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet>
+                            <Post tweet={tweet} deleteTweet={props.deleteTweet}/>
+                            {/* <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet> */}
                         </div>
                     ))}
                 </Container>
