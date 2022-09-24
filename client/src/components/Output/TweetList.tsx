@@ -24,14 +24,6 @@ export const TweetList = (props: Props) => {
                             </div>
                         ))}
                     </Posts>
-                    <Posts>
-                        {props.tweetList.map((tweet) => (
-                            <div key={tweet.id}>
-                                <TweetItem tweet={tweet}/>
-                                <DeleteTweet tweet={tweet} deleteTweet={props.deleteTweet}></DeleteTweet>
-                            </div>
-                        ))}
-                    </Posts>
                 </>
             )}
             {/* <span></span> */}
