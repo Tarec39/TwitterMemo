@@ -9,7 +9,7 @@ export const useAddTweetBox = () => {
   const [inputEl, setInputEl] = useState<string>('')
   const [WordNum, setWordNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
-
+  const [isVisible, setIsVisible] = useState<boolean>(false)
   /**
    * 処理関数の定義
    */
@@ -45,20 +45,26 @@ export const useAddTweetBox = () => {
     handleisDisabled()
   },[WordNum])
 
-
+  /**要素の非表示 */
+  const handleIsVisible = () => {
+    setIsVisible(true)
+  }
     return {
       //state
       inputEl,
       textAreaEl, 
       WordNum, 
       isDisabled,
+      isVisible,
 
       //setState
       setInputEl,
-      setTextAreaEl, 
+      setTextAreaEl,
+      setIsVisible,
       
       //関数
       onChangeInputEl,
-      onChangeTextAreaEl
+      onChangeTextAreaEl,
+      handleIsVisible
     }
 }

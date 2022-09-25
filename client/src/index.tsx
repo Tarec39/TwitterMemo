@@ -18,12 +18,18 @@ const App = () => {
   const {
     inputEl,
     textAreaEl,
+
     setInputEl,
     setTextAreaEl,
+    setIsVisible,
+
     onChangeInputEl,
     onChangeTextAreaEl,
+    handleIsVisible,
+
     WordNum,
-    isDisabled
+    isDisabled,
+    isVisible
   } = useAddTweetBox()
 
   
@@ -35,6 +41,7 @@ const App = () => {
     addTweet(inputEl, textAreaEl!)
     setTextAreaEl("")
     setInputEl("")
+    setIsVisible(false)
   }
 
   return(
@@ -51,9 +58,11 @@ const App = () => {
               inputEl={inputEl!}
               textAreaEl={textAreaEl!}
               isDisabled={isDisabled}
+              visible={isVisible}
               onInputElChange={onChangeInputEl}
               onTextAreaChange={onChangeTextAreaEl}
               onClick={handleAddTweet}
+              handleIsVisible={handleIsVisible}
             />
             {/* <WordCount
               WordNum={WordNum}

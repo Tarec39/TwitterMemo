@@ -16,7 +16,7 @@ export const Post = (props: props) => {
                 <Body>
                      <div className="header">
                             {props.tweet.title === ""
-                            ?<h3></h3>
+                            ?<h3>&nbsp;</h3>
                             :<h3>{props.tweet.title}</h3>
                         }
                         <div className="content"><p>{props.tweet.text}</p></div>

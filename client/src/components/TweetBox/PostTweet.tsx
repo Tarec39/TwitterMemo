@@ -8,6 +8,8 @@ type Props = {
     inputEl: string
     textAreaEl: string
     isDisabled: boolean
+    visible: boolean
+    handleIsVisible: () => any
 }
 
 export const PostTweet = (props: Props) => {
@@ -17,12 +19,15 @@ export const PostTweet = (props: Props) => {
             <div>
                 <input 
                     value={props.inputEl}
-                    onChange={props.onInputElChange} 
-                    placeholder='タイトル'/>
+                    onChange={props.onInputElChange}
+                    style={{ display: props.visible ? "block" : "none" }}
+                    placeholder='タイトル'
+                />
                 
                 <textarea
                     value={props.textAreaEl}
                     onChange={props.onTextAreaChange}
+                    onClick={props.handleIsVisible}
                     placeholder="いまどうしてる?"
                 />
             </div>
