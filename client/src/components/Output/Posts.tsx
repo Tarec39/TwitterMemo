@@ -14,13 +14,19 @@ export const Posts = (props: Props) => {
         <>
         <Container>
             {props.tweetList.map((tweet) => (
+                <>
                 <Post key={tweet.id} tweet={tweet} deleteTweet={props.deleteTweet}/>
+                </>
             ))}
         </Container>
+        
         </>
         )}
         </>
     )
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+    display:flex;
+    flex-wrap: wrap;
+`; 

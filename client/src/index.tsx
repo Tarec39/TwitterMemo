@@ -46,13 +46,10 @@ const App = () => {
 
   return(
     <>
+      <Header><h2>Home</h2></Header>
       <Container>
-        <span className="sidebar"></span>
-
-        <div className="feed">
-          <FeedHeader>
-            <h2>Home</h2>
-          </FeedHeader>
+        <Sidebar></Sidebar>
+        <Feed>
           <TweetBox>
             <PostTweet 
               inputEl={inputEl!}
@@ -63,65 +60,62 @@ const App = () => {
               onTextAreaChange={onChangeTextAreaEl}
               onClick={handleAddTweet}
               handleIsVisible={handleIsVisible}
-            />
+              />
             {/* <WordCount
               WordNum={WordNum}
             /> */}
           </TweetBox>
-
           <Posts
             tweetList={tweetList}
             deleteTweet={deleteTweet}
-          />
-        </div>
+            />
+        </Feed>
       </Container>
     </>
   )
 }
 
-
-const TweetBox = styled.div`
-  padding-bottom: 10px;
-  padding-right: 10px;
-  border-bottom: 8px solid #e6ecf0;
-
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 1px solid #e6ecf0;
+  padding: 15px 20px;
 `;
 const Container = styled.div`
-display: flex;
-// height: 100vh;
-max-width: 1300px;
-margin-left: auto;
-margin-right: auto;
-padding: 0 10px;
+  display: flex;
+  // max-width: 1300px;
+  padding: 0 10px;
 
-.sidebar {
+  // margin-right: auto;
+  // margin-left: auto;
+  // height: 100vh;
+`;
+const Sidebar = styled.div`
   flex: 0.2;
   border-right: 1px solid #e6ecf0;
   min-width: 250px;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-.feed {
-  flex: 0.5;
+`;
+const Feed = styled.div`
+  // display: flex;
+  // flex: 0.5;
+  width: 100%;
+  // flex-direction: column;
   min-width: fit-content!;
   overflow-y:scroll
   -ms-overflow-style: none;
   border-right: 1px solid #e6ecf0;
-}
-> span:last-child {
-  flex: 0.3;
-}
-`;
-
-const FeedHeader = styled.div`
-position: sticky;
-top: 0;
-background-color: white;
-z-index: 100;
-border: 1px solid #e6ecf0;
-padding: 15px 20px;
+`
+const TweetBox = styled.div`
+width: 600px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-bottom: 8px solid #e6ecf0;
+  margin: auto;
 `;
 const container = document.getElementById('app')!;
 const root = createRoot(container);

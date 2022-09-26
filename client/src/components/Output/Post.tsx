@@ -42,6 +42,7 @@ padding: 10px;
 
 const Container = styled.div`
 display: flex;
+width: 500px;
 align-items: flex-start;
 padding-bottom: 10px;
 border-bottom: 1px solid #e6ecf0;
