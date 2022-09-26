@@ -87,31 +87,26 @@ const Container = styled.div`
   display: flex;
   // max-width: 1300px;
   padding: 0 10px;
-
-  // margin-right: auto;
-  // margin-left: auto;
-  // height: 100vh;
+  height: 100vh;
 `;
 const Sidebar = styled.div`
   flex: 0.2;
   border-right: 1px solid #e6ecf0;
   min-width: 250px;
-  margin-top: 20px;
+  // margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
 const Feed = styled.div`
-  // display: flex;
-  // flex: 0.5;
+
   width: 100%;
-  // flex-direction: column;
   min-width: fit-content!;
   overflow-y:scroll
   -ms-overflow-style: none;
   border-right: 1px solid #e6ecf0;
 `
 const TweetBox = styled.div`
-width: 600px;
+  width: 600px;
   padding-bottom: 10px;
   padding-right: 10px;
   border-bottom: 8px solid #e6ecf0;

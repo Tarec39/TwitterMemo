@@ -45,7 +45,9 @@ display: flex;
 width: 500px;
 align-items: flex-start;
 padding-bottom: 10px;
+border-top: 1px solid #e6ecf0;
 border-bottom: 1px solid #e6ecf0;
+border-right: 1px solid #e6ecf0;
 
 h3 {
 font-size: 15px;
