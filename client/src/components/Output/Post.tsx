@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+import { useState } from 'react';
 
+import { AddThread } from '../AddThread';
 import { Tweet } from "../../types/Tweet";
 type props = {
     tweet: Tweet
@@ -7,12 +9,12 @@ type props = {
 }
 
 export const Post = (props: props) => {
-    const handleDeleteTweet = () => {
-        props.deleteTweet(props.tweet.id)
-    }
+    const [isDisplay, setIsDisplay] = useState<boolean>(false!)
+    const event = () =>  setIsDisplay(!isDisplay)
+    const handleDeleteTweet = () => props.deleteTweet(props.tweet.id)
+
     return(
         <Container>
-            {/* <Avatar></Avatar> */}
                 <Body>
                      <div className="header">
                             {props.tweet.title === ""
@@ -22,21 +24,20 @@ export const Post = (props: props) => {
                         <div className="content"><p>{props.tweet.text}</p></div>
                     </div>            
                 </Body>
-            
             <Button onClick={handleDeleteTweet}>-</Button>
+
+            <AddThread onClick={event}/>
+
+            <ThreadBox display={isDisplay}><textarea></textarea></ThreadBox>
         </Container>
     )
 }
 
-const Body = styled.div`
-flex: 1;
-padding: 10px 10px 10px 30px;
-`;
 
 const Container = styled.div`
 // position: relative;
-display: flex;
-// width: 400px;
+// display: flex;
+width: 400px!;
 align-items: flex-start;
 padding-bottom: 10px;
 border-top: 1px solid #e6ecf0;
@@ -56,12 +57,15 @@ white-space: break-spaces;
     }
 }
 `;
+const Body = styled.div`
+flex: 1;
+padding: 10px 10px 10px 30px;
+`;
 
 const Button = styled.button`
     margin-top: auto;
 `;
 
-const Avatar = styled.div`
-padding: 20px;
-width: 40px;
+const ThreadBox = styled.div<{display: boolean}>`
+    display: ${props => props.display ?'inherit':'none'};
 `;
