@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Masonry} from '@mui/lab'
 
 import { Post } from "./Post";
 import { Tweet } from "../../types/Tweet";
@@ -12,13 +13,13 @@ export const Posts = (props: Props) => {
         <>
         {props.tweetList.length !== 0 && (
         <>
-        <Container>
+        <Masonry spacing={0}>
             {props.tweetList.map((tweet) => (
                 <>
                 <Post key={tweet.id} tweet={tweet} deleteTweet={props.deleteTweet}/>
                 </>
             ))}
-        </Container>
+        </Masonry>
         
         </>
         )}
