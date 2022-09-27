@@ -27,22 +27,16 @@ export const Post = (props: props) => {
         </Container>
     )
 }
-const Button = styled.button`
-    margin-top: auto;
-`;
 
-const Avatar = styled.div`
-padding: 20px;
-width: 40px;
-`;
 const Body = styled.div`
 flex: 1;
 padding: 10px 10px 10px 30px;
 `;
 
 const Container = styled.div`
+// position: relative;
 display: flex;
-width: 400px;
+// width: 400px;
 align-items: flex-start;
 padding-bottom: 10px;
 border-top: 1px solid #e6ecf0;
@@ -61,4 +55,13 @@ white-space: break-spaces;
         white-space: pre-wrap;
     }
 }
+`;
+
+const Button = styled.button`
+    margin-top: auto;
+`;
+
+const Avatar = styled.div`
+padding: 20px;
+width: 40px;
 `;
