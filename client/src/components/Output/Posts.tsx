@@ -13,21 +13,20 @@ export const Posts = (props: Props) => {
         <>
         {props.tweetList.length !== 0 && (
         <>
-        <Masonry spacing={0}>
+        <Masonry spacing={0}>            
             {props.tweetList.map((tweet) => (
                 <>
-                <Post key={tweet.id} tweet={tweet} deleteTweet={props.deleteTweet}/>
+                <Post tweet={tweet} deleteTweet={props.deleteTweet}></Post>
                 </>
             ))}
         </Masonry>
-        
         </>
         )}
         </>
     )
 }
 
-// const Container = styled.div`
-//     display:flex;
-//     flex-wrap: wrap;
-// `; 
+const Container = styled.div`
+    // display:flex;
+    // flex-wrap: wrap;
+`; 

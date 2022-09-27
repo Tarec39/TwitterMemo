@@ -50,7 +50,7 @@ const App = () => {
       <Container>
         <Sidebar></Sidebar>
         <Feed>
-          <TweetBox>
+          {/* <TweetBox>
             <PostTweet 
               inputEl={inputEl!}
               textAreaEl={textAreaEl!}
@@ -61,10 +61,10 @@ const App = () => {
               onClick={handleAddTweet}
               handleIsVisible={handleIsVisible}
               />
+          </TweetBox> */}
             {/* <WordCount
               WordNum={WordNum}
             /> */}
-          </TweetBox>
           <Posts
             tweetList={tweetList}
             deleteTweet={deleteTweet}

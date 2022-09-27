@@ -12,10 +12,11 @@ export const addTweet = async (tweet: Tweet) => {
 //Tweetの取得
 export const getAllTweets = async () => {
     const res =  await axios.get(tweetDataUrl)
+    console.log(res.data)
     return res.data
 }
 
-//Tweetの更新
+//Tweetの更新(新品未使用)
 export const updateTweet = async (id: string, tweet: Tweet) => {
     const res = await axios.put(`${tweetDataUrl}/${id}`, tweet)
     return res.data

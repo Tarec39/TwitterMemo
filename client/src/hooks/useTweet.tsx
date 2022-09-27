@@ -12,7 +12,9 @@ export const useTweet = () => {
             setTweetList([...tweet.reverse()])
         })
     },[])
-    
+    useEffect(()=>{
+        console.log(tweetList)
+    },[tweetList])
     const addTweet = (title:string, text: string) => {
         const newTweet = {
             title: title,
@@ -20,16 +22,16 @@ export const useTweet = () => {
             id: ulid()
         }
         
-        tweetData.addTweet(newTweet).then((addTweet) => {
-            console.log(addTweet)
-            setTweetList([addTweet, ...tweetList])
-        })
+        // tweetData.addTweet(newTweet).then((addTweet) => {
+        //     console.log(addTweet)
+        //     setTweetList([addTweet, ...tweetList])
+        // })
     }
 
     const deleteTweet = (id: string) => {
         tweetData.deleteTweet(id).then((deleteDone) => {
-            const newTweetList = tweetList.filter((item) => item.id !== deleteDone)
-            setTweetList(newTweetList)
+            // const newTweetList = tweetList.filter((item) => item.id !== deleteDone)
+            // setTweetList(newTweetList)
         })
     }
 

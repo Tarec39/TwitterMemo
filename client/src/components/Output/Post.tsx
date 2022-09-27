@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { AddThread } from '../AddThread';
 import { Tweet } from "../../types/Tweet";
+import { pid } from 'process';
 type props = {
     tweet: Tweet
     deleteTweet: any
@@ -11,24 +12,32 @@ type props = {
 export const Post = (props: props) => {
     const [isDisplay, setIsDisplay] = useState<boolean>(false!)
     const event = () =>  setIsDisplay(!isDisplay)
-    const handleDeleteTweet = () => props.deleteTweet(props.tweet.id)
+    // const handleDeleteTweet = () => props.deleteTweet(props.tweet.id)
 
     return(
         <Container>
-                <Body>
-                     <div className="header">
-                            {props.tweet.title === ""
-                            ?<h3>&nbsp;</h3>
-                            :<h3>{props.tweet.title}</h3>
-                        }
-                        <div className="content"><p>{props.tweet.text}</p></div>
-                    </div>            
-                </Body>
-            <Button onClick={handleDeleteTweet}>-</Button>
+            <Body>
+                <div className="title">
+                    {props.tweet.title === ""
+                    ?<h3>&nbsp;</h3>
+                    :<h3>{props.tweet.title}</h3>
+                    }
+                </div>
+                {props.tweet.contents.map((i) => (
+                    <>
+                    <Content><p>{i.text}</p></Content>
+                    </>
+                ))}
+           </Body>
+                
+                
+            {/* <Button onClick={handleDeleteTweet}>-</Button> */}
 
             <AddThread onClick={event}/>
 
             <ThreadBox display={isDisplay}><textarea></textarea></ThreadBox>
+
+
         </Container>
     )
 }
@@ -49,6 +58,9 @@ font-size: 15px;
 margin-bottom: 5px;
 }
 .content {
+
+`;
+const Content = styled.div`
 margin-bottom: 10px;
 font-size: 15px;
 white-space: break-spaces;
