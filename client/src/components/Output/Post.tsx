@@ -12,7 +12,7 @@ export const Post = (props: props) => {
     }
     return(
         <Container>
-            <Avatar></Avatar>
+            {/* <Avatar></Avatar> */}
                 <Body>
                      <div className="header">
                             {props.tweet.title === ""
@@ -37,12 +37,12 @@ width: 40px;
 `;
 const Body = styled.div`
 flex: 1;
-padding: 10px;
+padding: 10px 10px 10px 30px;
 `;
 
 const Container = styled.div`
 display: flex;
-width: 500px;
+width: 400px;
 align-items: flex-start;
 padding-bottom: 10px;
 border-top: 1px solid #e6ecf0;

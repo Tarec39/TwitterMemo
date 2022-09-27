@@ -46,7 +46,7 @@ const App = () => {
 
   return(
     <>
-      <Header><h2>Home</h2></Header>
+      <Header><h2>青鳥</h2></Header>
       <Container>
         <Sidebar></Sidebar>
         <Feed>
@@ -103,7 +103,6 @@ const Feed = styled.div`
   min-width: fit-content!;
   overflow-y:scroll
   -ms-overflow-style: none;
-  border-right: 1px solid #e6ecf0;
 `
 const TweetBox = styled.div`
   width: 600px;

@@ -50,7 +50,7 @@ flex-direction: column;
     flex-direction: column;
 }
 input{
-    resize:'none'
+    resize:'none';
     flex: 1;
     margin-left: 20px;
     font-size: 20px;
@@ -61,7 +61,7 @@ input{
     margin-bottom: 5px;
 }
 textarea {
-    resize:'none'
+    resize:'none';
     flex: 1;
     margin-left: 20px;
     font-size: 20px;
