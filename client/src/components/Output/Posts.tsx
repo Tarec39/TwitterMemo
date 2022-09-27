@@ -14,9 +14,9 @@ export const Posts = (props: Props) => {
         {props.tweetList.length !== 0 && (
         <>
         <Masonry spacing={0}>            
-            {props.tweetList.map((tweet) => (
+            {props.tweetList.map((tweet, i) => (
                 <>
-                <Post tweet={tweet} deleteTweet={props.deleteTweet}></Post>
+                <Post key={i} tweet={tweet} deleteTweet={props.deleteTweet}></Post>
                 </>
             ))}
         </Masonry>
