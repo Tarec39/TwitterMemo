@@ -3,7 +3,7 @@ import { Tweet } from "../types/Tweet"
 
 const tweetDataUrl = "http://localhost:3100/tweets"
 
-//Tweetの作成
+//Tweetの作成（未対応）
 export const addTweet = async (tweet: Tweet) => {
     const res = await axios.post(tweetDataUrl, tweet)
     return res.data
@@ -12,7 +12,6 @@ export const addTweet = async (tweet: Tweet) => {
 //Tweetの取得
 export const getAllTweets = async () => {
     const res =  await axios.get(tweetDataUrl)
-    console.log(res.data)
     return res.data
 }
 
@@ -22,7 +21,7 @@ export const updateTweet = async (id: string, tweet: Tweet) => {
     return res.data
 }
 
-//Tweetの削除
+//Tweetの削除（未対応）
 export const deleteTweet = async (id: string) => {
     await axios.delete(`${tweetDataUrl}/${id}`)
     return id

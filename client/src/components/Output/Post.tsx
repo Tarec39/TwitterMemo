@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { AddThread } from '../AddThread';
 import { Tweet } from "../../types/Tweet";
-import { pid } from 'process';
+
 type props = {
     tweet: Tweet
     deleteTweet: any
@@ -12,7 +12,6 @@ type props = {
 export const Post = (props: props) => {
     const [isDisplay, setIsDisplay] = useState<boolean>(false!)
     const event = () =>  setIsDisplay(!isDisplay)
-    // const handleDeleteTweet = () => props.deleteTweet(props.tweet.id)
 
     return(
         <Container>
@@ -26,13 +25,13 @@ export const Post = (props: props) => {
                 {props.tweet.contents.map((i) => (
                     <>
                     <Content><p>{i.text}</p></Content>
+                    {/* まだ処理を対応させてない */}
+                    {/* <Button onClick={props.deleteTweet(i.id)}>-</Button> */}
                     </>
                 ))}
            </Body>
                 
-                
-            {/* <Button onClick={handleDeleteTweet}>-</Button> */}
-
+            
             <AddThread onClick={event}/>
 
             <ThreadBox display={isDisplay}><textarea></textarea></ThreadBox>
@@ -64,6 +63,7 @@ const Content = styled.div`
 margin-bottom: 10px;
 font-size: 15px;
 white-space: break-spaces;
+border-bottom: 1px solid #e6ecf0;
     p{
         white-space: pre-wrap;
     }
