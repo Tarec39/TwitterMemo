@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react"
 import { ulid } from "ulid"
 
@@ -10,22 +9,21 @@ export const useTweet = () => {
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
-            setTweetList([...tweet])
+            setTweetList([...tweet.reverse()])
         })
-        console.log("aa")
     },[])
     
-    const addTweet = (text: string) => {
+    const addTweet = (title:string, text: string) => {
         const newTweet = {
-            id: ulid(),
-            text: text
+            title: title,
+            text: text,
+            id: ulid()
         }
         
         tweetData.addTweet(newTweet).then((addTweet) => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
-
     }
 
     const deleteTweet = (id: string) => {

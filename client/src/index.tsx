@@ -1,13 +1,13 @@
 import { createRoot } from 'react-dom/client'
 import { useState } from 'react'
-
+import styled from 'styled-components'
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
 /**コンポーネント */
-import { TweetList } from './components/Output/TweetList'
-import { MakeTweet } from './components/TweetBox/MakeTweet'
+import { Posts } from './components/Output/Posts'
+import { PostTweet } from './components/TweetBox/PostTweet'
 import { WordCount } from './components/TweetBox/WordCount'
 
 const App = () => {
@@ -15,7 +15,22 @@ const App = () => {
    * フック関数の定義
    */
   const {tweetList, addTweet,deleteTweet} = useTweet()
-  const {textAreaEl, setTextAreaEl, onChangeTextAreaEl, WordNum, isDisabled} = useAddTweetBox()
+  const {
+    inputEl,
+    textAreaEl,
+
+    setInputEl,
+    setTextAreaEl,
+    setIsVisible,
+
+    onChangeInputEl,
+    onChangeTextAreaEl,
+    handleIsVisible,
+
+    WordNum,
+    isDisabled,
+    isVisible
+  } = useAddTweetBox()
 
   
   /**
@@ -23,46 +38,79 @@ const App = () => {
    */
   const handleAddTweet = () => {
     if(textAreaEl === ""){return}
-    addTweet(textAreaEl!)
+    addTweet(inputEl, textAreaEl!)
     setTextAreaEl("")
-  }
-
-  /**
-   * スレッドを追加する処理
-   */
-
-  //処理に使うuseStateの配列
-  const [components, setComponents] = useState<string[]>([])
-
-  //処理する関数
-  const handleAddThread = () => {
-    setComponents([...components, "Test texts"])
-    console.log(components)
+    setInputEl("")
+    setIsVisible(false)
   }
 
   return(
     <>
-      <MakeTweet 
-        value={textAreaEl!}
-        isDisabled={isDisabled}
-        onChange={onChangeTextAreaEl}
-        onClick={handleAddTweet}
-      />
-
-      <WordCount
-        WordNum={WordNum}
-      />
-
-      <TweetList
-        tweetList={tweetList}
-        deleteTweet={deleteTweet}
-        onClick={handleAddThread}
-        components={components}
-      />
+      <Header><h2>青鳥</h2></Header>
+      <Container>
+        <Sidebar></Sidebar>
+        <Feed>
+          <TweetBox>
+            <PostTweet 
+              inputEl={inputEl!}
+              textAreaEl={textAreaEl!}
+              isDisabled={isDisabled}
+              visible={isVisible}
+              onInputElChange={onChangeInputEl}
+              onTextAreaChange={onChangeTextAreaEl}
+              onClick={handleAddTweet}
+              handleIsVisible={handleIsVisible}
+              />
+            {/* <WordCount
+              WordNum={WordNum}
+            /> */}
+          </TweetBox>
+          <Posts
+            tweetList={tweetList}
+            deleteTweet={deleteTweet}
+            />
+        </Feed>
+      </Container>
     </>
   )
 }
 
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 1px solid #e6ecf0;
+  padding: 15px 20px;
+`;
+const Container = styled.div`
+  display: flex;
+  // max-width: 1300px;
+  padding: 0 10px;
+  height: 100vh;
+`;
+const Sidebar = styled.div`
+  flex: 0.2;
+  border-right: 1px solid #e6ecf0;
+  min-width: 250px;
+  // margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+`;
+const Feed = styled.div`
+
+  width: 100%;
+  min-width: fit-content!;
+  overflow-y:scroll
+  -ms-overflow-style: none;
+`
+const TweetBox = styled.div`
+  width: 600px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-bottom: 8px solid #e6ecf0;
+  margin: auto;
+`;
 const container = document.getElementById('app')!;
 const root = createRoot(container);
 root.render(<App />);
