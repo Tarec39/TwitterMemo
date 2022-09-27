@@ -1,60 +1,76 @@
+import React from 'react'
 import styled from 'styled-components'
 
 type Props = {
-    onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
+    onInputElChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onTextAreaChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
     onClick: () => void
-    value: string
+    inputEl: string
+    textAreaEl: string
     isDisabled: boolean
+    visible: boolean
+    handleIsVisible: () => any
 }
 
 export const PostTweet = (props: Props) => {
     return(
         <>
-        <TweetBox>
-            <Form>
-                <TweetBox_Input>
-                    <TextArea
-                    value={props.value}
-                    onChange={props.onChange}
-                    placeholder="What's happening?"
-                    />
-                </TweetBox_Input>
-                <Button
-                    onClick={props.onClick}
-                    disabled={props.isDisabled}>
-                    ツイートする
-                </Button>
-            </Form>
-        </TweetBox>
+        <Form>
+            <div>
+                <input 
+                    value={props.inputEl}
+                    onChange={props.onInputElChange}
+                    style={{ display: props.visible ? "block" : "none" }}
+                    placeholder='タイトル'
+                />
+                
+                <textarea
+                    value={props.textAreaEl}
+                    onChange={props.onTextAreaChange}
+                    onClick={props.handleIsVisible}
+                    placeholder="いまどうしてる?"
+                />
+            </div>
+            <Button
+                onClick={props.onClick}
+                disabled={props.isDisabled}>
+                ツイート
+            </Button>
+        </Form>
         </>
     )
 }
 
-const TweetBox = styled.div`
-padding-bottom: 10px;
-padding-right: 10px;
-`;
-
 const Form = styled.div`
 display: flex;
 flex-direction: column;
+>div{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+input{
+    resize:'none';
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-bottom: 5px;
+}
+textarea {
+    resize:'none';
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
 `;
 
-const TextArea = styled.textarea`
-resize:'none'
-flex: 1;
-margin-left: 20px;
-font-size: 20px;
-border: none;
-outline: none;
-width: 100%;
-resize: none;
-`;
-
-const TweetBox_Input = styled.div`
-display: flex;
-padding: 20px;
-`;
 
 const Button = styled.button`
 background-color: #50b7f5;
@@ -66,5 +82,4 @@ width: 80px;
 height: 40px;
 margin-top: 20px;
 margin-left: auto;
-
 `;
