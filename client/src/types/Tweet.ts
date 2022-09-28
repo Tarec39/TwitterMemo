@@ -1,9 +1,8 @@
 export type Tweet = {
     title: string
-    contents:[
+    contents:
         {
             id: string
             text: string
-        }
-    ]
+        }[]
 }

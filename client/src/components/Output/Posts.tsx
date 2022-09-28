@@ -16,7 +16,10 @@ export const Posts = (props: Props) => {
         <Masonry spacing={0}>            
             {props.tweetList.map((tweet, i) => (
                 <>
-                <Post key={i} tweet={tweet} deleteTweet={props.deleteTweet}></Post>
+                <div key={i}>
+
+                <Post  tweet={tweet} deleteTweet={props.deleteTweet}></Post>
+                </div>
                 </>
             ))}
         </Masonry>
