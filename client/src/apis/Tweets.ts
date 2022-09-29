@@ -4,14 +4,6 @@ import { Tweet } from "../types/Tweet"
 const tweetDataUrl = "http://localhost:3100/tweets"
 
 //Tweetの作成（未対応）
-type newContent = {
-    title: string
-    contents:{
-        id: string
-        text: string
-    }[]
-}
-    
 export const addTweet = async (tweet: Tweet) => {
     const res = await axios.post(tweetDataUrl, tweet)
     return res.data
