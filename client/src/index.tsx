@@ -65,10 +65,10 @@ const App = () => {
             {/* <WordCount
               WordNum={WordNum}
             /> */}
-          {/* <Posts
+          <Posts
             tweetList={tweetList}
             deleteTweet={deleteTweet}
-            /> */}
+            />
         </Feed>
       </Container>
     </>

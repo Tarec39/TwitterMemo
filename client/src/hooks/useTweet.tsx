@@ -17,6 +17,7 @@ export const useTweet = () => {
     },[tweetList])
 
     const addTweet = (title:string, text: string) => {
+
         const newContent = {
             title: title,
             contents: [{
