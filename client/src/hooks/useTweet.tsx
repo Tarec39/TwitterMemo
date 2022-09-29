@@ -15,17 +15,21 @@ export const useTweet = () => {
     useEffect(()=>{
         console.log(tweetList)
     },[tweetList])
+
     const addTweet = (title:string, text: string) => {
-        const newTweet = {
+
+        const newContent = {
             title: title,
-            text: text,
-            id: ulid()
+            contents: [{
+                id: ulid(),
+                text: text
+            }]
         }
         
-        // tweetData.addTweet(newTweet).then((addTweet) => {
-        //     console.log(addTweet)
-        //     setTweetList([addTweet, ...tweetList])
-        // })
+        tweetData.addTweet(newContent).then((addTweet) => {
+            console.log(addTweet)
+            setTweetList([addTweet, ...tweetList])
+        })
     }
 
     const deleteTweet = (id: string) => {
