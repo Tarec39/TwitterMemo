@@ -14,70 +14,24 @@ export const Post = (props: props) => {
     const event = () =>  setIsDisplay(!isDisplay)
 
     return(
-        <Container>
-            <Body>
-                <div className="title">
-                    {props.tweet.title === ""
-                    ?<h3>&nbsp;</h3>
-                    :<h3>{props.tweet.title}</h3>
-                    }
-                </div>
-                {props.tweet.contents.map((i) => (
-                    <>
-                    <Content><p>{i.text}</p></Content>
-                    {/* まだ処理を対応させてない */}
-                    {/* <Button onClick={props.deleteTweet(i.id)}>-</Button> */}
-                    </>
-                ))}
-           </Body>
-                
-            
-            <AddThread onClick={event}/>
+        <>
+        <div>
 
-            <ThreadBox display={isDisplay}><textarea></textarea></ThreadBox>
-
-
-        </Container>
+            {props.tweet.title === ""
+                ?<h3>&nbsp;</h3>
+                :<h3>{props.tweet.title}</h3>
+            }
+            {props.tweet.contents.map((i) => (
+            <>
+            <div><p>{i.text}</p></div>
+            <button>-</button>
+            </>
+            ))}
+            <AddThread onClick={event}></AddThread>
+            <div><textarea></textarea></div>
+        </div>
+        </>
     )
 }
 
 
-const Container = styled.div`
-// position: relative;
-// display: flex;
-width: 400px!;
-align-items: flex-start;
-padding-bottom: 10px;
-border-top: 1px solid #e6ecf0;
-border-bottom: 1px solid #e6ecf0;
-border-right: 1px solid #e6ecf0;
-
-h3 {
-font-size: 15px;
-margin-bottom: 5px;
-}
-.content {
-
-`;
-const Content = styled.div`
-margin-bottom: 10px;
-font-size: 15px;
-white-space: break-spaces;
-border-bottom: 1px solid #e6ecf0;
-    p{
-        white-space: pre-wrap;
-    }
-}
-`;
-const Body = styled.div`
-flex: 1;
-padding: 10px 10px 10px 30px;
-`;
-
-const Button = styled.button`
-    margin-top: auto;
-`;
-
-const ThreadBox = styled.div<{display: boolean}>`
-    display: ${props => props.display ?'inherit':'none'};
-`;
