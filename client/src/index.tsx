@@ -1,13 +1,12 @@
 import { createRoot } from 'react-dom/client'
 
-import styled from 'styled-components'
-
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useAddTweetBox'
 
 /**コンポーネント */
 import { PostTweet } from './components/TweetBox/PostTweet'
+import { Posts } from './components/Output/Posts'
 
 const App = () => {
   /**
@@ -45,6 +44,25 @@ const App = () => {
 
   return(
     <>
+      <PostTweet 
+        inputEl={inputEl!}
+        textAreaEl={textAreaEl!}
+        isDisabled={isDisabled}
+        visible={isVisible}
+        onInputElChange={onChangeInputEl}
+        onTextAreaChange={onChangeTextAreaEl}
+        onClick={handleAddTweet}
+        handleIsVisible={handleIsVisible}
+      />
+
+      <Posts
+        tweetList={tweetList}
+        deleteTweet={deleteTweet}
+      />
     </>
   )
 }
+
+const container = document.getElementById('app')!;
+const root = createRoot(container);
+root.render(<App />);
