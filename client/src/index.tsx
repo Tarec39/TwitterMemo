@@ -2,11 +2,10 @@ import { createRoot } from 'react-dom/client'
 
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
-import { useAddTweetBox } from './hooks/useAddTweetBox'
+import { useAddTweetBox } from './hooks/useTweetBox'
 
 /**コンポーネント */
 import { PostTweet } from './components/TweetBox/PostTweet'
-import { Posts } from './components/Output/Posts'
 
 const App = () => {
   /**
@@ -46,18 +45,7 @@ const App = () => {
     <>
       <PostTweet 
         inputEl={inputEl!}
-        textAreaEl={textAreaEl!}
-        isDisabled={isDisabled}
-        visible={isVisible}
         onInputElChange={onChangeInputEl}
-        onTextAreaChange={onChangeTextAreaEl}
-        onClick={handleAddTweet}
-        handleIsVisible={handleIsVisible}
-      />
-
-      <Posts
-        tweetList={tweetList}
-        deleteTweet={deleteTweet}
       />
     </>
   )
