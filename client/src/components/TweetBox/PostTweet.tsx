@@ -15,6 +15,7 @@ type props = {
     textareaRows: ()=>number
     //PostButton.tsx
     handlePostTweet: ()=>void
+    handleIsDisabled: boolean
 }
 
 export const PostTweet = (props: props) => {
@@ -34,6 +35,7 @@ export const PostTweet = (props: props) => {
             />
             <PostButton
                 onClick={props.handlePostTweet}
+                isDisabled={props.handleIsDisabled}
             />
         </>
     )

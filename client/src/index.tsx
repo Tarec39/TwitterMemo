@@ -25,7 +25,7 @@ const App = () => {
     handleIsVisible,
     TextareaRows,
 
-    WordNum,
+    WordsNum,
     isDisabled,
     isVisible
   } = useAddTweetBox()
@@ -57,6 +57,7 @@ const App = () => {
 
         //PostButton.tsx
         handlePostTweet={handlePostTweet}
+        handleIsDisabled={isDisabled}
       />
     </>
   )
