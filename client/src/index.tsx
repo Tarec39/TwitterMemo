@@ -23,6 +23,7 @@ const App = () => {
     onChangeInputEl,
     onChangeTextAreaEl,
     handleIsVisible,
+    TextareaRows,
 
     WordNum,
     isDisabled,
@@ -52,6 +53,7 @@ const App = () => {
         //Text.tsx
         textareaEl={textAreaEl}
         onChangeTextareaEl={onChangeTextAreaEl}
+        textareaRows={TextareaRows}
       />
     </>
   )

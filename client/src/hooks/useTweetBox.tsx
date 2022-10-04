@@ -10,23 +10,28 @@ export const useAddTweetBox = () => {
   const [WordNum, setWordNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
+
   /**
    * 処理関数の定義
    */
 
-  /** テキスト入力 */
+  /** タイトル入力 */
   const onChangeInputEl = (event:React.ChangeEvent<HTMLInputElement>) => {
     setInputEl(event.target.value)
   }
 
+  /**テキスト入力 */
   const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaEl(event.target.value)
   }
-  useEffect(()=> {
-    count()
-  },[textAreaEl])
+  
+  /** Textareaの可変 */
+  const TextareaRows =() => {
+    let rowNums = textAreaEl.split('\n').length
+    return rowNums
+  }
 
-  /** 文字数の表示*/
+  /** 文字数の処理*/
   const count = () => {
     let len = 0;
     for (let i = 0; i < textAreaEl.length; i++) {
@@ -34,13 +39,18 @@ export const useAddTweetBox = () => {
     }
     setWordNum(len)
   }
+  useEffect(()=> {
+    count()
+  },[textAreaEl])
+
+
   /** 文字数の制限 */
-  //140文字超えたらボタンが押せなくなる。
+  //280バイト超えたらボタンがクリックできなくなる
   const handleisDisabled = () => {
     if(WordNum > 280) return setIsDisabled(true);
     else{return setIsDisabled(false)}
   }
-  /**これはなに？ */
+
   useEffect(()=>{
     handleisDisabled()
   },[WordNum])
@@ -65,6 +75,7 @@ export const useAddTweetBox = () => {
       //関数
       onChangeInputEl,
       onChangeTextAreaEl,
-      handleIsVisible
+      handleIsVisible,
+      TextareaRows
     }
 }

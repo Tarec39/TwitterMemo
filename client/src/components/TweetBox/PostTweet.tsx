@@ -11,9 +11,11 @@ type props = {
     //Text.tsx
     textareaEl: string
     onChangeTextareaEl: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+    textareaRows: ()=>number
 }
 
 export const PostTweet = (props: props) => {
+    const Rows = props.textareaRows()
     return(
         <>
             <h3>ツイート機能</h3>
@@ -25,6 +27,7 @@ export const PostTweet = (props: props) => {
             <Text
                 value={props.textareaEl}
                 onChange={props.onChangeTextareaEl}
+                rows={Rows}
             />
         </>
     )
