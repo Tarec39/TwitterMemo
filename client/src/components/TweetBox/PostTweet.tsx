@@ -1,40 +1,20 @@
 import React from 'react'
 
-type Props = {
+import {Title} from './Title'
+
+type props = {
     onInputElChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-    onTextAreaChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void
-    onClick: () => void
     inputEl: string
-    textAreaEl: string
-    isDisabled: boolean
-    visible: boolean
-    handleIsVisible: () => any
 }
 
-export const PostTweet = (props: Props) => {
+export const PostTweet = (props: props) => {
     return(
         <>
         <h3>ツイート機能</h3>
-        
-        <input 
+        <Title
             value={props.inputEl}
             onChange={props.onInputElChange}
-            style={{ display: props.visible ? "block" : "none" }}
-            placeholder='タイトル'
-        />
-        
-        <textarea
-            value={props.textAreaEl}
-            onChange={props.onTextAreaChange}
-            onClick={props.handleIsVisible}
-            placeholder="いまどうしてる?"
-        />
-
-        <button
-            onClick={props.onClick}
-            disabled={props.isDisabled}>
-        ツイート
-        </button>
+        /> 
         </>
     )
 }
