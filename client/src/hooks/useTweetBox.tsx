@@ -47,10 +47,18 @@ export const useAddTweetBox = () => {
     getWordsNumber()
   },[textAreaEl])
 
-  //文字数をコンソールに表示
+
+  /** 文字数が280バイト超えたら何らかのシグナルを出す処理 */
+const SignalOfSomething = () => {
+  if(WordsNum > 280) return(console.log("280字超えました！！！"))
+}
+
+  //何らかのシグナルを出すやつ
   useEffect(()=>{
     console.log(WordsNum)
+    SignalOfSomething()
   },[WordsNum])
+
 
 
   /** 文字数の制限 */
