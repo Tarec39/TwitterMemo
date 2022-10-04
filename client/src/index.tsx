@@ -57,6 +57,7 @@ const App = () => {
 
         //PostButton.tsx
         handlePostTweet={handlePostTweet}
+        handleIsDisabled={isDisabled}
       />
     </>
   )

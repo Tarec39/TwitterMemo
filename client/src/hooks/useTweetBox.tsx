@@ -11,29 +11,29 @@ export const useAddTweetBox = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
-  /** 処理関数の定義 */
-
   /**
-   * タイトル入力の処理
+   * 処理関数の定義
   */
+
+  /** タイトル入力機能の処理 */
   const onChangeInputEl = (event:React.ChangeEvent<HTMLInputElement>) => {
     setInputEl(event.target.value)
   }
 
-  /**
-   * テキスト入力の処理
-  */
+  /** テキスト入力機能の処理 */
+  //入力の受付
   const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaEl(event.target.value)
   }
   
-  /** Textareaの可変をする処理 */
+  //textareaの可変
   const TextareaRows =() => {
     let rowNums = textAreaEl.split('\n').length
     return rowNums
   }
 
-  /**　 テキスト入力機能から文字数を取得 */
+  /** 文字数のカウントと制限の処理 */
+  //文字数の取得
   const getWordsNumber = () => {
     let len = 0;
     for (let i = 0; i < textAreaEl.length; i++) {
@@ -48,25 +48,25 @@ export const useAddTweetBox = () => {
   },[textAreaEl])
 
 
-  /** 文字数が280バイト超えたら何らかのシグナルを出す処理 */
+  //280バイト超えたときにだす信号の処理
 const SignalOfSomething = () => {
   if(WordsNum > 280) return(console.log("280字超えました！！！"))
 }
 
-  //何らかのシグナルを出すやつ
+  //280バイト超えたら信号
   useEffect(()=>{
     console.log(WordsNum)
     SignalOfSomething()
+    handleIsDisabled()
   },[WordsNum])
 
 
-
-  /** 文字数の制限 */
-  //280バイト超えたらボタンがクリックできなくなる
-  const handleisDisabled = () => {
-    if(WordsNum > 280) return setIsDisabled(true);
-    else{return setIsDisabled(false)}
+  //文字制限
+  const handleIsDisabled = () => {
+    if(WordsNum > 280) return setIsDisabled(true)
+    else{setIsDisabled(false)}
   }
+
 
 
   /**要素の非表示 */
