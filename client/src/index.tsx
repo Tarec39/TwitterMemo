@@ -1,5 +1,9 @@
 import { createRoot } from 'react-dom/client'
 
+import ContentEditable from 'react-contenteditable'
+
+import {useState, useRef} from 'react'
+
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useTweetBox'
@@ -42,6 +46,12 @@ const App = () => {
     setIsVisible(false)
   }
 
+  const ref = useRef<HTMLDivElement>(null)
+  const [html, setHtml] = useState('')
+  const onInput = (e:React.FormEvent<HTMLDivElement>) => {
+    let innerhtml = e.currentTarget.innerHTML
+    setHtml(innerhtml)
+  }
   return(
     <>
       <PostTweet 
@@ -54,6 +64,12 @@ const App = () => {
         textareaEl={textAreaEl}
         onChangeTextareaEl={onChangeTextAreaEl}
         textareaRows={TextareaRows}
+      />
+
+      <ContentEditable
+        innerRef={ref}
+        html={html}
+        onChange={onInput}
       />
     </>
   )
