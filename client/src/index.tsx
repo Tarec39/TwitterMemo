@@ -25,7 +25,7 @@ const App = () => {
     handleIsVisible,
     TextareaRows,
 
-    WordNum,
+    WordsNum,
     isDisabled,
     isVisible
   } = useAddTweetBox()
