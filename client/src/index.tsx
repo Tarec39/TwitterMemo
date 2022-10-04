@@ -32,9 +32,9 @@ const App = () => {
 
   
   /**
-   * ツイートの追加する処理
+   * ツイートを追加する処理
    */
-  const handleAddTweet = () => {
+  const handlePostTweet = () => {
     if(textAreaEl === ""){return}
     addTweet(inputEl, textAreaEl!)
     setTextAreaEl("")
@@ -54,6 +54,9 @@ const App = () => {
         textareaEl={textAreaEl}
         onChangeTextareaEl={onChangeTextAreaEl}
         textareaRows={TextareaRows}
+
+        //PostButton.tsx
+        handlePostTweet={handlePostTweet}
       />
     </>
   )
