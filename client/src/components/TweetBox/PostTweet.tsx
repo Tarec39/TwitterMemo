@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import {Title} from './Title'
 import {Text} from './Text'
+import {PostButton} from './PostButton'
 
 type props = {
     //Title.tsx
@@ -12,6 +13,8 @@ type props = {
     textareaEl: string
     onChangeTextareaEl: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
     textareaRows: ()=>number
+    //PostButton.tsx
+    handlePostTweet: ()=>void
 }
 
 export const PostTweet = (props: props) => {
@@ -28,6 +31,9 @@ export const PostTweet = (props: props) => {
                 value={props.textareaEl}
                 onChange={props.onChangeTextareaEl}
                 rows={Rows}
+            />
+            <PostButton
+                onClick={props.handlePostTweet}
             />
         </>
     )
