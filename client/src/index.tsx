@@ -23,6 +23,7 @@ const App = () => {
     onChangeInputEl,
     onChangeTextAreaEl,
     handleIsVisible,
+    TextareaRows,
 
     WordNum,
     isDisabled,
@@ -44,8 +45,15 @@ const App = () => {
   return(
     <>
       <PostTweet 
+
+        // Title.tsx
         inputEl={inputEl!}
-        onInputElChange={onChangeInputEl}
+        onChangeInputEl={onChangeInputEl}
+
+        //Text.tsx
+        textareaEl={textAreaEl}
+        onChangeTextareaEl={onChangeTextAreaEl}
+        textareaRows={TextareaRows}
       />
     </>
   )
