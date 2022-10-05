@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+
 import { useState } from 'react';
 
 import { AddThread } from '../AddThread';

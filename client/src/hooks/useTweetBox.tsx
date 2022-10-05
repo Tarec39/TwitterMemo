@@ -1,15 +1,19 @@
-import {useEffect,useState} from 'react'
+import {useEffect,useState, useRef} from 'react'
 
 
 export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-  const [textAreaEl, setTextAreaEl] = useState<string>('')
+  const [html, setHtml] = useState<string>('')
   const [inputEl, setInputEl] = useState<string>('')
   const [WordNum, setWordNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  
+
 
   /**
    * 処理関数の定義
@@ -21,27 +25,29 @@ export const useAddTweetBox = () => {
   }
 
   /**テキスト入力 */
-  const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaEl(event.target.value)
+  const onInputDivEl = (e:React.FormEvent<HTMLDivElement>) => {
+    let innerhtml = e.currentTarget.innerHTML
+    setHtml(innerhtml)
   }
   
   /** Textareaの可変 */
   const TextareaRows =() => {
-    let rowNums = textAreaEl.split('\n').length
+    let rowNums = html.split('\n').length
     return rowNums
   }
 
   /** 文字数の処理*/
   const count = () => {
     let len = 0;
-    for (let i = 0; i < textAreaEl.length; i++) {
-    (textAreaEl[i].match(/[ -~]/)) ? len += 1 : len += 2;
+    for (let i = 0; i < html.length; i++) {
+    (html[i].match(/[ -~]/)) ? len += 1 : len += 2;
     }
     setWordNum(len)
   }
   useEffect(()=> {
+    console.log(html)
     count()
-  },[textAreaEl])
+  },[html])
 
 
   /** 文字数の制限 */
@@ -62,20 +68,21 @@ export const useAddTweetBox = () => {
     return {
       //state
       inputEl,
-      textAreaEl, 
+      html, 
       WordNum, 
       isDisabled,
       isVisible,
+      ref,
 
       //setState
       setInputEl,
-      setTextAreaEl,
+      setHtml,
       setIsVisible,
       
       //関数
       onChangeInputEl,
-      onChangeTextAreaEl,
+      onInputDivEl,
       handleIsVisible,
-      TextareaRows
+      TextareaRows,
     }
 }
