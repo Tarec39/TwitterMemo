@@ -1,15 +1,19 @@
-import {useEffect,useState} from 'react'
+import {useEffect,useState, useRef} from 'react'
 
 
 export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-  const [textAreaEl, setTextAreaEl] = useState<string>('')
+  const [html, setHtml] = useState<string>('')
   const [inputEl, setInputEl] = useState<string>('')
   const [WordsNum, setWordsNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  
+
 
   /**
    * 処理関数の定義
@@ -20,15 +24,16 @@ export const useAddTweetBox = () => {
     setInputEl(event.target.value)
   }
 
-  /** テキスト入力機能の処理 */
-  //入力の受付
-  const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaEl(event.target.value)
+
+  /**テキスト入力 */
+  const onInputDivEl = (e:React.FormEvent<HTMLDivElement>) => {
+    let innerhtml = e.currentTarget.innerHTML
+    setHtml(innerhtml)
   }
   
   //textareaの可変
   const TextareaRows =() => {
-    let rowNums = textAreaEl.split('\n').length
+    let rowNums = html.split('\n').length
     return rowNums
   }
 
@@ -36,16 +41,17 @@ export const useAddTweetBox = () => {
   //文字数の取得
   const getWordsNumber = () => {
     let len = 0;
-    for (let i = 0; i < textAreaEl.length; i++) {
-    (textAreaEl[i].match(/[ -~]/)) ? len += 1 : len += 2;
+    for (let i = 0; i < html.length; i++) {
+    (html[i].match(/[ -~]/)) ? len += 1 : len += 2;
     }
     setWordsNum(len)
   }
 
   //テキスト入力になんかあったらgetWordsNumberを起動
   useEffect(()=> {
-    getWordsNumber()
-  },[textAreaEl])
+    console.log(html)
+    count()
+  },[html])
 
 
   //280バイト超えたときにだす信号の処理
@@ -76,20 +82,21 @@ const SignalOfSomething = () => {
     return {
       //state
       inputEl,
-      textAreaEl, 
       WordsNum, 
+      html, 
       isDisabled,
       isVisible,
+      ref,
 
       //setState
       setInputEl,
-      setTextAreaEl,
+      setHtml,
       setIsVisible,
       
       //関数
       onChangeInputEl,
-      onChangeTextAreaEl,
+      onInputDivEl,
       handleIsVisible,
-      TextareaRows
+      TextareaRows,
     }
 }
