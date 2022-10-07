@@ -1,7 +1,5 @@
 import { createRoot } from 'react-dom/client'
 
-import ContentEditable from 'react-contenteditable'
-
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useTweetBox'
@@ -16,15 +14,14 @@ const App = () => {
   const {tweetList, addTweet,deleteTweet} = useTweet()
   const {
     inputEl,
-    html,
-    ref,
+    textAreaEl,
 
     setInputEl,
-    setHtml,
+    setTextAreaEl,
     setIsVisible,
 
     onChangeInputEl,
-    onInputDivEl,
+    onChangeTextAreaEl,
     handleIsVisible,
     TextareaRows,
 
@@ -38,10 +35,10 @@ const App = () => {
    * ツイートを追加する処理
    */
 
-  const handleAddTweet = () => {
-    if(html === ""){return}
-    addTweet(inputEl, html!)
-    setHtml("")
+   const handlePostTweet = () => {
+    if(textAreaEl === ""){return}
+    addTweet(inputEl, textAreaEl!)
+    setTextAreaEl("")
     setInputEl("")
     setIsVisible(false)
   }
@@ -57,14 +54,13 @@ const App = () => {
         onChangeInputEl={onChangeInputEl}
 
         //Text.tsx
-        html={html}
-        onInputDivEl={onInputDivEl}
+        textareaEl={textAreaEl}
+        onChangeTextareaEl={onChangeTextAreaEl}
         textareaRows={TextareaRows}
 
         //PostButton.tsx
         handlePostTweet={handlePostTweet}
         handleIsDisabled={isDisabled}
-        innerRef={ref}
       />
     </>
   )
