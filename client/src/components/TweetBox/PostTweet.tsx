@@ -11,14 +11,13 @@ type props = {
     onChangeInputEl: (event: React.ChangeEvent<HTMLInputElement>) => void
     
     //Text.tsx
-    html: string
-    onInputDivEl: (event: React.FormEvent<HTMLDivElement>) => void
+    textareaEl: string
+    onChangeTextareaEl: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
     textareaRows: ()=>number
     
     //PostButton.tsx
     handlePostTweet: ()=>void
     handleIsDisabled: boolean
-    innerRef: React.RefObject<HTMLDivElement>
 }
 
 export const PostTweet = (props: props) => {
@@ -32,10 +31,9 @@ export const PostTweet = (props: props) => {
             /> 
 
             <Text
-                html={props.html}
-                onChange={props.onInputDivEl}
-                // rows={Rows}
-                innerRef={props.innerRef}
+                value={props.textareaEl}
+                onChange={props.onChangeTextareaEl}
+                rows={Rows}
             />
             <PostButton
                 onClick={props.handlePostTweet}

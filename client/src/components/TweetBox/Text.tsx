@@ -1,18 +1,19 @@
 import ContentEditable from 'react-contenteditable'
 
 type props = {
-    innerRef: React.RefObject<HTMLDivElement>
-    html: string
-    onChange: (event: React.FormEvent<HTMLDivElement>) => void
+    value: string
+    rows: number
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const Text = (props: props) => {
     return(
-        <ContentEditable
-        innerRef={props.innerRef}
-        html={props.html}
+        <textarea
+        value={props.value}
+        rows={props.rows}
         onChange={props.onChange}
-        // disabled={true}
+        placeholder="いまどうしてる?"
+        required
       />
     )
 }

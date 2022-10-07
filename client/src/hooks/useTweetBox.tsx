@@ -5,12 +5,11 @@ export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-  const [html, setHtml] = useState<string>('')
-  const [inputEl, setInputEl] = useState<string>('')
+   const [textAreaEl, setTextAreaEl] = useState<string>('')
+   const [inputEl, setInputEl] = useState<string>('')
   const [WordsNum, setWordsNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
-  const ref = useRef<HTMLDivElement>(null)
 
   
 
@@ -26,14 +25,14 @@ export const useAddTweetBox = () => {
 
 
   /**テキスト入力 */
-  const onInputDivEl = (e:React.FormEvent<HTMLDivElement>) => {
-    let innerhtml = e.currentTarget.innerHTML
-    setHtml(innerhtml)
+  const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextAreaEl(event.target.value)
   }
+
   
   //textareaの可変
   const TextareaRows =() => {
-    let rowNums = html.split('\n').length
+    let rowNums = textAreaEl.split('\n').length
     return rowNums
   }
 
@@ -41,18 +40,16 @@ export const useAddTweetBox = () => {
   //文字数の取得
   const getWordsNumber = () => {
     let len = 0;
-    for (let i = 0; i < html.length; i++) {
-    (html[i].match(/[ -~]/)) ? len += 1 : len += 2;
+    for (let i = 0; i < textAreaEl.length; i++) {
+    (textAreaEl[i].match(/[ -~]/)) ? len += 1 : len += 2;
     }
     setWordsNum(len)
   }
 
   //テキスト入力になんかあったらgetWordsNumberを起動
   useEffect(()=> {
-    console.log(html)
-    count()
-  },[html])
-
+    getWordsNumber()
+  },[textAreaEl])
 
   //280バイト超えたときにだす信号の処理
 const SignalOfSomething = () => {
@@ -83,19 +80,18 @@ const SignalOfSomething = () => {
       //state
       inputEl,
       WordsNum, 
-      html, 
+      textAreaEl, 
       isDisabled,
       isVisible,
-      ref,
 
       //setState
       setInputEl,
-      setHtml,
+      setTextAreaEl,
       setIsVisible,
       
       //関数
       onChangeInputEl,
-      onInputDivEl,
+      onChangeTextAreaEl,
       handleIsVisible,
       TextareaRows,
     }

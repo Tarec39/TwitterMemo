@@ -12,6 +12,7 @@ export const Title =(props: props)=> {
             value={props.value}
             onChange={props.onChange}
             placeholder='タイトル'
+            style={{display: 'none'}}
         />
         </>
     )
