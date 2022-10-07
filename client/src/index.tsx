@@ -2,8 +2,6 @@ import { createRoot } from 'react-dom/client'
 
 import ContentEditable from 'react-contenteditable'
 
-import {useState, useRef} from 'react'
-
 /**Hook関数 */
 import { useTweet } from './hooks/useTweet'
 import { useAddTweetBox } from './hooks/useTweetBox'
@@ -18,40 +16,38 @@ const App = () => {
   const {tweetList, addTweet,deleteTweet} = useTweet()
   const {
     inputEl,
-    textAreaEl,
+    html,
+    ref,
 
     setInputEl,
-    setTextAreaEl,
+    setHtml,
     setIsVisible,
 
     onChangeInputEl,
-    onChangeTextAreaEl,
+    onInputDivEl,
     handleIsVisible,
     TextareaRows,
 
-    WordNum,
+    WordsNum,
     isDisabled,
     isVisible
   } = useAddTweetBox()
 
   
   /**
-   * ツイートの追加する処理
+   * ツイートを追加する処理
    */
+
   const handleAddTweet = () => {
-    if(textAreaEl === ""){return}
-    addTweet(inputEl, textAreaEl!)
-    setTextAreaEl("")
+    if(html === ""){return}
+    addTweet(inputEl, html!)
+    setHtml("")
     setInputEl("")
     setIsVisible(false)
   }
 
-  const ref = useRef<HTMLDivElement>(null)
-  const [html, setHtml] = useState('')
-  const onInput = (e:React.FormEvent<HTMLDivElement>) => {
-    let innerhtml = e.currentTarget.innerHTML
-    setHtml(innerhtml)
-  }
+
+
   return(
     <>
       <PostTweet 
@@ -61,15 +57,14 @@ const App = () => {
         onChangeInputEl={onChangeInputEl}
 
         //Text.tsx
-        textareaEl={textAreaEl}
-        onChangeTextareaEl={onChangeTextAreaEl}
-        textareaRows={TextareaRows}
-      />
-
-      <ContentEditable
-        innerRef={ref}
         html={html}
-        onChange={onInput}
+        onInputDivEl={onInputDivEl}
+        textareaRows={TextareaRows}
+
+        //PostButton.tsx
+        handlePostTweet={handlePostTweet}
+        handleIsDisabled={isDisabled}
+        innerRef={ref}
       />
     </>
   )

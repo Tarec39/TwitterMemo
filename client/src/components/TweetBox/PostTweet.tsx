@@ -1,17 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import {Title} from './Title'
 import {Text} from './Text'
+import {PostButton} from './PostButton'
 
 type props = {
+
     //Title.tsx
     inputEl: string
     onChangeInputEl: (event: React.ChangeEvent<HTMLInputElement>) => void
+    
     //Text.tsx
-    textareaEl: string
-    onChangeTextareaEl: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+    html: string
+    onInputDivEl: (event: React.FormEvent<HTMLDivElement>) => void
     textareaRows: ()=>number
+    
+    //PostButton.tsx
+    handlePostTweet: ()=>void
+    handleIsDisabled: boolean
+    innerRef: React.RefObject<HTMLDivElement>
 }
 
 export const PostTweet = (props: props) => {
@@ -25,14 +32,15 @@ export const PostTweet = (props: props) => {
             /> 
 
             <Text
-                value={props.textareaEl}
-                onChange={props.onChangeTextareaEl}
-                rows={Rows}
+                html={props.html}
+                onChange={props.onInputDivEl}
+                // rows={Rows}
+                innerRef={props.innerRef}
+            />
+            <PostButton
+                onClick={props.handlePostTweet}
+                isDisabled={props.handleIsDisabled}
             />
         </>
     )
 }
-
-const TweetBox = styled.div`
-
-`
