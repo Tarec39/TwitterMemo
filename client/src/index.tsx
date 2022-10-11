@@ -15,10 +15,12 @@ const App = () => {
   const {
     inputEl,
     textAreaEl,
+    show,
 
     setInputEl,
     setTextAreaEl,
     setIsVisible,
+    setShow,
 
     onChangeInputEl,
     onChangeTextAreaEl,
@@ -43,11 +45,26 @@ const App = () => {
     setIsVisible(false)
   }
 
+  
+  const showInherit = () => {
+    console.log('onFocus')
+    setShow(true)
+  }
+  const showNone = () => {
+    if(inputEl!=="")return;
+    if(textAreaEl!=="")return;
+    console.log('onBlur')
+    setShow(false)
+  }
+
 
 
   return(
     <>
       <PostTweet 
+        //TweetBox
+        onFocus={showInherit}
+        onBlur={showNone}
 
         // Title.tsx
         inputEl={inputEl!}
@@ -57,6 +74,7 @@ const App = () => {
         textareaEl={textAreaEl}
         onChangeTextareaEl={onChangeTextAreaEl}
         textareaRows={TextareaRows}
+        show={show}
 
         //PostButton.tsx
         handlePostTweet={handlePostTweet}

@@ -5,11 +5,12 @@ export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-   const [textAreaEl, setTextAreaEl] = useState<string>('')
-   const [inputEl, setInputEl] = useState<string>('')
+  const [textAreaEl, setTextAreaEl] = useState<string>('')
+  const [inputEl, setInputEl] = useState<string>('')
   const [WordsNum, setWordsNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false)
 
   
 
@@ -83,11 +84,13 @@ const SignalOfSomething = () => {
       textAreaEl, 
       isDisabled,
       isVisible,
+      show,
 
       //setState
       setInputEl,
       setTextAreaEl,
       setIsVisible,
+      setShow,
       
       //関数
       onChangeInputEl,
