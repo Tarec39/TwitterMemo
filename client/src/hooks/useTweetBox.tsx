@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react'
+import {useEffect,useState, useRef} from 'react'
 
 
 export const useAddTweetBox = () => {
@@ -12,6 +12,9 @@ export const useAddTweetBox = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
+  
+
+
   /**
    * 処理関数の定義
   */
@@ -21,11 +24,12 @@ export const useAddTweetBox = () => {
     setInputEl(event.target.value)
   }
 
-  /** テキスト入力機能の処理 */
-  //入力の受付
+
+  /**テキスト入力 */
   const onChangeTextAreaEl = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaEl(event.target.value)
   }
+
   
   //textareaの可変
   const TextareaRows =() => {
@@ -47,7 +51,6 @@ export const useAddTweetBox = () => {
   useEffect(()=> {
     getWordsNumber()
   },[textAreaEl])
-
 
   //280バイト超えたときにだす信号の処理
 const SignalOfSomething = () => {
@@ -82,6 +85,7 @@ const process = () => {
       inputEl,
       textAreaEl, 
       WordNum, 
+
       isDisabled,
       isVisible,
       minusWord,
@@ -95,6 +99,6 @@ const process = () => {
       onChangeInputEl,
       onChangeTextAreaEl,
       handleIsVisible,
-      TextareaRows
+      TextareaRows,
     }
 }

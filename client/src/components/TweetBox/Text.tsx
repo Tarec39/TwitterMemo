@@ -1,3 +1,5 @@
+import ContentEditable from 'react-contenteditable'
+
 type props = {
     value: string
     rows: number
@@ -12,6 +14,6 @@ export const Text = (props: props) => {
         onChange={props.onChange}
         placeholder="いまどうしてる?"
         required
-        />
+      />
     )
 }

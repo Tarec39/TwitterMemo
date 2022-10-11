@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 
 type props = {
     value: string,
@@ -9,15 +8,13 @@ type props = {
 export const Title =(props: props)=> {
     return(
         <>
-        <Input
+        <input
             value={props.value}
             onChange={props.onChange}
             placeholder='タイトル'
+            style={{display: 'none'}}
         />
         </>
     )
 }
 
-const Input = styled.input`
-    display: none;
-`
