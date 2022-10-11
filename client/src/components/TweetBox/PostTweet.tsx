@@ -1,26 +1,44 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import {Title} from './Title'
+import {Text} from './Text'
+import {PostButton} from './PostButton'
 
 type props = {
-    onInputElChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+
+    //Title.tsx
     inputEl: string
+    onChangeInputEl: (event: React.ChangeEvent<HTMLInputElement>) => void
+    
+    //Text.tsx
+    textareaEl: string
+    onChangeTextareaEl: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+    textareaRows: ()=>number
+    
+    //PostButton.tsx
+    handlePostTweet: ()=>void
+    handleIsDisabled: boolean
 }
 
 export const PostTweet = (props: props) => {
+    const Rows = props.textareaRows()
     return(
         <>
             <h3>ツイート機能</h3>
-
             <Title
                 value={props.inputEl}
-                onChange={props.onInputElChange}
-            />  
+                onChange={props.onChangeInputEl}
+            /> 
+
+            <Text
+                value={props.textareaEl}
+                onChange={props.onChangeTextareaEl}
+                rows={Rows}
+            />
+            <PostButton
+                onClick={props.handlePostTweet}
+                isDisabled={props.handleIsDisabled}
+            />
         </>
     )
 }
-
-const TweetBox = styled.div`
-
-`

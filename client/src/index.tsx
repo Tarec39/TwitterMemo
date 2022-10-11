@@ -23,17 +23,19 @@ const App = () => {
     onChangeInputEl,
     onChangeTextAreaEl,
     handleIsVisible,
+    TextareaRows,
 
-    WordNum,
+    WordsNum,
     isDisabled,
     isVisible
   } = useAddTweetBox()
 
   
   /**
-   * ツイートの追加する処理
+   * ツイートを追加する処理
    */
-  const handleAddTweet = () => {
+
+   const handlePostTweet = () => {
     if(textAreaEl === ""){return}
     addTweet(inputEl, textAreaEl!)
     setTextAreaEl("")
@@ -41,11 +43,24 @@ const App = () => {
     setIsVisible(false)
   }
 
+
+
   return(
     <>
       <PostTweet 
+
+        // Title.tsx
         inputEl={inputEl!}
-        onInputElChange={onChangeInputEl}
+        onChangeInputEl={onChangeInputEl}
+
+        //Text.tsx
+        textareaEl={textAreaEl}
+        onChangeTextareaEl={onChangeTextAreaEl}
+        textareaRows={TextareaRows}
+
+        //PostButton.tsx
+        handlePostTweet={handlePostTweet}
+        handleIsDisabled={isDisabled}
       />
     </>
   )
