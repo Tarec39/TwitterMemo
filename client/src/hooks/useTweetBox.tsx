@@ -5,10 +5,9 @@ export const useAddTweetBox = () => {
   /**
    * useStateの定義
    */
-  const [textAreaEl, setTextAreaEl] = useState<string>('')
-  const [inputEl, setInputEl] = useState<string>('')
-  const [minusWord, setMinusWord] = useState(0)
-  const [WordNum, setWordsNum] = useState(Number)
+   const [textAreaEl, setTextAreaEl] = useState<string>('')
+   const [inputEl, setInputEl] = useState<string>('')
+  const [WordsNum, setWordsNum] = useState(Number)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
@@ -54,23 +53,20 @@ export const useAddTweetBox = () => {
 
   //280バイト超えたときにだす信号の処理
 const SignalOfSomething = () => {
-  if(WordNum > 280) return(console.log("280字超えました！！！"))
+  if(WordsNum > 280) return(console.log("280字超えました！！！"))
 }
 
-const process = () => {
-  if(WordNum >= 260){
-    setMinusWord(Math.trunc((280-WordNum)/2))
-  }else{setMinusWord(11)}
-}
+  //280バイト超えたら信号
   useEffect(()=>{
-    process()
+    console.log(WordsNum)
+    SignalOfSomething()
     handleIsDisabled()
-  },[WordNum])
+  },[WordsNum])
 
 
   //文字制限
   const handleIsDisabled = () => {
-    if(WordNum > 280) return setIsDisabled(true)
+    if(WordsNum > 280) return setIsDisabled(true)
     else{setIsDisabled(false)}
   }
 
@@ -83,12 +79,10 @@ const process = () => {
     return {
       //state
       inputEl,
+      WordsNum, 
       textAreaEl, 
-      WordNum, 
-
       isDisabled,
       isVisible,
-      minusWord,
 
       //setState
       setInputEl,
