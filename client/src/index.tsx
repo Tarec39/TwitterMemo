@@ -6,6 +6,7 @@ import { useAddTweetBox } from './hooks/useTweetBox'
 
 /**コンポーネント */
 import { PostTweet } from './components/TweetBox/PostTweet'
+import { WordCounter } from './components/TweetBox/WordCounter'
 
 const App = () => {
   /**
@@ -27,7 +28,7 @@ const App = () => {
     handleIsVisible,
     TextareaRows,
 
-    WordsNum,
+    overWords,
     isDisabled,
     isVisible
   } = useAddTweetBox()
@@ -79,6 +80,9 @@ const App = () => {
         //PostButton.tsx
         handlePostTweet={handlePostTweet}
         handleIsDisabled={isDisabled}
+      />
+      <WordCounter
+        WordNum={overWords}
       />
     </>
   )

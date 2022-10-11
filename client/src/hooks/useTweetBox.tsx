@@ -11,6 +11,7 @@ export const useAddTweetBox = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const [show, setShow] = useState<boolean>(false)
+  const [overWords, setOverWords] = useState(0)
 
   
 
@@ -56,11 +57,13 @@ export const useAddTweetBox = () => {
 const SignalOfSomething = () => {
   if(WordsNum > 280) return(console.log("280字超えました！！！"))
 }
-
-  //280バイト超えたら信号
+const process = () => {
+  if(WordsNum >= 260){
+    setOverWords(Math.trunc((280-WordsNum)/2))
+  }else{setOverWords(11)}
+}
   useEffect(()=>{
-    console.log(WordsNum)
-    SignalOfSomething()
+    process()
     handleIsDisabled()
   },[WordsNum])
 
@@ -85,6 +88,7 @@ const SignalOfSomething = () => {
       isDisabled,
       isVisible,
       show,
+      overWords,
 
       //setState
       setInputEl,
