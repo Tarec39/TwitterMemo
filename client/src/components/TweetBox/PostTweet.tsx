@@ -31,7 +31,7 @@ export const PostTweet = (props: props) => {
             onBlur={props.onBlur}
         >
             
-            <h3>ツイート機能</h3>
+            <h3>試験的</h3>
             <Title
                 value={props.inputEl}
                 onChange={props.onChangeInputEl}

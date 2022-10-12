@@ -7,6 +7,7 @@ import { useAddTweetBox } from './hooks/useTweetBox'
 /**コンポーネント */
 import { PostTweet } from './components/TweetBox/PostTweet'
 import { WordCounter } from './components/TweetBox/WordCounter'
+import { AddThreadButton } from './components/AddThread'
 
 const App = () => {
   /**
@@ -70,12 +71,12 @@ const App = () => {
         // Title.tsx
         inputEl={inputEl!}
         onChangeInputEl={onChangeInputEl}
+        show={show}
 
         //Text.tsx
         textareaEl={textAreaEl}
         onChangeTextareaEl={onChangeTextAreaEl}
         textareaRows={TextareaRows}
-        show={show}
 
         //PostButton.tsx
         handlePostTweet={handlePostTweet}
@@ -84,6 +85,7 @@ const App = () => {
       <WordCounter
         WordNum={overWords}
       />
+      <AddThreadButton />
     </>
   )
 }

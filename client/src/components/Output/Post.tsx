@@ -1,7 +1,4 @@
-
 import { useState } from 'react';
-
-import { AddThread } from '../AddThread';
 import { Tweet } from "../../types/Tweet";
 
 type props = {
@@ -27,7 +24,7 @@ export const Post = (props: props) => {
             <button>-</button>
             </>
             ))}
-            <AddThread onClick={event}></AddThread>
+            {/* <AddThread onClick={event}></AddThread> */}
             <div><textarea></textarea></div>
         </div>
         </>
