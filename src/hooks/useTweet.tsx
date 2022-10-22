@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { ulid } from "ulid"
 
-import * as tweetData from "../apis/Tweets"
+import * as tweetData from "./TweetApi"
 import { Tweet } from "../types/Tweet"
 
 export const useTweet = () => {
@@ -12,15 +12,21 @@ export const useTweet = () => {
             setTweetList([...tweet.reverse()])
         })
     },[])
-    
+    useEffect(()=>{
+        console.log(tweetList)
+    },[tweetList])
+
     const addTweet = (title:string, text: string) => {
-        const newTweet = {
+
+        const newContent = {
             title: title,
-            text: text,
-            id: ulid()
+            contents: [{
+                id: ulid(),
+                text: text
+            }]
         }
         
-        tweetData.addTweet(newTweet).then((addTweet) => {
+        tweetData.addTweet(newContent).then((addTweet) => {
             console.log(addTweet)
             setTweetList([addTweet, ...tweetList])
         })
@@ -28,8 +34,8 @@ export const useTweet = () => {
 
     const deleteTweet = (id: string) => {
         tweetData.deleteTweet(id).then((deleteDone) => {
-            const newTweetList = tweetList.filter((item) => item.id !== deleteDone)
-            setTweetList(newTweetList)
+            // const newTweetList = tweetList.filter((item) => item.id !== deleteDone)
+            // setTweetList(newTweetList)
         })
     }
 
