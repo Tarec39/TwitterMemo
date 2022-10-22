@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tweet } from "../../types/Tweet";
+import { Tweet } from "../../../types/Tweet";
 
 type props = {
     tweet: Tweet
