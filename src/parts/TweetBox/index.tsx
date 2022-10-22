@@ -13,9 +13,10 @@ export const TweetBox = () => {
     const {textAreaEl, onChangeTextArea, calcRow, setTextAreaEl} = useText()
 
     const {postTweet} = useTweet()
+
     const handlePostTweet = () => {
-        clearTweetBox()
         postTweet(inputEl, textAreaEl)
+        clearTweetBox()
     }
 
     const clearTweetBox = () => {
