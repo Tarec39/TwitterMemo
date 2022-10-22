@@ -12,13 +12,14 @@ export const useTweet = () => {
             setTweetList([...tweet.reverse()])
         })
     },[])
+
     useEffect(()=>{
         console.log(tweetList)
-    },[tweetList])
+    }, [tweetList])
 
-    const addTweet = (title:string, text: string) => {
+    const postTweet = (title:string, text: string) => {
 
-        const newContent = {
+        const newTweet = {
             title: title,
             contents: [{
                 id: ulid(),
@@ -26,9 +27,8 @@ export const useTweet = () => {
             }]
         }
         
-        tweetData.addTweet(newContent).then((addTweet) => {
-            console.log(addTweet)
-            setTweetList([addTweet, ...tweetList])
+        tweetData.POST(newTweet).then((postTweet) => {
+            setTweetList([postTweet, ...tweetList])
         })
     }
 
@@ -39,5 +39,5 @@ export const useTweet = () => {
         })
     }
 
-    return {tweetList, addTweet, deleteTweet}
+    return {tweetList, postTweet, deleteTweet}
 }

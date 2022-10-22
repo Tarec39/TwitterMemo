@@ -1,12 +1,13 @@
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 
 export const useTitle = () => {
   const [inputEl, setInputEl] = useState<string>('')
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputEl(e.target.value)
   }
 
-  return {inputEl, onChangeInput}
+  return {inputEl,onChangeInput, setInputEl}
 }
 
 export const useText = () => {
@@ -21,5 +22,5 @@ export const useText = () => {
     return rowNums
   }
 
-  return{textAreaEl, onChangeTextArea, calcRow}
+  return{textAreaEl, onChangeTextArea, calcRow, setTextAreaEl}
 }
