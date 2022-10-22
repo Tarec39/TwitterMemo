@@ -9,7 +9,7 @@ export const WordCountIndicator = (props: props) => {
         <>
         {props.WordNum <= 20
         ? <div>{props.WordNum}</div>
-        : <div>まだ</div>
+        : <div></div>
         }
         </>
     )
