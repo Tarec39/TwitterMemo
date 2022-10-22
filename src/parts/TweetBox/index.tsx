@@ -1,3 +1,3 @@
-const one = () => {
+const two = () => {
     return(<p>a</p>)
 }
