@@ -15,7 +15,7 @@ export const useTweet = () => {
 
     useEffect(()=>{
         console.log(tweetList)
-    }, [])
+    }, [tweetList])
 
     const postTweet = (title:string, text: string) => {
 
