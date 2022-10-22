@@ -9,6 +9,7 @@ import { WordCountIndicator } from "./components/WordCount";
 import { useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
 import { useCharProcess } from "./hooks/useTweetBox";
+
 export const TweetBox = () => {
     const {inputEl, onChangeInput, setInputEl} = useTitle()
     const {textAreaEl, onChangeTextArea, calcRow, setTextAreaEl} = useText()
@@ -41,6 +42,9 @@ export const TweetBox = () => {
 
         <TweetButton 
             onClick={handlePostTweet}
+            WordNum={calcRemainChar()}
+            value={textAreaEl}
+
         />
 
         <WordCountIndicator WordNum={calcRemainChar()}/>

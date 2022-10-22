@@ -1,14 +1,15 @@
 type props = {
     onClick: ()=>void
-    // isDisabled: boolean
+    WordNum: number
+    value: string
 }
 
 export const TweetButton = (props:props) => {
+    const isDisabled = (props.value !=='' && props.WordNum >= 0 ) ?false :true;
     return(
         <button 
         onClick={props.onClick}
-        /**特定の文字数を超えたら入力できなくする。 */
-        // disabled={props.isDisabled}
+        disabled={isDisabled}
         >ツイートする</button>
     )
 }
