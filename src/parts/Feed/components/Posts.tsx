@@ -2,8 +2,7 @@
 // import {Masonry} from '@mui/lab'
 
 import { Post } from "./Post";
-import { Tweet } from "../../types/Tweet";
-
+import {Tweet} from '../../../types/Tweet'
 type Props = {
     tweetList: Tweet[]
     deleteTweet: (id:string) => void
