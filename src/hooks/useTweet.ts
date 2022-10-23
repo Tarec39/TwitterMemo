@@ -2,16 +2,16 @@ import { useState, useEffect } from "react"
 import { ulid } from "ulid"
 
 import * as tweetData from "./TweetApi"
-import { Tweet } from "../types/Tweet"
+import { TweetData } from "../types/Tweet"
 
 export const useTweet = () => {
-    const [tweetList, setTweetList] = useState<Tweet[]>([])
+    const [tweetList, setTweetList] = useState<TweetData[]>([])
 
     useEffect(() => {
         tweetData.getAllTweets().then((tweet) => {
             setTweetList([...tweet.reverse()])
         })
-    },[])
+    },[tweetList])
 
     useEffect(()=>{
         console.log(tweetList)
