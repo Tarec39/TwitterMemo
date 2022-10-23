@@ -1,4 +1,3 @@
-import { useTweet } from "../../hooks/useTweet";
 
 //common parts
 import { ThreadBtn } from "../../components/ThreadBtn";
@@ -8,17 +7,23 @@ import { Title } from "./components/Title";
 import { Text } from "./components/Text";
 import { TweetButton } from "./components/TweetButton";
 import { WordCountIndicator } from "./components/WordCount";
+//Common Hooks
+import { useTweet } from "../../hooks/useTweet";
+import { useThreadBtn } from "../../hooks/useThread";
 //Hooks
 import { useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
 import { useCharProcess } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
+    //use Hooks
     const {inputEl, onChangeInput, setInputEl} = useTitle()
     const {textAreaEl, onChangeTextArea, calcRow, setTextAreaEl} = useText()
     const { calcRemainChar } = useCharProcess(textAreaEl)
 
+    //use Common Hooks
     const {postTweet} = useTweet()
+    const {num, handleNum} = useThreadBtn()
 
     const handlePostTweet = () => {
         postTweet(inputEl, textAreaEl)
@@ -50,11 +55,14 @@ export const TweetBox = () => {
 
         />
 
-        <ThreadBtn />
+        <ThreadBtn
+            onClick={handleNum}
+        />
 
         <ThreadText 
             value={textAreaEl}
             onChange={onChangeTextArea}
+            num={num}
         />
 
         <WordCountIndicator WordNum={calcRemainChar()}/>
