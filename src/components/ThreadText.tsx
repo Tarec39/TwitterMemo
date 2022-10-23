@@ -1,25 +1,29 @@
+import {DelThreadBtn} from './ThreadBtn'
+
 type props = {
     value: string
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
-    num: number
+    array: number[]
+    handleDelThread: (num: number)=>void
 }
 
 export const ThreadText = (props: props) => {
-    let nums: number[] = []
-    for(let i=0; i < props.num; i++){
-        nums.push(i)
-    }
     return(
         <>
         <div>
-            {nums.map((i)=>(
+            {props.array.map((i)=>(
+            <>
             <textarea
                 key={i}
                 value={props.value}
                 onChange={props.onChange}
                 placeholder="いまどうしてる?"
                 required
-            />
+                />
+            <DelThreadBtn
+                index={i}
+                onClick={props.handleDelThread}/>
+            </>
             ))}
         </div>                                                                                                                                                                                                                                   
         </>

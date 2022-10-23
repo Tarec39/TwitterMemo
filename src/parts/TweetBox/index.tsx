@@ -23,7 +23,7 @@ export const TweetBox = () => {
 
     //use Common Hooks
     const {postTweet} = useTweet()
-    const {num, handleNum} = useThreadBtn()
+    const {array, handleNum, handleDelThread} = useThreadBtn()
 
     const handlePostTweet = () => {
         postTweet(inputEl, textAreaEl)
@@ -62,7 +62,8 @@ export const TweetBox = () => {
         <ThreadText 
             value={textAreaEl}
             onChange={onChangeTextArea}
-            num={num}
+            array={array}
+            handleDelThread={handleDelThread}
         />
 
         <WordCountIndicator WordNum={calcRemainChar()}/>
