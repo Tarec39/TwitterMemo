@@ -8,11 +8,13 @@ type props = {
 export const Title =(props: props)=> {
     return(
         <>
+        <div>
         <input
             value={props.value}
             onChange={props.onChange}
             placeholder='タイトル'
-        />
+            />
+        </div>
         </>
     )
 }
