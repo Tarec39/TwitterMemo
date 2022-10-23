@@ -4,12 +4,12 @@ import { useTweet } from "../../hooks/useTweet"
 //hooks
 
 //components
-import { Posts } from "./components/Posts"
+import { Tweets } from "./components/Tweets"
 
 export const Feed = () => {
     const {tweetList} = useTweet()
 
     return(
-        <Posts tweetList={tweetList}/>
+        <Tweets tweetList={tweetList}/>
     )
 }

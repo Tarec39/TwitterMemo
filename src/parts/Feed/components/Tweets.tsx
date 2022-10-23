@@ -1,20 +1,21 @@
-// import { Post } from "./Post";
-import { Tweet } from "../../../types/Tweet";
+//type
+import { TweetData } from "../../../types/Tweet";
+//component
+import { Tweet } from "./Tweet";
 
 type Props = {
-    tweetList: Tweet[]
+    tweetList: TweetData[]
     // deleteTweet: (id:string) => void
 }
 
-export const Posts = (props: Props) => {
+export const Tweets = (props: Props) => {
     return(
         <>
         {props.tweetList.length !== 0 && (
         <>
             {props.tweetList.map((tweet, i) => (
                 <>
-                {/* <Post key={i} tweet={tweet} deleteTweet={props.deleteTweet}></Post> */}
-                <div>{i}</div>
+                <Tweet key={i} tweet={tweet}></Tweet>
                 </>
             ))}
         </>
