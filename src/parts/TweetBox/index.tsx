@@ -1,5 +1,8 @@
 import { useTweet } from "../../hooks/useTweet";
 
+//common parts
+import { ThreadBtn } from "../../components/ThreadBtn";
+
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -46,6 +49,8 @@ export const TweetBox = () => {
             value={textAreaEl}
 
         />
+
+        <ThreadBtn />
 
         <WordCountIndicator WordNum={calcRemainChar()}/>
         </>
