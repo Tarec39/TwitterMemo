@@ -1,6 +1,6 @@
 //type
 import { TweetData } from "../../../types/Tweet";
-//component
+//parts
 import { Tweet } from "./Tweet";
 
 type Props = {
