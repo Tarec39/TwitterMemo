@@ -1,7 +1,10 @@
 import { TweetData } from "../../../types/Tweet";
 
+import {DeleteBtn} from './DeleteBtn'
+
 type props = {
     tweet: TweetData
+    handleDelete: () => void
 }
 
 export const Tweet = (props: props) => {
@@ -16,6 +19,7 @@ export const Tweet = (props: props) => {
             {props.tweet.contents.map((i) => (
             <>
                 <div><p >{i.text}</p></div>
+                <DeleteBtn onClick={props.handleDelete}/>
             </>
             ))}
         </div>
