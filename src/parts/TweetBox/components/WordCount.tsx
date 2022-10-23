@@ -3,8 +3,6 @@ type props = {
 }
 
 export const WordCountIndicator = (props: props) => {
-    // const visibility = props.WordNum === 11 ? 'hidden': 'visible';
-
     return(
         <>
         {props.WordNum <= 20
