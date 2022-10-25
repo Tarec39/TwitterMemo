@@ -35,7 +35,7 @@ export const useCharProcess = (value: string) => {
     }
     const calcRemainChar = () => {
       const remainChar = Math.trunc((280-getCharNum())/2)
-      console.log(remainChar)
+      // console.log(remainChar)
       return remainChar
     }
     return{calcRemainChar}
