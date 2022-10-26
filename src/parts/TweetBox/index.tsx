@@ -55,18 +55,18 @@ export const TweetBox = () => {
 
         />
 
-        <ThreadBtn
+        {/* <ThreadBtn
             onClick={handleNum}
-        />
+        /> */}
 
-        <ThreadText 
+        {/* <ThreadText 
             value={textAreaEl}
             onChange={onChangeTextArea}
             array={array}
             handleDelThread={handleDelThread}
-        />
+        /> */}
 
-        <WordCountIndicator WordNum={calcRemainChar()}/>
+        {/* <WordCountIndicator WordNum={calcRemainChar()}/> */}
         </>
     )
 }
