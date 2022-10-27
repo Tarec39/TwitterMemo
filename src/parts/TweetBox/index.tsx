@@ -43,9 +43,6 @@ export const TweetBox = () => {
             />
 
         <Text
-            value={textAreaEl}
-            onChange={onChangeTextArea}
-            rows={calcRow}
         />
 
         <TweetButton 

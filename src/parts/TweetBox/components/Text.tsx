@@ -1,19 +1,21 @@
-type props = {
-    value: string
-    rows: ()=>number
-    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
-}
+import {Editor, EditorState} from 'draft-js'
+import {useEffect, useState} from 'react'
 
-export const Text = (props: props) => {
+export const Text = () => {
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+      );
     return(
+        <>
         <div>
-        <textarea
-            value={props.value}
-            rows={props.rows()}
-            onChange={props.onChange}
-            placeholder="いまどうしてる?"
-            required
+          <h1>editor</h1>
+          <div>
+          <Editor
+            editorState={editorState}
+            onChange={setEditorState}
             />
+          </div>
         </div>
+    </>
     )
 }
