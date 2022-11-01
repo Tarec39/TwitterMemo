@@ -18,8 +18,8 @@ import { useCharProcess } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
     //use Hooks
-    const {inputEl, onChangeInput, setInputEl} = useTitle()
-    const {editorState, setEditorState} = useText()
+    const {titleEditorState, setTitleEditorState} = useTitle()
+    const {textEditorState, setTextEditorState} = useText()
     // const { calcRemainChar } = useCharProcess(textAreaEl)
 
     //use Common Hooks
@@ -27,36 +27,36 @@ export const TweetBox = () => {
     const {array, handleNum, handleDelThread} = useThreadBtn()
 
     const handlePostTweet = () => {
-        const text = editorState.getCurrentContent().getPlainText()
-        postTweet(inputEl, text)
+        const title = titleEditorState.getCurrentContent().getPlainText()
+        const text = textEditorState.getCurrentContent().getPlainText()
+        postTweet(title, text)
         clearTweetBox()
     }
 
     const clearTweetBox = () => {
-        const clearBoxes = EditorState.push(editorState, ContentState.createFromText(''), 'remove-range');
-        setInputEl('')
-        setEditorState(clearBoxes)
-        // setTextAreaEl('')
+        const cleatTitle = EditorState.push(titleEditorState, ContentState.createFromText(''), 'remove-range')
+        const clearText = EditorState.push(textEditorState, ContentState.createFromText(''), 'remove-range')
+        setTitleEditorState(cleatTitle)
+        setTextEditorState(clearText)
     }
 
     return(
         <>
         <Title 
-            value={inputEl}
-            onChange={onChangeInput}
-            />
-
-        <Text
-            editorState={editorState}
-            setEditorState={setEditorState}
-            handleOnClick={handlePostTweet}
+            editorState={titleEditorState}
+            setEditorState={setTitleEditorState}
         />
 
-        {/* <TweetButton 
+        <Text
+            editorState={textEditorState}
+            setEditorState={setTextEditorState}
+        />
+
+        <TweetButton 
             onClick={handlePostTweet}
-            WordNum={calcRemainChar()}
-            value={textAreaEl}
-        /> */}
+            // WordNum={calcRemainChar()}
+            // value={textAreaEl}
+        />
 
         {/* <ThreadBtn
             onClick={handleNum}

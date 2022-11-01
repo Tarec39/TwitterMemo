@@ -1,21 +1,19 @@
-import { useState, useEffect } from 'react'
-import {Editor, EditorState} from 'draft-js'
+import { useState } from 'react'
+import { EditorState } from 'draft-js'
 
 export const useTitle = () => {
-  const [inputEl, setInputEl] = useState<string>('')
+  const [ titleEditorState, setTitleEditorState] = useState(
+    () => EditorState.createEmpty()
+  )
 
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputEl(e.target.value)
-  }
-
-  return {inputEl,onChangeInput, setInputEl}
+  return{titleEditorState, setTitleEditorState}
 }
 
 export const useText = () => {
-  const [editorState, setEditorState] = useState(
+  const [textEditorState, setTextEditorState] = useState(
     () => EditorState.createEmpty()
   )
-  return{editorState, setEditorState}
+  return{textEditorState, setTextEditorState}
 }
 
 export const useCharProcess = (value: string) => {
