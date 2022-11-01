@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import {Editor, EditorState} from 'draft-js'
 
 export const useTitle = () => {
   const [inputEl, setInputEl] = useState<string>('')
@@ -11,18 +12,10 @@ export const useTitle = () => {
 }
 
 export const useText = () => {
-  const [textAreaEl, setTextAreaEl] = useState<string>('')
-
-  const onChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaEl(e.target.value)
-  }
-
-  const calcRow = () => {
-    let rowNums = textAreaEl.split('\n').length
-    return rowNums
-  }
-
-  return{textAreaEl, onChangeTextArea, calcRow, setTextAreaEl}
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty()
+  )
+  return{editorState, setEditorState}
 }
 
 export const useCharProcess = (value: string) => {

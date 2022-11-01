@@ -1,4 +1,5 @@
 
+import { ContentState, EditorState} from "draft-js";
 //common parts
 import { ThreadBtn } from "../../components/ThreadBtn";
 import { ThreadText } from "../../components/ThreadText";
@@ -18,21 +19,24 @@ import { useCharProcess } from "./hooks/useTweetBox";
 export const TweetBox = () => {
     //use Hooks
     const {inputEl, onChangeInput, setInputEl} = useTitle()
-    const {textAreaEl, onChangeTextArea, calcRow, setTextAreaEl} = useText()
-    const { calcRemainChar } = useCharProcess(textAreaEl)
+    const {editorState, setEditorState} = useText()
+    // const { calcRemainChar } = useCharProcess(textAreaEl)
 
     //use Common Hooks
     const {postTweet} = useTweet()
     const {array, handleNum, handleDelThread} = useThreadBtn()
 
     const handlePostTweet = () => {
-        postTweet(inputEl, textAreaEl)
+        const text = editorState.getCurrentContent().getPlainText()
+        postTweet(inputEl, text)
         clearTweetBox()
     }
 
     const clearTweetBox = () => {
+        const clearBoxes = EditorState.push(editorState, ContentState.createFromText(''), 'remove-range');
         setInputEl('')
-        setTextAreaEl('')
+        setEditorState(clearBoxes)
+        // setTextAreaEl('')
     }
 
     return(
@@ -43,14 +47,16 @@ export const TweetBox = () => {
             />
 
         <Text
+            editorState={editorState}
+            setEditorState={setEditorState}
+            handleOnClick={handlePostTweet}
         />
 
-        <TweetButton 
+        {/* <TweetButton 
             onClick={handlePostTweet}
             WordNum={calcRemainChar()}
             value={textAreaEl}
-
-        />
+        /> */}
 
         {/* <ThreadBtn
             onClick={handleNum}

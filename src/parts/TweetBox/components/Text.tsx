@@ -1,24 +1,21 @@
 import {Editor, EditorState} from 'draft-js'
-import {useEffect, useState} from 'react'
 
-export const Text = () => {
-    const [editorState, setEditorState] = useState(
-      () => EditorState.createEmpty()
-    )
-
-    const handleOnClick = () => console.log('');
-
-
+type props = {
+  editorState: EditorState
+  setEditorState: React.Dispatch<React.SetStateAction<EditorState>>
+  handleOnClick: ()=>void
+}
+export const Text = (props: props) => {
     return(
         <>
         <div>
           <h1>editor</h1>
           <div style={{width: '100px'}}>
           <Editor
-            editorState={editorState}
-            onChange={setEditorState}
+            editorState={props.editorState}
+            onChange={props.setEditorState}
             />
-          <button onClick={handleOnClick}>確認</button>
+          <button onClick={props.handleOnClick}>確認</button>
           </div>
         </div>
     </>
