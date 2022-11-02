@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EditorState } from 'draft-js'
+import { Editor, EditorState } from 'draft-js'
 
 export const useTitle = () => {
   const [ titleEditorState, setTitleEditorState] = useState(
@@ -16,18 +16,29 @@ export const useText = () => {
   return{textEditorState, setTextEditorState}
 }
 
-export const useCharProcess = (value: string) => {
-    const getCharNum = () => {
-      let charNum = 0;
-      for (let i = 0; i < value.length; i++) {
-      (value[i].match(/[ -~]/)) ? charNum += 1 : charNum += 2;
+export const useCharProcess = (editorState: EditorState) => {
+  
+    const countChar = () =>{
+      const str = editorState.getCurrentContent().getPlainText()
+      let count = 0
+      
+      //半角と\nは+1、全角は+2
+      for (let i = 0; i < str.length; i++) {
+        let c = str.charAt(i);
+          (c == '\n' || c == ' ') ? count++
+        : (isFullWidth(c)) ? count += 2
+        : count++
       }
-      return charNum
+      return count
     }
+      
+    const isFullWidth = (c:string) => (c.match(/[^\x00-\xff]/)) ? true: false
+
     const calcRemainChar = () => {
-      const remainChar = Math.trunc((280-getCharNum())/2)
+      const remainChar = Math.trunc((280-countChar())/2)
       // console.log(remainChar)
       return remainChar
     }
+
     return{calcRemainChar}
 }

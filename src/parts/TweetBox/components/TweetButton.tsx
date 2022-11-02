@@ -1,16 +1,22 @@
+import {EditorState} from 'draft-js'
+
 type props = {
-    onClick: ()=>void
+    handlePostTweet: ()=>void
+    editorState: EditorState
+    charNum: number
 }
 
 export const TweetButton = (props:props) => {
-    // const isDisabled = (props.value !=='' && props.WordNum >= 0 ) ?false :true;
+    const plainText = props.editorState.getCurrentContent().getPlainText()
+    const isDisabled = (plainText !=='' && props.charNum >= 0 ) ? false :true;
     return(
         <div>
 
         <button 
-        onClick={props.onClick}
-        // disabled={isDisabled}
+        onClick={props.handlePostTweet}
+        disabled={isDisabled}
         >ツイートする</button>
+
         </div>
     )
 }

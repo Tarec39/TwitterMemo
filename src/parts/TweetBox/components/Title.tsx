@@ -9,10 +9,10 @@ export const Title =(props: props)=> {
     return(
         <>
         <div>
-        <Editor
-        editorState={props.editorState}
-        onChange={props.setEditorState}
-        />
+            <Editor
+            editorState={props.editorState}
+            onChange={props.setEditorState}
+            />
         </div>
         </>
     )

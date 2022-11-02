@@ -1,8 +1,7 @@
 
 import { ContentState, EditorState} from "draft-js";
 //common parts
-import { ThreadBtn } from "../../components/ThreadBtn";
-import { ThreadText } from "../../components/ThreadText";
+
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -10,7 +9,6 @@ import { TweetButton } from "./components/TweetButton";
 import { WordCountIndicator } from "./components/WordCount";
 //Common Hooks
 import { useTweet } from "../../hooks/useTweet";
-import { useThreadBtn } from "../../hooks/useThread";
 //Hooks
 import { useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
@@ -20,11 +18,10 @@ export const TweetBox = () => {
     //use Hooks
     const {titleEditorState, setTitleEditorState} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
-    // const { calcRemainChar } = useCharProcess(textAreaEl)
+    const { calcRemainChar } = useCharProcess(textEditorState)
 
     //use Common Hooks
     const {postTweet} = useTweet()
-    const {array, handleNum, handleDelThread} = useThreadBtn()
 
     const handlePostTweet = () => {
         const title = titleEditorState.getCurrentContent().getPlainText()
@@ -53,9 +50,9 @@ export const TweetBox = () => {
         />
 
         <TweetButton 
-            onClick={handlePostTweet}
-            // WordNum={calcRemainChar()}
-            // value={textAreaEl}
+            handlePostTweet={handlePostTweet}
+            charNum={calcRemainChar()}
+            editorState={textEditorState}
         />
 
         {/* <ThreadBtn
@@ -69,7 +66,7 @@ export const TweetBox = () => {
             handleDelThread={handleDelThread}
         /> */}
 
-        {/* <WordCountIndicator WordNum={calcRemainChar()}/> */}
+        <WordCountIndicator WordNum={calcRemainChar()}/>
         </>
     )
 }
