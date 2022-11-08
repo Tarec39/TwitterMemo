@@ -1,4 +1,4 @@
-export type Tweet = {
+export type TweetData = {
     title: string,
     contents: {
         id: string,

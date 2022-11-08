@@ -1,17 +1,24 @@
+import {Editor, EditorState} from 'draft-js'
+
 type props = {
-    value: string
-    rows: ()=>number
-    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  editorState: EditorState
+  setEditorState: React.Dispatch<React.SetStateAction<EditorState>>
 }
 
+
 export const Text = (props: props) => {
+
     return(
-        <textarea
-            value={props.value}
-            rows={props.rows()}
-            onChange={props.onChange}
-            placeholder="いまどうしてる?"
-            required
-      />
+        <>
+        <div>
+          <h1>editor</h1>
+          <div style={{width: '500px'}}>
+          <Editor
+            editorState={props.editorState}
+            onChange={props.setEditorState}
+            />
+          </div>
+        </div>
+    </>
     )
 }

@@ -2,10 +2,17 @@ import { createRoot } from 'react-dom/client'
 
 /**Parts */
 import { TweetBox } from './parts/TweetBox';
+import { Feed } from './parts/Feed';
 
 const App = () => {
   return(
-    <TweetBox/>
+    <>
+      <h3>TweetBox</h3>
+      <TweetBox/>
+      
+      <h3>Feed</h3>
+      <Feed/>
+    </>
   )
 }
 

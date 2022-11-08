@@ -1,18 +1,19 @@
-import React from 'react'
+import {Editor, EditorState} from 'draft-js'
 
 type props = {
-    value: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    editorState: EditorState
+    setEditorState: React.Dispatch<React.SetStateAction<EditorState>>
 }
 
 export const Title =(props: props)=> {
     return(
         <>
-        <input
-            value={props.value}
-            onChange={props.onChange}
-            placeholder='タイトル'
-        />
+        <div>
+            <Editor
+            editorState={props.editorState}
+            onChange={props.setEditorState}
+            />
+        </div>
         </>
     )
 }
