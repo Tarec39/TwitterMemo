@@ -11,8 +11,7 @@ export const Text = (props: props) => {
     return(
         <>
         <div>
-          <h1>editor</h1>
-          <div style={{width: '500px'}}>
+          <div style={styles.editor}>
           <Editor
             editorState={props.editorState}
             onChange={props.setEditorState}
@@ -21,4 +20,12 @@ export const Text = (props: props) => {
         </div>
     </>
     )
+}
+
+const styles = {
+  editor: {
+    margin: '0 0 0 10px',
+    border: 'solid',
+    width: '300px'
+  }
 }

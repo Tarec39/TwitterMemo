@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import {EditorState, CompositeDecorator} from 'draft-js'
+import React, { useState } from 'react'
+import {EditorState} from 'draft-js'
 
 export const useTitle = () => {
-  const [ titleEditorState, setTitleEditorState] = useState(
-    () => EditorState.createEmpty()
-  )
-
-  return{titleEditorState, setTitleEditorState}
+  const [inputEl, setInputEl] = useState('')
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputEl(e.target.value)
+  }
+  const clearInputEl = () => {
+    setInputEl('')
+  }
+  return {inputEl, onChangeInput, clearInputEl}
 }
 
 export const useText = () => {
@@ -42,4 +45,53 @@ export const useCharCounter = (text: string) => {
     }
 
     return{countChar ,countMaxChar}
+}
+
+export const useMeter = (current: number) => {
+
+  const width = () => {
+    let a = (current/MAX)*100
+    switch(true){
+      default:
+        return a+'%'
+      case a > 100:
+        return '100%'
+    }
+  }
+
+  const MAX = 280, REDZONE = 260, WARNING = 240
+
+  const styles = {
+    MAX: {
+      background: 'red',
+      width: width()
+    },
+    WARNING: {
+      background: 'yellow',
+      width: width()
+    },
+    default: {
+      background: 'blue',
+      width: width()
+    }
+  }
+
+  const style = () => {
+    switch(true){
+      //280 ~
+      case MAX < current:
+        return styles.MAX
+      //260 ~ 280
+      case REDZONE < current && current <= MAX:
+        return styles.MAX
+      //240 ~ 260
+      case WARNING < current && current <= REDZONE:
+        return styles.WARNING
+      // ~ 240
+      default: 
+        return styles.default
+    }
+  }
+
+  return {style}
 }

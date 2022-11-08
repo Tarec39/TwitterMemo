@@ -10,39 +10,38 @@ import { WordCountIndicator } from "./components/WordCount";
 //Common Hooks
 import { useTweet } from "../../hooks/useTweet";
 //Hooks
-import { useTitle } from "./hooks/useTweetBox";
+import { useMeter, useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
 import { useCharCounter } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
     //use Hooks
-    const {titleEditorState, setTitleEditorState} = useTitle()
+    const {inputEl, onChangeInput, clearInputEl} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
     const text = textEditorState.getCurrentContent().getPlainText()
     const { countChar, countMaxChar } = useCharCounter(text)
-
+    const {style} = useMeter(countChar().count)
     //use Common Hooks
     const {postTweet} = useTweet()
 
     const handlePostTweet = () => {
-        const title = titleEditorState.getCurrentContent().getPlainText()
+        const title = inputEl
         const text = textEditorState.getCurrentContent().getPlainText()
         postTweet(title, text)
         clearTweetBox()
     }
 
     const clearTweetBox = () => {
-        const cleatTitle = EditorState.push(titleEditorState, ContentState.createFromText(''), 'remove-range')
+        clearInputEl()
         const clearText = EditorState.push(textEditorState, ContentState.createFromText(''), 'remove-range')
-        setTitleEditorState(cleatTitle)
         setTextEditorState(clearText)
     }
 
     return(
         <>
-        <Title 
-            editorState={titleEditorState}
-            setEditorState={setTitleEditorState}
+        <Title
+            inputEl={inputEl}
+            onChange={onChangeInput}
         />
 
         <Text
@@ -69,6 +68,7 @@ export const TweetBox = () => {
 
         <WordCountIndicator
             maxChar={countMaxChar()}
+            styles={style()}
         />
         </>
     )
