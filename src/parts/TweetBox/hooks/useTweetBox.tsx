@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Editor, EditorState } from 'draft-js'
+import {EditorState, CompositeDecorator} from 'draft-js'
 
 export const useTitle = () => {
   const [ titleEditorState, setTitleEditorState] = useState(
@@ -10,35 +10,36 @@ export const useTitle = () => {
 }
 
 export const useText = () => {
+
   const [textEditorState, setTextEditorState] = useState(
     () => EditorState.createEmpty()
   )
   return{textEditorState, setTextEditorState}
 }
 
-export const useCharProcess = (editorState: EditorState) => {
+
+export const useCharCounter = (text: string) => {
   
     const countChar = () =>{
-      const str = editorState.getCurrentContent().getPlainText()
-      let count = 0
-      
       //半角と\nは+1、全角は+2
-      for (let i = 0; i < str.length; i++) {
-        let c = str.charAt(i);
+      let c, count;
+      count=0
+      for (let i = 0; i < text.length; i++) {
+        c = text.charAt(i);
           (c == '\n' || c == ' ') ? count++
         : (isFullWidth(c)) ? count += 2
         : count++
       }
-      return count
+      return {count}
     }
       
     const isFullWidth = (c:string) => (c.match(/[^\x00-\xff]/)) ? true: false
 
-    const calcRemainChar = () => {
-      const remainChar = Math.trunc((280-countChar())/2)
-      // console.log(remainChar)
-      return remainChar
+    const countMaxChar = () => {
+      const maxChar = Math.trunc((280-countChar().count)/2)
+      // const kijyun = countChar() < 280 
+      return maxChar
     }
 
-    return{calcRemainChar}
+    return{countChar ,countMaxChar}
 }

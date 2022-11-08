@@ -7,6 +7,7 @@ type props = {
 
 
 export const Text = (props: props) => {
+
     return(
         <>
         <div>

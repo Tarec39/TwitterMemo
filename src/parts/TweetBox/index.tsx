@@ -12,13 +12,14 @@ import { useTweet } from "../../hooks/useTweet";
 //Hooks
 import { useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
-import { useCharProcess } from "./hooks/useTweetBox";
+import { useCharCounter } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
     //use Hooks
     const {titleEditorState, setTitleEditorState} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
-    const { calcRemainChar } = useCharProcess(textEditorState)
+    const text = textEditorState.getCurrentContent().getPlainText()
+    const { countChar, countMaxChar } = useCharCounter(text)
 
     //use Common Hooks
     const {postTweet} = useTweet()
@@ -51,8 +52,8 @@ export const TweetBox = () => {
 
         <TweetButton 
             handlePostTweet={handlePostTweet}
-            charNum={calcRemainChar()}
-            editorState={textEditorState}
+            num={countChar().count}
+            text={textEditorState.getCurrentContent().getPlainText()}
         />
 
         {/* <ThreadBtn
@@ -66,7 +67,9 @@ export const TweetBox = () => {
             handleDelThread={handleDelThread}
         /> */}
 
-        <WordCountIndicator WordNum={calcRemainChar()}/>
+        <WordCountIndicator
+            maxChar={countMaxChar()}
+        />
         </>
     )
 }

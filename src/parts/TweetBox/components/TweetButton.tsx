@@ -1,14 +1,11 @@
-import {EditorState} from 'draft-js'
-
 type props = {
     handlePostTweet: ()=>void
-    editorState: EditorState
-    charNum: number
+    text: string
+    num: number
 }
 
 export const TweetButton = (props:props) => {
-    const plainText = props.editorState.getCurrentContent().getPlainText()
-    const isDisabled = (plainText !=='' && props.charNum >= 0 ) ? false :true;
+    const isDisabled = (props.text !=='' && props.num <= 280 ) ? false :true;
     return(
         <div>
 
