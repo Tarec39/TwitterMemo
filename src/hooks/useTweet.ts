@@ -11,7 +11,7 @@ export const useTweet = () => {
         tweetData.getAllTweets().then((tweet) => {
             setTweetList([...tweet.reverse()])
         })
-    },[tweetList])
+    },[])
 
     useEffect(()=>{
         console.log(tweetList)
