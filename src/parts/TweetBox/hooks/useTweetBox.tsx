@@ -53,45 +53,30 @@ export const useMeter = (current: number) => {
     let a = (current/MAX)*100
     switch(true){
       default:
-        return a+'%'
+        return a
       case a > 100:
-        return '100%'
+        return 100
     }
   }
 
   const MAX = 280, REDZONE = 260, WARNING = 240
 
-  const styles = {
-    MAX: {
-      background: 'red',
-      width: width()
-    },
-    WARNING: {
-      background: 'yellow',
-      width: width()
-    },
-    default: {
-      background: 'blue',
-      width: width()
-    }
-  }
-
-  const style = () => {
+  const styles = () => {
     switch(true){
       //280 ~
       case MAX < current:
-        return styles.MAX
+        return 'red'
       //260 ~ 280
       case REDZONE < current && current <= MAX:
-        return styles.MAX
+        return 'red'
       //240 ~ 260
       case WARNING < current && current <= REDZONE:
-        return styles.WARNING
+        return 'yellow'
       // ~ 240
       default: 
-        return styles.default
+        return 'blue'
     }
   }
 
-  return {style}
+  return {styles, width}
 }

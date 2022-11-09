@@ -20,7 +20,7 @@ export const TweetBox = () => {
     const {textEditorState, setTextEditorState} = useText()
     const text = textEditorState.getCurrentContent().getPlainText()
     const { countChar, countMaxChar } = useCharCounter(text)
-    const {style} = useMeter(countChar().count)
+    const {styles, width} = useMeter(countChar().count)
     //use Common Hooks
     const {postTweet} = useTweet()
 
@@ -68,7 +68,8 @@ export const TweetBox = () => {
 
         <WordCountIndicator
             maxChar={countMaxChar()}
-            styles={style()}
+            char={width()}
+            styles={styles()}
         />
         </>
     )
