@@ -1,19 +1,27 @@
-import React from 'react'
-
 type props = {
-    value: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    inputEl: string
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Title =(props: props)=> {
     return(
         <>
-        <input
-            value={props.value}
-            onChange={props.onChange}
-            placeholder='タイトル'
-        />
+        <div>
+            <input
+                style={styles.editor}
+                value={props.inputEl}
+                onChange={props.onChange}
+            />
+        </div>
         </>
     )
 }
+
+const styles = {
+    editor: {
+      margin: '0 0 0 10px',
+      border: 'solid',
+      width: '200px'
+    }
+  }
 

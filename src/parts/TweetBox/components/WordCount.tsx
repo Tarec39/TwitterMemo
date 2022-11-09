@@ -1,16 +1,31 @@
+import { CircularProgressbar } from 'react-circular-progressbar'
+
+import './styles.css'
+
 type props = {
-    WordNum: number
+    maxChar: number
+    styles: string
+    char: number
 }
 
 export const WordCountIndicator = (props: props) => {
-    // const visibility = props.WordNum === 11 ? 'hidden': 'visible';
-
+    const maxChar = () => props.maxChar <= 20 ? props.maxChar : ''
     return(
         <>
-        {props.WordNum <= 20
-        ? <div>{props.WordNum}</div>
-        : <div></div>
-        }
+            <div className="circle" style={{width: 30}}>
+                <CircularProgressbar 
+                    styles={{
+                        path: {
+                            stroke: props.styles
+                        },
+                        text: {
+                            fontSize: '50px'
+                        }
+                    }}
+                    value={props.char}
+                    text={`${maxChar()}`}
+                />
+            </div>
         </>
     )
 }

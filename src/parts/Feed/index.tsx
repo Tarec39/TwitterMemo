@@ -3,7 +3,7 @@ import { useTweet } from "../../hooks/useTweet"
 
 //hooks
 
-//components
+//parts
 import { Tweets } from "./components/Tweets"
 
 export const Feed = () => {

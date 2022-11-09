@@ -1,53 +1,76 @@
-import { useTweet } from "../../hooks/useTweet";
+
+import { ContentState, EditorState} from "draft-js";
+//common parts
 
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
 import { TweetButton } from "./components/TweetButton";
 import { WordCountIndicator } from "./components/WordCount";
+//Common Hooks
+import { useTweet } from "../../hooks/useTweet";
 //Hooks
-import { useTitle } from "./hooks/useTweetBox";
+import { useMeter, useTitle } from "./hooks/useTweetBox";
 import { useText } from "./hooks/useTweetBox";
-import { useCharProcess } from "./hooks/useTweetBox";
+import { useCharCounter } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
-    const {inputEl, onChangeInput, setInputEl} = useTitle()
-    const {textAreaEl, onChangeTextArea, calcRow, setTextAreaEl} = useText()
-    const { calcRemainChar } = useCharProcess(textAreaEl)
-
+    //use Hooks
+    const {inputEl, onChangeInput, clearInputEl} = useTitle()
+    const {textEditorState, setTextEditorState} = useText()
+    const text = textEditorState.getCurrentContent().getPlainText()
+    const { countChar, countMaxChar } = useCharCounter(text)
+    const {styles, width} = useMeter(countChar().count)
+    //use Common Hooks
     const {postTweet} = useTweet()
 
     const handlePostTweet = () => {
-        postTweet(inputEl, textAreaEl)
+        const title = inputEl
+        const text = textEditorState.getCurrentContent().getPlainText()
+        postTweet(title, text)
         clearTweetBox()
     }
 
     const clearTweetBox = () => {
-        setInputEl('')
-        setTextAreaEl('')
+        clearInputEl()
+        const clearText = EditorState.push(textEditorState, ContentState.createFromText(''), 'remove-range')
+        setTextEditorState(clearText)
     }
 
     return(
         <>
-        <Title 
-            value={inputEl}
+        <Title
+            inputEl={inputEl}
             onChange={onChangeInput}
-            />
+        />
 
         <Text
-            value={textAreaEl}
-            onChange={onChangeTextArea}
-            rows={calcRow}
+            editorState={textEditorState}
+            setEditorState={setTextEditorState}
         />
 
         <TweetButton 
-            onClick={handlePostTweet}
-            WordNum={calcRemainChar()}
-            value={textAreaEl}
-
+            handlePostTweet={handlePostTweet}
+            num={countChar().count}
+            text={textEditorState.getCurrentContent().getPlainText()}
         />
 
-        <WordCountIndicator WordNum={calcRemainChar()}/>
+        {/* <ThreadBtn
+            onClick={handleNum}
+        /> */}
+
+        {/* <ThreadText 
+            value={textAreaEl}
+            onChange={onChangeTextArea}
+            array={array}
+            handleDelThread={handleDelThread}
+        /> */}
+
+        <WordCountIndicator
+            maxChar={countMaxChar()}
+            char={width()}
+            styles={styles()}
+        />
         </>
     )
 }
