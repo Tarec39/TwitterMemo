@@ -1,7 +1,6 @@
 
 import { ContentState, EditorState} from "draft-js";
-//common parts
-
+import { Share } from "./components/share";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -18,11 +17,11 @@ export const TweetBox = () => {
     //use Hooks
     const {inputEl, onChangeInput, clearInputEl} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
-    const text = textEditorState.getCurrentContent().getPlainText()
+                                                const text = textEditorState.getCurrentContent().getPlainText()
     const { countChar, countMaxChar } = useCharCounter(text)
     const {styles, width} = useMeter(countChar().count)
     //use Common Hooks
-    const {postTweet} = useTweet()
+    const {postTweet, tweetList} = useTweet()
 
     const handlePostTweet = () => {
         const title = inputEl
@@ -71,6 +70,7 @@ export const TweetBox = () => {
             char={width()}
             styles={styles()}
         />
+        <Share tweetList={tweetList}/>
         </>
     )
 }

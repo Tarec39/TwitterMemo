@@ -12,11 +12,9 @@ export const Tweets = (props: Props) => {
     return(
         <>
         {props.tweetList.length !== 0 && (
-        <>
+            <>
             {props.tweetList.map((tweet, i) => (
-                <>
-                <Tweet key={i} tweet={tweet} handleDelete={props.handleDelete}></Tweet>
-                </>
+                <Tweet tweet={tweet} handleDelete={props.handleDelete}  index={i} key={i} />
             ))}
         </>
         )}

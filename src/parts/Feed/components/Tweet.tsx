@@ -5,6 +5,7 @@ import {DeleteBtn} from './DeleteBtn'
 type props = {
     tweet: TweetData
     handleDelete: () => void
+    index: number
 }
 
 export const Tweet = (props: props) => {
@@ -17,10 +18,10 @@ export const Tweet = (props: props) => {
                 :<h3>{props.tweet.title}</h3>
             }
             {props.tweet.contents.map((i) => (
-            <>
-                <div><p >{i.text}</p></div>
-                <DeleteBtn onClick={props.handleDelete}/>
-            </>
+            <div key={props.index+1}>
+                <div key={props.index+1}><p>{i.text}</p></div>
+                <DeleteBtn key={props.index+2} onClick={props.handleDelete}/>
+            </div>
             ))}
         </div>
         </>
