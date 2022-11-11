@@ -1,24 +1,19 @@
-import { useContext} from "react"
-//common hooks
-import { useTweet } from '../../hooks/useTweet'
-//hooks
-
+//useContext
+import { useContext } from "react"
+import { TweetListandDelete } from "../TweetBox/components/share"
 //parts
-import { TweetList } from "../TweetBox/components/share"
-
 import { Tweets } from "./components/Tweets"
-import { TweetData } from "../../types/Tweet"
 
 export const Feed = () => {
 
-    const tweetList = useContext(TweetList)
+    const context = useContext(TweetListandDelete)
     const handleDelete = (id:string) => {
-        tweetList?.deleteTweet(id)
+        context?.deleteTweet(id)
     }
 
     return(
         <>
-            <Tweets tweetList={tweetList?.tweetList} handleDelete={handleDelete}/>
+            <Tweets tweetList={context?.tweetList} handleDelete={handleDelete}/>
         </>
     )
 }

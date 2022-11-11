@@ -1,6 +1,10 @@
+//useContext
 import { createContext } from "react"
+//types
 import { TweetData } from "../../../types/Tweet"
+//parts
 import { Feed } from "../../Feed"
+import { DeleteBtn } from "../../Feed/components/DeleteBtn"
 
 type deleteTweet = (id:string)=>void
 
@@ -9,16 +13,15 @@ type props = {
     deleteTweet: deleteTweet
 }
 
-export const TweetList = createContext<props|undefined>(undefined)
+export const TweetListandDelete = createContext<props|undefined>(undefined)
 
 export const Share = (props: props) => {
-    const tweetList = props.tweetList
-    const deleteTweet = props.deleteTweet
+    const tweetList = props.tweetList ,deleteTweet = props.deleteTweet
     return(
         <>
-        <TweetList.Provider value={{tweetList, deleteTweet}}>
+        <TweetListandDelete.Provider value={{tweetList, deleteTweet}}>
             <Feed/>
-        </TweetList.Provider>
+        </TweetListandDelete.Provider>
         </>
     )
 }
