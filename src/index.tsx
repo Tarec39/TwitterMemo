@@ -7,10 +7,7 @@ import { Feed } from './parts/Feed';
 const App = () => {
   return(
     <>
-      <h3>TweetBox</h3>
       <TweetBox/>
-      
-      <h3>Feed</h3>
       <Feed/>
     </>
   )

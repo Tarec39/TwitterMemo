@@ -1,19 +1,19 @@
-//common hooks
-import { useTweet } from "../../hooks/useTweet"
-
-//hooks
-
+//useContext
+import { useContext } from "react"
+import { TweetListandDelete } from "../TweetBox/components/share"
 //parts
 import { Tweets } from "./components/Tweets"
 
 export const Feed = () => {
-    const {tweetList} = useTweet()
 
-    const handleDelete = () => {
-        //引数を渡す
-        //どんな引数なのか、要件等
+    const context = useContext(TweetListandDelete)
+    const handleDelete = (id:string) => {
+        context?.deleteTweet(id)
     }
+
     return(
-        <Tweets tweetList={tweetList} handleDelete={handleDelete}/>
+        <>
+            <Tweets tweetList={context?.tweetList} handleDelete={handleDelete}/>
+        </>
     )
 }
