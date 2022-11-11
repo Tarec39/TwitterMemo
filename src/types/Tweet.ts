@@ -1,7 +1,9 @@
 export type TweetData = {
-    title: string,
+    title: string
+    
+    id:string
     contents: {
-        id: string,
+        id: string
         text: string
     }[]
 }

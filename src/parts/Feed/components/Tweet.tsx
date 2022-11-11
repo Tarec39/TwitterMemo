@@ -4,11 +4,12 @@ import {DeleteBtn} from './DeleteBtn'
 
 type props = {
     tweet: TweetData
-    handleDelete: () => void
+    handleDelete: (id:string) => void
+    index: number
 }
 
 export const Tweet = (props: props) => {
-
+    const id = props.tweet.id
     return(
         <>
         <div>
@@ -17,10 +18,10 @@ export const Tweet = (props: props) => {
                 :<h3>{props.tweet.title}</h3>
             }
             {props.tweet.contents.map((i) => (
-            <>
-                <div><p >{i.text}</p></div>
-                <DeleteBtn onClick={props.handleDelete}/>
-            </>
+            <div key={props.index}>
+                <div><p>{i.text}</p></div>
+                <DeleteBtn onClick={props.handleDelete} id={id}/>
+            </div>
             ))}
         </div>
         </>

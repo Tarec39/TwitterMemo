@@ -1,16 +1,16 @@
 type props = {
-    onClick: ()=>void
-    WordNum: number
-    value: string
+    handlePostTweet: ()=>void
+    text: string
+    num: number
 }
 
 export const TweetButton = (props:props) => {
-    const isDisabled = (props.value !=='' && props.WordNum >= 0 ) ?false :true;
+    const isDisabled = (props.text !=='' && props.num <= 281 ) ? false :true;
     return(
         <div>
 
         <button 
-        onClick={props.onClick}
+        onClick={props.handlePostTweet}
         disabled={isDisabled}
         >ツイートする</button>
         </div>

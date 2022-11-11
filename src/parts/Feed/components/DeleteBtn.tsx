@@ -1,9 +1,11 @@
 type props = {
-    onClick: () => void
+    onClick: (id:string) => void
+    id: string
 }
 
 export const DeleteBtn = (props: props) => {
+    const onClick = () => props.onClick(props.id)
     return(
-        <button onClick={props.onClick}>削除</button>
+        <button onClick={onClick}>削除</button>
     )
 }
