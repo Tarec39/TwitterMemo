@@ -1,15 +1,23 @@
 import { createRoot } from 'react-dom/client'
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  } from 'react-router-dom'
+  
 /**Parts */
-import { TweetBox } from './parts/TweetBox';
-import { Feed } from './parts/Feed';
+import { Home } from './components/Home';
+import { ThreadText } from './components/ThreadText';
 
 const App = () => {
   return(
-    <>
-      <TweetBox/>
-      <Feed/>
-    </>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}>
+          <Route path='compose/tweet' element={<ThreadText/>}/>
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 
