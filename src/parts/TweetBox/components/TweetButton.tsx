@@ -5,7 +5,7 @@ type props = {
 }
 
 export const TweetButton = (props:props) => {
-    const isDisabled = (props.text !=='' && props.num <= 280 ) ? false :true;
+    const isDisabled = (props.text !=='' && props.num <= 281 ) ? false :true;
     return(
         <div>
 
@@ -13,7 +13,6 @@ export const TweetButton = (props:props) => {
         onClick={props.handlePostTweet}
         disabled={isDisabled}
         >ツイートする</button>
-
         </div>
     )
 }

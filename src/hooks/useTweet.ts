@@ -17,6 +17,7 @@ export const useTweet = () => {
 
         const newTweet = {
             title: title,
+            id: ulid(),
             contents: [{
                 id: ulid(),
                 text: text
@@ -29,9 +30,11 @@ export const useTweet = () => {
     }
 
     const deleteTweet = (id: string) => {
-        tweetData.deleteTweet(id).then((deleteDone) => {
-            // const newTweetList = tweetList.filter((item) => item.id !== deleteDone)
-            // setTweetList(newTweetList)
+        //全体削除
+        //スレッドを一部消すような、ツイート単体のIDではない。
+        tweetData.deleteTweet(id).then((deletedTweetId) => {
+            const newTweetList = tweetList.filter((item) => item.id !== deletedTweetId)
+            setTweetList(newTweetList)
         })
     }
 

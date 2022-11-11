@@ -1,18 +1,11 @@
 type props = {
-    onClick: () => void
+    onClick: (id:string) => void
+    id: string
 }
 
 export const DeleteBtn = (props: props) => {
+    const onClick = () => props.onClick(props.id)
     return(
-        <button onClick={props.onClick}>削除</button>
-    )
-}
-
-type props2 = {
-    onClick: () => void
-}
-export const ForceBtn = (props: props2) => {
-    return(
-        <button onClick={props.onClick}>強制</button>
+        <button onClick={onClick}>削除</button>
     )
 }

@@ -21,7 +21,7 @@ export const TweetBox = () => {
     const { countChar, countMaxChar } = useCharCounter(text)
     const {styles, width} = useMeter(countChar().count)
     //use Common Hooks
-    const {postTweet, tweetList} = useTweet()
+    const {postTweet, tweetList, deleteTweet} = useTweet()
 
     const handlePostTweet = () => {
         const title = inputEl
@@ -70,7 +70,7 @@ export const TweetBox = () => {
             char={width()}
             styles={styles()}
         />
-        <Share tweetList={tweetList}/>
+        <Share tweetList={tweetList} deleteTweet={deleteTweet}/>
         </>
     )
 }
