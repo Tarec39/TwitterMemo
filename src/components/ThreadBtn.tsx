@@ -1,10 +1,16 @@
 type props = {
     onClick: () => void
+    isThreadable: boolean
 }
 
 export const ThreadBtn = (props: props) => {
     return(
-        <button onClick={props.onClick}>＋</button>
+        <>
+        {(props.isThreadable)
+        ? <button onClick={props.onClick}>＋</button>
+        : ''
+        }
+        </>
     )
 }
 
@@ -17,5 +23,14 @@ export const DelThreadBtn = (props: DelProps) => {
     const onClick = ()=>props.onClick(props.index)
     return(
         <button onClick={onClick}>{props.index}</button>
+    )
+}
+
+type CloseProps = {
+    onClick: ()=>void
+}
+export const CloseThreadBtn = (props: CloseProps) => {
+    return(
+        <button onClick={props.onClick}>X</button>
     )
 }

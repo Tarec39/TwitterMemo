@@ -29,6 +29,7 @@ export const TweetBox = () => {
     const {styles, width} = useMeter(countChar().count)
     //use Common Hooks
     const {postTweet, tweetList, deleteTweet} = useTweet()
+
     const handlePostTweet = () => {
         const title = inputEl
         const text = textEditorState.getCurrentContent().getPlainText()
@@ -42,8 +43,15 @@ export const TweetBox = () => {
         setTextEditorState(clearText)
     }
 
-    const handleNavigate = () => {
+    const handleNavigateThread = () => {
         navigate('/compose/tweet')
+    }
+
+    const handleThreadable = (text:string) => {
+        let a
+        (text.length===0) ?  a=false:a=true
+        console.log(a)
+        return a 
     }
     return(
         <>
@@ -64,15 +72,9 @@ export const TweetBox = () => {
         />
 
         <ThreadBtn
-            onClick={handleNavigate}
+            onClick={handleNavigateThread}
+            isThreadable={handleThreadable(text)}
         />
-
-        {/* <ThreadText 
-            value={textAreaEl}
-            onChange={onChangeTextArea}
-            array={array}
-            handleDelThread={handleDelThread}
-        /> */}
 
         <WordCountIndicator
             maxChar={countMaxChar()}
