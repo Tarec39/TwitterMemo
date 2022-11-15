@@ -1,6 +1,10 @@
 
 import { ContentState, EditorState} from "draft-js";
+import { useNavigate } from "react-router-dom";
+//useContext
 import { Share } from "./components/share";
+//Common Parts
+import { ThreadBtn } from "../../components/ThreadBtn";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -14,10 +18,13 @@ import { useText } from "./hooks/useTweetBox";
 import { useCharCounter } from "./hooks/useTweetBox";
 
 export const TweetBox = () => {
+    //use Router
+    const navigate = useNavigate()
     //use Hooks
     const {inputEl, onChangeInput, clearInputEl} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
-                                                const text = textEditorState.getCurrentContent().getPlainText()
+
+    const text = textEditorState.getCurrentContent().getPlainText()
     const { countChar, countMaxChar } = useCharCounter(text)
     const {styles, width} = useMeter(countChar().count)
     //use Common Hooks
@@ -36,6 +43,16 @@ export const TweetBox = () => {
         setTextEditorState(clearText)
     }
 
+    const handleNavigateThread = () => {
+        navigate('/compose/tweet')
+    }
+
+    const handleThreadable = (text:string) => {
+        let a
+        (text.length===0) ?  a=false:a=true
+        console.log(a)
+        return a 
+    }
     return(
         <>
         <Title
@@ -54,16 +71,10 @@ export const TweetBox = () => {
             text={textEditorState.getCurrentContent().getPlainText()}
         />
 
-        {/* <ThreadBtn
-            onClick={handleNum}
-        /> */}
-
-        {/* <ThreadText 
-            value={textAreaEl}
-            onChange={onChangeTextArea}
-            array={array}
-            handleDelThread={handleDelThread}
-        /> */}
+        <ThreadBtn
+            onClick={handleNavigateThread}
+            isThreadable={handleThreadable(text)}
+        />
 
         <WordCountIndicator
             maxChar={countMaxChar()}
