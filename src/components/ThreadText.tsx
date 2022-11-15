@@ -1,17 +1,31 @@
 import { CloseThreadBtn } from './ThreadBtn'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState, useCallback } from 'react'
+import { SureThreadBtn } from './ThreadBtn'
 
 export const ThreadText = () => {
     const navigate = useNavigate()
+
+    const [show, setShow] = useState<boolean>(false)
+    
+    const handleNav = () => navigate('/')
+    const handleShow = () => setShow(true)
+    const handleHidden = () => setShow(false)
+    const handleOutsideClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if(e.target === e.currentTarget) handleShow()
+    }
     return(
         <>
-        <div className="でかい何か" style={Big}>
+        <div className="でかい何か" style={Big} onClick={handleOutsideClick}>
+            {(show)
+            ? <SureThreadBtn onClickNavigate={handleNav} onClickCancel={handleHidden}/>
+            : ''
+            }
             <div
                 className="Thread"
                 style={Thread}
-                onBlur={()=>console.log('off focus')}
-                onClick={()=>console.log('on focus')}>                                                                                                                                                                                                                               
-                <CloseThreadBtn onClick={()=>navigate('/home')}/>
+            >                                                                                                                                                                                                                               
+                <CloseThreadBtn onClick={handleShow}/>
             </div>
         </div>
         </>
