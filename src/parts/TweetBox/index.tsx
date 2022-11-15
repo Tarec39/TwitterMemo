@@ -1,10 +1,12 @@
 
 import { ContentState, EditorState} from "draft-js";
 import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+
 //useContext
 import { Share } from "./components/share";
 //Common Parts
-import { ThreadBtn } from "../../components/ThreadBtn";
+// import { ThreadBtn } from "../../components/ThreadBtn";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -21,7 +23,7 @@ export const TweetBox = () => {
     //use Router
     const navigate = useNavigate()
     //use Hooks
-    const {inputEl, onChangeInput, clearInputEl} = useTitle()
+    const {titleEditorState, setTitleEditorState} = useTitle()
     const {textEditorState, setTextEditorState} = useText()
 
     const text = textEditorState.getCurrentContent().getPlainText()
@@ -31,57 +33,67 @@ export const TweetBox = () => {
     const {postTweet, tweetList, deleteTweet} = useTweet()
 
     const handlePostTweet = () => {
-        const title = inputEl
+        const title = titleEditorState.getCurrentContent().getPlainText()
         const text = textEditorState.getCurrentContent().getPlainText()
         postTweet(title, text)
         clearTweetBox()
     }
 
     const clearTweetBox = () => {
-        clearInputEl()
+        const clearTitle = EditorState.push(titleEditorState, ContentState.createFromText(''), 'remove-range')
         const clearText = EditorState.push(textEditorState, ContentState.createFromText(''), 'remove-range')
+        setTitleEditorState(clearTitle)
         setTextEditorState(clearText)
     }
 
-    const handleNavigateThread = () => {
-        navigate('/compose/tweet')
-    }
+    // const handleNavigateThread = () => {
+    //     navigate('/compose/tweet')
+    // }
 
-    const handleThreadable = (text:string) => {
-        let a
-        (text.length===0) ?  a=false:a=true
-        console.log(a)
-        return a 
-    }
+    // const handleThreadable = (text:string) => {
+    //     let a
+    //     (text.length===0) ?  a=false:a=true
+    //     console.log(a)
+    //     return a 
+    // }
     return(
         <>
         <Title
-            inputEl={inputEl}
-            onChange={onChangeInput}
+            editorState={titleEditorState}
+            setEditorState={setTitleEditorState}
         />
 
         <Text
             editorState={textEditorState}
             setEditorState={setTextEditorState}
         />
-
-        <TweetButton 
-            handlePostTweet={handlePostTweet}
-            num={countChar().count}
-            text={textEditorState.getCurrentContent().getPlainText()}
-        />
-
-        <ThreadBtn
-            onClick={handleNavigateThread}
-            isThreadable={handleThreadable(text)}
-        />
+        <A>
 
         <WordCountIndicator
             maxChar={countMaxChar()}
             char={width()}
             styles={styles()}
         />
+        <TweetButton 
+            handlePostTweet={handlePostTweet}
+            num={countChar().count}
+            text={textEditorState.getCurrentContent().getPlainText()}
+        />
+        </A>
+
+        {/* <ThreadBtn
+            onClick={handleNavigateThread}
+            isThreadable={handleThreadable(text)}
+        /> */}
+
+
         <Share tweetList={tweetList} deleteTweet={deleteTweet}/>
         </>
     )
 }
+
+const A = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+`

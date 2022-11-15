@@ -1,27 +1,27 @@
+import {Editor, EditorState} from 'draft-js'
+import styled from 'styled-components'
+
 type props = {
-    inputEl: string
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  editorState: EditorState
+  setEditorState: React.Dispatch<React.SetStateAction<EditorState>>
 }
+
 
 export const Title =(props: props)=> {
     return(
-        <>
         <div>
-            <input
-                style={styles.editor}
-                value={props.inputEl}
-                onChange={props.onChange}
+          <DraftStyle>
+          <Editor
+            editorState={props.editorState}
+            onChange={props.setEditorState}
             />
+          </DraftStyle>
         </div>
-        </>
     )
 }
 
-const styles = {
-    editor: {
-      margin: '0 0 0 10px',
-      border: 'solid',
-      width: '200px'
-    }
-  }
+const DraftStyle = styled.div`
+  height: 28px;
+  padding: 2px 0;
+`
 
