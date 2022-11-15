@@ -1,56 +1,12 @@
-import { CloseThreadBtn } from './ThreadBtn'
-import { useNavigate } from 'react-router-dom'
-import { useEffect, useState, useCallback } from 'react'
-import { SureThreadBtn } from './ThreadBtn'
+type props = {
 
-export const ThreadText = () => {
-    const navigate = useNavigate()
-
-    const [show, setShow] = useState<boolean>(false)
-    
-    const handleNav = () => navigate('/')
-    const handleShow = () => setShow(true)
-    const handleHidden = () => setShow(false)
-    const handleOutsideClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if(e.target === e.currentTarget) handleShow()
-    }
+}
+export const ThreadText = (props: props) => {
     return(
         <>
-        <div className="でかい何か" style={Big} onClick={handleOutsideClick}>
-            {(show)
-            ? <SureThreadBtn onClickNavigate={handleNav} onClickCancel={handleHidden}/>
-            : ''
-            }
-            <div
-                className="Thread"
-                style={Thread}
-            >                                                                                                                                                                                                                               
-                <CloseThreadBtn onClick={handleShow}/>
+            <div style={{width: 400, height:200, background:'red', margin:'10px auto 0 auto'}}>
+            a
             </div>
-        </div>
         </>
     )
 }
-
-const Big = {
-    position: 'absolute',
-    width:'100vw',
-    height:'90vh',
-    inset: 0,
-    margin:'auto'
-    
-} as React.CSSProperties
-
-const Thread = {
-    // position: 'fixed',
-    background:'black',
-    color:'white',
-    cursor:'text',
-    width: 500,
-    height: 500,
-    margin: '0 auto 0 auto',
-    zIndex:1,
-} as React.CSSProperties
-
-//overflow: hiddenでスクロールさせなくする。
-//overscroll-behavior-y: none;で確実にするのか？？？

@@ -7,14 +7,14 @@ import {
   
 /**Parts */
 import { Home } from './components/Home';
-import { ThreadText } from './components/ThreadText';
+import { ThreadBody } from './components/ThreadBody';
 
 const App = () => {
   return(
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}>
-          <Route path='compose/tweet' element={<ThreadText/>}/>
+          <Route path='compose/tweet' element={<ThreadBody/>}/>
         </Route>
       </Routes>
     </Router>
