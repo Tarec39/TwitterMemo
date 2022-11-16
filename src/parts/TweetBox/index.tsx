@@ -6,7 +6,7 @@ import styled from 'styled-components';
 //useContext
 import { Share } from "./components/share";
 //Common Parts
-// import { ThreadBtn } from "../../components/ThreadBtn";
+import { ThreadBtn } from "../../components/ThreadBtn";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -46,16 +46,16 @@ export const TweetBox = () => {
         setTextEditorState(clearText)
     }
 
-    // const handleNavigateThread = () => {
-    //     navigate('/compose/tweet')
-    // }
+    const handleNavigateThread = () => {
+        navigate('/compose/tweet')
+    }
 
-    // const handleThreadable = (text:string) => {
-    //     let a
-    //     (text.length===0) ?  a=false:a=true
-    //     console.log(a)
-    //     return a 
-    // }
+    const handleThreadable = (text:string) => {
+        let a
+        (text.length===0) ?  a=false:a=true
+        console.log(a)
+        return a 
+    }
     return(
         <>
         <Title
@@ -74,6 +74,11 @@ export const TweetBox = () => {
             char={width()}
             styles={styles()}
         />
+        <Partition></Partition>
+        <ThreadBtn
+            onClick={handleNavigateThread}
+            isThreadable={handleThreadable(text)}
+        />
         <TweetButton 
             handlePostTweet={handlePostTweet}
             num={countChar().count}
@@ -81,10 +86,6 @@ export const TweetBox = () => {
         />
         </A>
 
-        {/* <ThreadBtn
-            onClick={handleNavigateThread}
-            isThreadable={handleThreadable(text)}
-        /> */}
 
 
         <Share tweetList={tweetList} deleteTweet={deleteTweet}/>
@@ -96,4 +97,8 @@ const A = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    // position: relative;
+`
+const Partition = styled.span`
+
 `

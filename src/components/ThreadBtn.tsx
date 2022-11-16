@@ -1,4 +1,6 @@
-import { NavigateFunction } from "react-router-dom";
+import styled from 'styled-components' 
+// import {ReactCompoent as AddIcon} from '../icon/AddIcon.svg';
+
 type props = {
     onClick: () => void
     isThreadable: boolean
@@ -8,13 +10,24 @@ export const ThreadBtn = (props: props) => {
     return(
         <>
         {(props.isThreadable)
-        ? <button onClick={props.onClick}>＋</button>
+        ? <Button onClick={props.onClick}>
+            <AddIcon xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                <path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/>
+            </AddIcon>
+            
+            </Button>
         : ''
         }
+
+
         </>
     )
 }
-
+const Button = styled.div``
+const AddIcon = styled.svg`
+    fill: #1C9BEF;
+    font-size: 3px;
+`
 type DelProps = {
     onClick: (num:number) => void
     index: number
