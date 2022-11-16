@@ -11,6 +11,10 @@ export const Title =(props: props)=> {
     return(
         <div>
           <DraftStyle>
+          {(props.editorState.getCurrentContent().getPlainText().length===0)
+            ?<PlaceHolder>タイトル</PlaceHolder>
+            :''
+          }
           <Editor
             editorState={props.editorState}
             onChange={props.setEditorState}
@@ -23,5 +27,11 @@ export const Title =(props: props)=> {
 const DraftStyle = styled.div`
   height: 28px;
   padding: 2px 0;
+`
+
+const PlaceHolder = styled.div`
+  position: absolute;
+  color: #71767B;
+  z-index: -1;
 `
 
