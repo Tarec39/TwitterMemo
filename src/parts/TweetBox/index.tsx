@@ -68,17 +68,23 @@ export const TweetBox = () => {
             setEditorState={setTextEditorState}
         />
         <A>
-
+        {(text.length!==0)
+        ?
+        <>
         <WordCountIndicator
             maxChar={countMaxChar()}
             char={width()}
             styles={styles()}
-        />
+            />
         <Partition></Partition>
-        <ThreadBtn
+        </>
+            :''
+        }
+
+        {/* <ThreadBtn
             onClick={handleNavigateThread}
             isThreadable={handleThreadable(text)}
-        />
+        /> */}
         <TweetButton 
             handlePostTweet={handlePostTweet}
             num={countChar().count}
@@ -100,5 +106,10 @@ const A = styled.div`
     // position: relative;
 `
 const Partition = styled.span`
-
+margin-left: calc(10px);
+height: 31px;
+background-color: rgb(62, 65, 68);
+margin-right: 12px;
+width: 1px;
+align-self: center;
 `

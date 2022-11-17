@@ -25,7 +25,6 @@ export const Title =(props: props)=> {
 }
 
 const DraftStyle = styled.div`
-  height: 28px;
   padding: 2px 0;
 `
 

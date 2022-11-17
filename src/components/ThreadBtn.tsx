@@ -11,8 +11,8 @@ export const ThreadBtn = (props: props) => {
         <>
         {(props.isThreadable)
         ? <Button onClick={props.onClick}>
-            <AddIcon xmlns="http://www.w3.org/2000/svg" height="48" width="48">
-                <path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/>
+            <AddIcon xmlns="http://www.w3.org/2000/svg">
+                <path width='100px' d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/>
             </AddIcon>
             
             </Button>
@@ -23,10 +23,16 @@ export const ThreadBtn = (props: props) => {
         </>
     )
 }
-const Button = styled.div``
+const Button = styled.div`
+    cursor: pointer;
+`
 const AddIcon = styled.svg`
     fill: #1C9BEF;
-    font-size: 3px;
+    // font-size: 15px;
+    // font-weight: 700;
+    // line-height: 0;
+    // align-self: center;
+    
 `
 type DelProps = {
     onClick: (num:number) => void

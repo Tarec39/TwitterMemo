@@ -13,6 +13,7 @@ export const Feed = () => {
 
     return(
         <>
+            
             <Tweets tweetList={context?.tweetList} handleDelete={handleDelete}/>
         </>
     )
