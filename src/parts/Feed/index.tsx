@@ -1,20 +1,28 @@
-//useContext
-import { useContext } from "react"
-import { TweetListandDelete } from "../TweetBox/components/share"
-//parts
-import { Tweets } from "./components/Tweets"
+//type
+import { TweetData } from "../../types/Tweet";
+//component
+import {Tweet} from "./components/Tweet"
 
-export const Feed = () => {
+type props = {
+    tweetList: TweetData[]
+    handleDelete: (id:string)=>void
+}
 
-    const context = useContext(TweetListandDelete)
-    const handleDelete = (id:string) => {
-        context?.deleteTweet(id)
-    }
-
+export const Feed = (props: props) => {
     return(
         <>
-            
-            <Tweets tweetList={context?.tweetList} handleDelete={handleDelete}/>
+            {props.tweetList?.length !== 0 && (
+                <>
+                {props.tweetList?.map((tweet, i) => (
+                    <Tweet
+                        tweet={tweet}
+                        handleDelete={props.handleDelete}
+                        index={i}
+                        key={i}
+                    />
+                ))}
+            </>
+            )}
         </>
     )
 }
