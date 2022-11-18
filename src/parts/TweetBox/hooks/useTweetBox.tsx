@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {EditorState} from 'draft-js'
 
 export const useTitle = () => {

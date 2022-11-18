@@ -1,20 +1,16 @@
-import { TweetBox } from "../parts/TweetBox";
-import { Feed } from "../parts/Feed";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
+//parts
+import { Feeder } from "./Feeder";
+//Nannka
 import styled from "styled-components";
+
 export const Home = () => {
     return(
         <>
             <Header><h2>青鳥</h2></Header>
-            <Outlet/>
             <Contents>
                 <Sidebar></Sidebar>
-                <Feeder>
-                    <TweetBox2>
-                        <TweetBox/>
-                    </TweetBox2>
-                    <Feed/>
-                </Feeder>
+                <Feeder></Feeder>
             </Contents>
         </>
     )
@@ -45,17 +41,4 @@ const Sidebar = styled.div`
   padding-right: 20px;
 `;
 
-const Feeder = styled.div`
-  width: 100%;
-  min-width: fit-content!;
-  overflow-y:scroll
-  -ms-overflow-style: none;
-`
 
-const TweetBox2 = styled.div`
-  width: 500px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  border-bottom: 8px solid #2F3336;
-  margin: auto;
-`;
