@@ -55,13 +55,12 @@ export const Feeder = () => {
             return a 
         }
 
-        // ----------------------------------
-
         const handleDelete = (id:string) => {
             deleteTweet(id)
         }
 
     return(
+        <>
         <_Feeder className="Feeder">
             <_TweetBox className="TweetBox">
             <TweetBox
@@ -75,16 +74,22 @@ export const Feeder = () => {
                 styles={styles}
                 handlePostTweet={handlePostTweet}
                 countChar={countChar}
-            />
+                handleNavigateThread={handleNavigateThread}
+                handleThreadable={handleThreadable}
+                />
             </_TweetBox>
 
             <_Feed className="Feed">
+
+
             <Feed
                 tweetList={tweetList}
                 handleDelete={handleDelete}
                 />
             </_Feed>
+
         </_Feeder>
+        </>
     )
 }
 
@@ -98,12 +103,14 @@ const _Feeder = styled.div`
 
 const _TweetBox = styled.div`
   width: 500px;
-  padding-bottom: 10px;
-  padding-right: 10px;
+  border: 1px solid #2F3336;
+  padding: 13px 16px;
+  border-top: none;
   border-bottom: 8px solid #2F3336;
   margin: auto;
 `;
 
 const _Feed = styled.div`
-
+    margin-top: 20px;
+    margin-left: 20px;
 `

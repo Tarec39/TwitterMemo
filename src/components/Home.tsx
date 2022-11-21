@@ -1,15 +1,19 @@
-// import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 //parts
 import { Feeder } from "./Feeder";
 //Nannka
 import styled from "styled-components";
+import Icon from '../assets/icon.png'
 
 export const Home = () => {
     return(
         <>
-            <Header><h2>青鳥</h2></Header>
+            <Outlet/>
+            <Header></Header>
             <Contents>
-                <Sidebar></Sidebar>
+                <Sidebar>
+                  <div><img src={Icon}/></div>
+                </Sidebar>
                 <Feeder></Feeder>
             </Contents>
         </>
@@ -18,16 +22,18 @@ export const Home = () => {
 
 const Header = styled.header`
   position: sticky;
+  display: flex;
+  height: 50px;
+  background: black;
+  fill: black;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   border: 1px solid #2F3336;
-  padding: 15px 20px;
   color: rgb(231, 233, 234);
 `;
 
 const Contents = styled.div`
   display: flex;
-  // max-width: 1300px;
   padding: 0 10px;
   height: 100vh;
 `;
@@ -39,6 +45,14 @@ const Sidebar = styled.div`
   // margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  >div {
+    flex: 0.1;
+    >img{
+      display: block;
+      width:60px;
+      margin: auto;
+    }
+  }
 `;
 
 

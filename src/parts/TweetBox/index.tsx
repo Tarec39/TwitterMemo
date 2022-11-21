@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {EditorState} from "draft-js";
 //useContext
 //Common Parts
-// import { ThreadBtn } from "../../components/ThreadBtn";
+import { ThreadBtn } from "../../components/Thread/ThreadBtn";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
@@ -20,6 +20,8 @@ type props = {
     styles: ()=>string
     handlePostTweet: ()=>void
     countChar: ()=>{count:number}
+    handleNavigateThread:()=>void
+    handleThreadable:(text: string) => boolean
 }
 export const TweetBox = (props:props) => {
 
@@ -42,16 +44,16 @@ export const TweetBox = (props:props) => {
             maxChar={props.countMaxChar()}
             char={props.width()}
             styles={props.styles()}
-            />
+        />
         <Partition></Partition>
         </>
-            :''
+        :''
         }
 
-        {/* <ThreadBtn
-            onClick={handleNavigateThread}
-            isThreadable={handleThreadable(text)}
-        /> */}
+        <ThreadBtn
+            onClick={props.handleNavigateThread}
+            isThreadable={props.handleThreadable(props.text)}
+        />
         <TweetButton 
             handlePostTweet={props.handlePostTweet}
             num={props.countChar().count}

@@ -17,7 +17,6 @@ export const TweetButton = (props:props) => {
               >ツイートする
               </Button2>
             }
-
         </div>
     )
 }
