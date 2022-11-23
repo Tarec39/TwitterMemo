@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { CloseThreadBtn } from './ThreadBtn'
-import { SureThreadBtn } from './ThreadBtn'
-import { ThreadTexts } from './ThreadTexts'
+import { CloseThreadBtn } from '../Buttons/ThreadBtn'
+import { SureThreadBtn } from '../Buttons/ThreadBtn'
+import { ThreadTexts } from '../Text Input/ThreadTexts'
 
 export const ThreadBody = () => {
     const navigate = useNavigate()

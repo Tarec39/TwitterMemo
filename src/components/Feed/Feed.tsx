@@ -1,7 +1,7 @@
 //type
 import { TweetData } from "../../types/Tweet";
 //component
-import {Tweet} from "./components/Tweet"
+import {Tweet} from "./Tweet"
 import { Masonry } from '@mui/lab';
 
 type props = {

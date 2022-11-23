@@ -1,13 +1,13 @@
+//Libraries
 import styled from 'styled-components';
 import {EditorState} from "draft-js";
-//useContext
 //Common Parts
-import { ThreadBtn } from "../../components/Thread/ThreadBtn";
+import { ThreadBtn } from "../Buttons/ThreadBtn";
 //Parts
-import { Title } from "./components/Title";
-import { Text } from "./components/Text";
-import { TweetButton } from "./components/TweetButton";
-import { WordCountIndicator } from "./components/WordCount";
+import { Title } from "../Text Input/Title";
+import { Text } from "../Text Input/Text";
+import { TweetButton } from "../Buttons/TweetButton";
+import { WordCountIndicator } from "./WordCount";
 
 type props = {
     titleEditorState: EditorState
@@ -46,8 +46,7 @@ export const TweetBox = (props:props) => {
             styles={props.styles()}
         />
         <Partition></Partition>
-        </>
-        :''
+        </>:''
         }
 
         <ThreadBtn

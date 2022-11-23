@@ -1,14 +1,18 @@
-import AddIcon from '../../assets/Add.png'
+//Libraries
 import styled from 'styled-components'
 
-import {useEffect, useState} from 'react'
-import { useTitle } from '../../parts/TweetBox/hooks/useTweetBox'
+//Standard Hooks
+import { useState } from 'react'
 
-import { Title } from "../../parts/TweetBox/components/Title"
-import { ThreadBtn } from "./ThreadBtn"
+//Custom Hooks
+import { useTitle } from '../../hooks/useTweetBox'
+
+//Parts
+import { Title } from "./Title"
+import { ThreadBtn } from "../Buttons/ThreadBtn"
 import { ThreadText } from "./ThreadText"
-import { TweetButton } from '../../parts/TweetBox/components/TweetButton'
-import { CloseThreadBtn } from './ThreadBtn'
+import { TweetButton } from '../Buttons/TweetButton'
+import { CloseThreadBtn } from '../Buttons/ThreadBtn'
 
 export const ThreadTexts = () => {
     const {titleEditorState, setTitleEditorState} = useTitle()
