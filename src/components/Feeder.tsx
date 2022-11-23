@@ -2,8 +2,8 @@
 import styled from 'styled-components'
 
 //Parts
-import { TweetBox } from "../parts/TweetBox";
-import { Feed } from "../parts/Feed";
+import { TweetBox } from "./TweetBox/TweetBox";
+import { Feed } from "./Feed/Feed";
 
 //Nantoka Hooks
 import { ContentState, EditorState} from "draft-js";
@@ -13,9 +13,9 @@ import { useNavigate } from "react-router-dom";
 import { useTweet } from "../hooks/useTweet";
 
 //Hooks
-import { useMeter, useTitle } from "../parts/TweetBox/hooks/useTweetBox";
-import { useText } from "../parts/TweetBox/hooks/useTweetBox";
-import { useCharCounter } from "../parts/TweetBox/hooks/useTweetBox";
+import { useMeter, useTitle } from "../hooks/useTweetBox";
+import { useText } from "../hooks/useTweetBox";
+import { useCharCounter } from "../hooks/useTweetBox";
 
 export const Feeder = () => {
         //use Router

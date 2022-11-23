@@ -1,13 +1,14 @@
+//Libraries
+import {Editor} from 'draft-js'
 import styled from 'styled-components'
-import {Editor, EditorState} from 'draft-js'
-import {useState,useRef, useEffect} from 'react'
-import {useText,useMeter,useCharCounter} from '../../parts/TweetBox/hooks/useTweetBox'
-import {WordCountIndicator} from '../../parts/TweetBox/components/WordCount'
+//Standsrd Hooks
+import { useRef } from 'react'
+//Custom Hooks
+import { useText, useMeter, useCharCounter } from '../../hooks/useTweetBox'
+//Parts
+import { WordCountIndicator } from '../TweetBox/WordCount'
 
-type props = {
-
-}
-export const ThreadText = (props: props) => {
+export const ThreadText = () => {
     const {textEditorState, setTextEditorState} = useText()
     const text = textEditorState.getCurrentContent().getPlainText()
     const { countChar, countMaxChar } = useCharCounter(text)

@@ -20,7 +20,7 @@ export const Text = (props: props) => {
             editorState={props.editorState}
             onChange={props.setEditorState}
             />
-          </DraftStyle> ,
+          </DraftStyle>
         </div>
       </>
     )

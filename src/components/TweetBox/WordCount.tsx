@@ -1,5 +1,5 @@
+//react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar'
-
 import './styles.css'
 
 type props = {

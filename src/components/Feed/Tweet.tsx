@@ -1,6 +1,6 @@
-import { TweetData } from "../../../types/Tweet";
+import { TweetData } from "../../types/Tweet";
 
-import {DeleteBtn} from './DeleteBtn'
+import {DeleteBtn} from '../Buttons/DeleteBtn'
 
 import styled from 'styled-components'
 import {useState} from 'react'
@@ -14,11 +14,7 @@ export const Tweet = (props: props) => {
     const id = props.tweet.id
     const [bool, setBool] = useState<boolean>(false)
     return(
-
-        <_Tweet
-            onMouseEnter={()=>setBool(true)}
-            onMouseLeave={()=>setBool(false)}
-        >
+    <_Tweet>
             {props.tweet.title !== ""
                 ?<_Title>{props.tweet.title}</_Title>:''
             }
