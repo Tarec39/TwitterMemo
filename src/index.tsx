@@ -7,7 +7,7 @@ import {
   
 /**Parts */
 import { Home } from './components/Home';
-import { ThreadBody } from './components/ThreadBody';
+import { ThreadBody } from './components/Thread/ThreadBody';
 
 const App = () => {
   return(

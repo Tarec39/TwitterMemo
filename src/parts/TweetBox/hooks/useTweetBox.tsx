@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {EditorState} from 'draft-js'
 
 export const useTitle = () => {
-  const [inputEl, setInputEl] = useState('')
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputEl(e.target.value)
-  }
-  const clearInputEl = () => {
-    setInputEl('')
-  }
-  return {inputEl, onChangeInput, clearInputEl}
+  const [titleEditorState, setTitleEditorState] = useState(
+    () => EditorState.createEmpty()
+  )
+  return{titleEditorState, setTitleEditorState}
 }
 
 export const useText = () => {
@@ -65,16 +61,16 @@ export const useMeter = (current: number) => {
     switch(true){
       //280 ~
       case MAX < current:
-        return 'red'
+        return '#F4212D'
       //260 ~ 280
       case REDZONE < current && current <= MAX:
-        return 'red'
+        return '#F4212D'
       //240 ~ 260
       case WARNING < current && current <= REDZONE:
-        return 'yellow'
+        return '#F0C808'
       // ~ 240
       default: 
-        return 'blue'
+        return '#1C9BEF'
     }
   }
 

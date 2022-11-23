@@ -1,87 +1,80 @@
-
-import { ContentState, EditorState} from "draft-js";
-import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+import {EditorState} from "draft-js";
 //useContext
-import { Share } from "./components/share";
 //Common Parts
-import { ThreadBtn } from "../../components/ThreadBtn";
+import { ThreadBtn } from "../../components/Thread/ThreadBtn";
 //Parts
 import { Title } from "./components/Title";
 import { Text } from "./components/Text";
 import { TweetButton } from "./components/TweetButton";
 import { WordCountIndicator } from "./components/WordCount";
-//Common Hooks
-import { useTweet } from "../../hooks/useTweet";
-//Hooks
-import { useMeter, useTitle } from "./hooks/useTweetBox";
-import { useText } from "./hooks/useTweetBox";
-import { useCharCounter } from "./hooks/useTweetBox";
 
-export const TweetBox = () => {
-    //use Router
-    const navigate = useNavigate()
-    //use Hooks
-    const {inputEl, onChangeInput, clearInputEl} = useTitle()
-    const {textEditorState, setTextEditorState} = useText()
+type props = {
+    titleEditorState: EditorState
+    setTitleEditorState: React.Dispatch<React.SetStateAction<EditorState>>
+    textEditorState: EditorState
+    setTextEditorState: React.Dispatch<React.SetStateAction<EditorState>>
+    text: string
+    countMaxChar: ()=>number
+    width: ()=>number
+    styles: ()=>string
+    handlePostTweet: ()=>void
+    countChar: ()=>{count:number}
+    handleNavigateThread:()=>void
+    handleThreadable:(text: string) => boolean
+}
+export const TweetBox = (props:props) => {
 
-    const text = textEditorState.getCurrentContent().getPlainText()
-    const { countChar, countMaxChar } = useCharCounter(text)
-    const {styles, width} = useMeter(countChar().count)
-    //use Common Hooks
-    const {postTweet, tweetList, deleteTweet} = useTweet()
-
-    const handlePostTweet = () => {
-        const title = inputEl
-        const text = textEditorState.getCurrentContent().getPlainText()
-        postTweet(title, text)
-        clearTweetBox()
-    }
-
-    const clearTweetBox = () => {
-        clearInputEl()
-        const clearText = EditorState.push(textEditorState, ContentState.createFromText(''), 'remove-range')
-        setTextEditorState(clearText)
-    }
-
-    const handleNavigateThread = () => {
-        navigate('/compose/tweet')
-    }
-
-    const handleThreadable = (text:string) => {
-        let a
-        (text.length===0) ?  a=false:a=true
-        console.log(a)
-        return a 
-    }
     return(
         <>
         <Title
-            inputEl={inputEl}
-            onChange={onChangeInput}
+            editorState={props.titleEditorState}
+            setEditorState={props.setTitleEditorState}
         />
 
         <Text
-            editorState={textEditorState}
-            setEditorState={setTextEditorState}
+            editorState={props.textEditorState}
+            setEditorState={props.setTextEditorState}
         />
-
-        <TweetButton 
-            handlePostTweet={handlePostTweet}
-            num={countChar().count}
-            text={textEditorState.getCurrentContent().getPlainText()}
+        <A>
+        {(props.text.length!==0)
+        ?
+        <>
+        <WordCountIndicator
+            maxChar={props.countMaxChar()}
+            char={props.width()}
+            styles={props.styles()}
         />
+        <Partition></Partition>
+        </>
+        :''
+        }
 
         <ThreadBtn
-            onClick={handleNavigateThread}
-            isThreadable={handleThreadable(text)}
+            onClick={props.handleNavigateThread}
+            isThreadable={props.handleThreadable(props.text)}
         />
-
-        <WordCountIndicator
-            maxChar={countMaxChar()}
-            char={width()}
-            styles={styles()}
+        <TweetButton 
+            handlePostTweet={props.handlePostTweet}
+            num={props.countChar().count}
+            text={props.textEditorState.getCurrentContent().getPlainText()}
         />
-        <Share tweetList={tweetList} deleteTweet={deleteTweet}/>
+        </A>
         </>
     )
 }
+
+const A = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    // position: relative;
+`
+const Partition = styled.span`
+margin-left: calc(10px);
+height: 31px;
+background-color: rgb(62, 65, 68);
+margin-right: 12px;
+width: 1px;
+align-self: center;
+`

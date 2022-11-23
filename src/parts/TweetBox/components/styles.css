@@ -24,16 +24,18 @@
 }
 
 .CircularProgressbar .CircularProgressbar-trail {
-  stroke: #d6d6d6;
+  stroke: rgb(47, 51, 54);
   /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
   stroke-linecap: round;
 }
 
+/* サークル内の文字 */
 .CircularProgressbar .CircularProgressbar-text {
-  fill: #3e98c7;
-  font-size: 20px;
-  dominant-baseline: middle;
+  fill: rgb(113, 118, 123);
+  font-size: 40px;
   text-anchor: middle;
+  /* 力技で押し込めてる。 */
+  transform: translate(0px, 13px);
 }
 
 .CircularProgressbar .CircularProgressbar-background {
