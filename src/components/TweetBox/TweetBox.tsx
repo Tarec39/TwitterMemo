@@ -48,11 +48,12 @@ export const TweetBox = (props:props) => {
         <Partition></Partition>
         </>:''
         }
-
-        <ThreadBtn
+        
+        {/* 未実装 */}
+        {/* <ThreadBtn
             onClick={props.handleNavigateThread}
             isThreadable={props.handleThreadable(props.text)}
-        />
+        /> */}
         <TweetButton 
             handlePostTweet={props.handlePostTweet}
             num={props.countChar().count}
