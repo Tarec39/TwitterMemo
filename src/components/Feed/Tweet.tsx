@@ -14,7 +14,10 @@ export const Tweet = (props: props) => {
     const id = props.tweet.id
     const [bool, setBool] = useState<boolean>(false)
     return(
-    <_Tweet>
+    <_Tweet
+        onMouseEnter={()=>setBool(true)}
+        onMouseLeave={()=>setBool(false)}
+    >
             {props.tweet.title !== ""
                 ?<_Title>{props.tweet.title}</_Title>:''
             }

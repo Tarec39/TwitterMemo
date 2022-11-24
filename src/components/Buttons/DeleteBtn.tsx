@@ -20,7 +20,13 @@ const Button = styled.div`
     text-align: right;
     transition-duration: 0.218s;
     transition-timing-function: ease-in;
+    width:100%;
+    height:20px;
     >img{
-        filter: brightness(1) invert(0);
+        display: block;
+        width:25px;
+        margin-left:auto;
+        filter: brightness(0) invert(1);
+        // background: white;
     }
 `
