@@ -1,5 +1,5 @@
 # TwitterMemo（仮）ver1.0
- できる限りTwitterに近い使用感にしたメモアプリ
+Twitterに近い使用感を目指すメモアプリ
  開発中
  ---
  ## Demo
